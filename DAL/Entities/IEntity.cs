@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DAL.Entities
+﻿namespace DAL.Entities
 {
-    interface IEntity
+    public interface IEntity
     {
         int Id { get; set; }
     }

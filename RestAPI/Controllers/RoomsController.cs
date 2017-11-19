@@ -1,17 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BLL;
+using BLL.BusinessObjects;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace RestAPI.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Rooms")]
+    [Route("api/[controller]")]
     public class RoomsController : Controller
     {
+        BLLFacade facade = new BLLFacade();
+
         // GET: api/Rooms
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<RoomBO> Get()
         {
-            return new string[] { "value1", "value2" };
+            return facade.RoomService.GetAll();
         }
 
         // GET: api/Rooms/5
@@ -23,8 +27,15 @@ namespace RestAPI.Controllers
         
         // POST: api/Rooms
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]RoomBO roomBO)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var room = facade.RoomService.Create(roomBO);
+            return Ok(roomBO);
         }
         
         // PUT: api/Rooms/5

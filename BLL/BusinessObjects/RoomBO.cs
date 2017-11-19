@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace DAL.Entities
+namespace BLL.BusinessObjects
 {
-    public class Room : IEntity
+    public class RoomBO
     {
         public int Id { get; set; }
         public double Price { get; set; }
