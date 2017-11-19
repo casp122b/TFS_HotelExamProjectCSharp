@@ -7,5 +7,6 @@ namespace DAL.Repositories
     {
         List<Room> GetAll();
         Room Create(Room room);
+        Room Update(Room room);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BLL;
 using BLL.BusinessObjects;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace RestAPI.Controllers
@@ -34,14 +35,22 @@ namespace RestAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var room = facade.RoomService.Create(roomBO);
+            facade.RoomService.Create(roomBO);
+            Console.WriteLine("Controller" + " " + roomBO);
             return Ok(roomBO);
         }
         
         // PUT: api/Rooms/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]RoomBO roomBO)
         {
+            if (id != roomBO.Id)
+            {
+                return BadRequest("This is bad");
+            }
+
+            facade.RoomService.Update(roomBO);
+            return Ok(roomBO);
         }
         
         // DELETE: api/ApiWithActions/5

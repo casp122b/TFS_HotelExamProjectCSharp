@@ -3,10 +3,11 @@ using BLL.BusinessObjects;
 using BLL.Converters;
 using DAL;
 using System.Linq;
+using System;
 
 namespace BLL.Services
 {
-    public class RoomService : IRoomService
+    public class RoomService
     {
         RoomConverter roomCon = new RoomConverter();
         DALFacade _facade;
@@ -30,7 +31,19 @@ namespace BLL.Services
             {
                 var newRoom = uow.RoomRepository.Create(roomCon.Convert(roomBO));
                 uow.Complete();
+                Console.WriteLine("Service" + " " + newRoom);
                 return roomCon.Convert(newRoom);
+            };
+        }
+
+        public RoomBO Update(RoomBO roomBO)
+        {
+            using (var uow = _facade.UnitOfWork)
+            {
+                var updateRoom = uow.RoomRepository.Update(roomCon.Convert(roomBO));
+                uow.Complete();
+                Console.WriteLine("Service" + " " + updateRoom);
+                return roomCon.Convert(updateRoom);
             };
         }
     }

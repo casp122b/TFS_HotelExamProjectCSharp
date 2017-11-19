@@ -5,7 +5,7 @@ namespace BLL
 {
     public class BLLFacade
     {
-        public IRoomService RoomService
+        public RoomService RoomService
         {
             get { return new RoomService(new DALFacade()); }
         }

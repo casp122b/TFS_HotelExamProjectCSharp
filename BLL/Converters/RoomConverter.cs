@@ -1,5 +1,6 @@
 ﻿using BLL.BusinessObjects;
 using DAL.Entities;
+using System;
 
 namespace BLL.Converters
 {
@@ -7,27 +8,37 @@ namespace BLL.Converters
     {
         internal RoomBO Convert(Room room)
         {
-            if(room == null)
-            {
-                return null;
-            }
-            return new RoomBO()
+            RoomBO newRoomBO = new RoomBO()
             {
                 Id = room.Id,
                 Price = room.Price,
                 Available = room.Available
             };
+            if (room == null)
+            {
+                return null;
+            }
+            else if (room != null)
+            {
+                Console.WriteLine("Converter (Entity)" + " " + newRoomBO);
+            };
+            return newRoomBO;
         }
 
         internal Room Convert(RoomBO roomBO)
         {
-            if (roomBO == null) { return null; }
-            return new Room()
+            Room newRoom = new Room()
             {
                 Id = roomBO.Id,
                 Price = roomBO.Price,
                 Available = roomBO.Available
             };
+            if (roomBO == null) { return null; }
+            else if (roomBO != null)
+            {
+                Console.WriteLine("Converter (BO)" + " " + newRoom);
+            };
+            return newRoom;
         }
     }
 }
