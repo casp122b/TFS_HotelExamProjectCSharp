@@ -6,6 +6,9 @@ namespace DAL.UOW
     public class UnitOfWork : IUnitOfWork
     {
         public IGuestRepository GuestRepository { get; internal set; }
+        public ISingleRepository SingleRepository { get; internal set; }
+        public IDoubleRepository DoubleRepository { get; internal set; }
+        public ISuiteRepository SuiteRepository { get; internal set; }
         private HotelExamContext context;
 
         public UnitOfWork()
@@ -13,6 +16,9 @@ namespace DAL.UOW
             context = new HotelExamContext();
             context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
+            SingleRepository = new SingleRepository(context);
+            DoubleRepository = new DoubleRepository(context);
+            SuiteRepository = new SuiteRepository(context);
         }
 
         public int Complete()

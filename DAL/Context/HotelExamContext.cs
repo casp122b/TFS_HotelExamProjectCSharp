@@ -17,5 +17,8 @@ namespace DAL.Context
         public DbSet<Guest> Guests { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Single> Singles { get; set; }
+        public DbSet<Double> Doubles { get; set; }
+        public DbSet<Suite> Suites { get; set; }
     }
 }
