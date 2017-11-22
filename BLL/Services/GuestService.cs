@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace BLL.Services
 {
-    public class GuestService : IGuestService
+    public class GuestService : IService<GuestBO>
     {
         GuestConverter guestConv = new GuestConverter();
         DALFacade _facade;
