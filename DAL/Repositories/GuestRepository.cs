@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace DAL.Repositories
 {
-    public class GuestRepository : IGuestRepository
+    public class GuestRepository : IRepository<Guest>
     {
         HotelExamContext _context;
         public GuestRepository(HotelExamContext context)

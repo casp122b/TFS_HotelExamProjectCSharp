@@ -61,7 +61,7 @@ namespace BLL.Services
                 var updateSuite = uow.SuiteRepository.Get(suiteBO.Id);
                 if (updateSuite == null)
                 {
-                    throw new InvalidOperationException("guest not found");
+                    throw new InvalidOperationException("Suite not found");
                 }
                 updateSuite.Price = suiteBO.Price;
                 updateSuite.Available = suiteBO.Available;

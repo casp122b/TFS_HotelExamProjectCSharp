@@ -44,7 +44,7 @@ namespace RestAPI.Controllers
         {
             if (id != suiteBO.Id)
             {
-                return StatusCode(405, "Path Id does not match Guest Id in json object");
+                return StatusCode(405, "Path Id does not match Room Id in json object");
             }
             try
             {
@@ -57,7 +57,7 @@ namespace RestAPI.Controllers
             }
         }
         
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Suites/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

@@ -15,20 +15,20 @@ namespace DAL.Repositories
             _context = context;
         }
 
-        public SingleRoom Create(SingleRoom single)
+        public SingleRoom Create(SingleRoom singleRoom)
         {
-            _context.Singles.Add(single);
-            return single;
+            _context.Singles.Add(singleRoom);
+            return singleRoom;
         }
 
         public SingleRoom Delete(int Id)
         {
-            var single = Get(Id);
-            if (single != null)
+            var singleRoom = Get(Id);
+            if (singleRoom != null)
             {
-                _context.Singles.Remove(single);
+                _context.Singles.Remove(singleRoom);
             }
-            return single;
+            return singleRoom;
         }
 
         public SingleRoom Get(int Id)

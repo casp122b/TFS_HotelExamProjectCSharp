@@ -18,11 +18,11 @@ namespace BLL.Services
             _facade = facade;
         }
 
-        public SingleRoomBO Create(SingleRoomBO single)
+        public SingleRoomBO Create(SingleRoomBO singleRoom)
         {
             using (var uow = _facade.UnitOfWork)
             {
-                var newSingleRoom = uow.SingleRoomRepository.Create(roomConv.Convert(single));
+                var newSingleRoom = uow.SingleRoomRepository.Create(roomConv.Convert(singleRoom));
                 uow.Complete();
                 return roomConv.Convert(newSingleRoom);
             }
@@ -55,17 +55,17 @@ namespace BLL.Services
             }
         }
 
-        public SingleRoomBO Update(SingleRoomBO single)
+        public SingleRoomBO Update(SingleRoomBO singleRoomBO)
         {
             using (var uow = _facade.UnitOfWork)
             {
-                var updateSingleRoom = uow.SingleRoomRepository.Get(single.Id);
+                var updateSingleRoom = uow.SingleRoomRepository.Get(singleRoomBO.Id);
                 if (updateSingleRoom == null)
                 {
                     throw new InvalidOperationException("room not found");
                 }
-                updateSingleRoom.Price = single.Price;
-                updateSingleRoom.Available = single.Available;
+                updateSingleRoom.Price = singleRoomBO.Price;
+                updateSingleRoom.Available = singleRoomBO.Available;
                 uow.Complete();
                 return roomConv.Convert(updateSingleRoom);
             };

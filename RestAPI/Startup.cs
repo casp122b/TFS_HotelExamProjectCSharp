@@ -57,6 +57,20 @@ namespace RestAPI
                         Available = 4
                     });
 
+                var singleRoom1 = facade.SingleRoomService.Create(
+                    new SingleRoomBO()
+                    {
+                        Price = 10.1,
+                        Available = 8
+                    });
+
+                var doubleRoom1 = facade.DoubleRoomService.Create(
+                    new DoubleRoomBO()
+                    {
+                        Price = 12.5,
+                        Available = 5
+                    });
+
                 var guest1 = facade.GuestService.Create(
                     new GuestBO()
                     {

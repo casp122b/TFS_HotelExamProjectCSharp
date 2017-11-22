@@ -6,9 +6,9 @@ namespace DAL.UOW
 {
     public interface IUnitOfWork :IDisposable
     {
-        IGuestRepository GuestRepository { get; }
-        IRepository<SingleRoom> SingleRoomRepository { get; }
-        //IDoubleRepository DoubleRepository { get; }
+        GuestRepository GuestRepository { get; }
+        SingleRoomRepository SingleRoomRepository { get; }
+        DoubleRoomRepository DoubleRoomRepository { get; }
         SuiteRepository SuiteRepository { get; }
         int Complete();
     }

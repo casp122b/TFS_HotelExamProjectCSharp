@@ -8,25 +8,25 @@ namespace BLL.Converters
 {
     public class SingleRoomConverter : IConverter<SingleRoom, SingleRoomBO>
     {
-        public SingleRoom Convert(SingleRoomBO single)
+        public SingleRoom Convert(SingleRoomBO singleRoomBO)
         {
-            if (single == null) { return null; }
+            if (singleRoomBO == null) { return null; }
             return new SingleRoom()
             {
-                Id = single.Id,
-                Price = single.Price,
-                Available = single.Available
+                Id = singleRoomBO.Id,
+                Price = singleRoomBO.Price,
+                Available = singleRoomBO.Available
             };
         }
 
-        public SingleRoomBO Convert(SingleRoom single)
+        public SingleRoomBO Convert(SingleRoom singleRoom)
         {
-            if (single == null) { return null; }
+            if (singleRoom == null) { return null; }
             return new SingleRoomBO()
             {
-                Id = single.Id,
-                Price = single.Price,
-                Available = single.Available
+                Id = singleRoom.Id,
+                Price = singleRoom.Price,
+                Available = singleRoom.Available
             };
         }
     }
