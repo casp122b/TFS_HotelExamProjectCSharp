@@ -9,6 +9,11 @@ namespace DAL.Context
 
         public HotelExamContext() : base(options) { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Guest> Guests { get; set; }
         public DbSet<Admin> Admins { get; set; }

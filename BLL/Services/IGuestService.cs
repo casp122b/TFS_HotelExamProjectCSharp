@@ -1,10 +1,11 @@
-﻿using System;
+﻿using BLL.BusinessObjects;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BLL.Services
 {
-    interface IGuestService
+    public interface IGuestService : IService<GuestBO>
     {
     }
 }
