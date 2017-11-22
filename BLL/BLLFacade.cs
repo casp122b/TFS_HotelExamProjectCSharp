@@ -10,15 +10,15 @@ namespace BLL
             get { return new GuestService(new DALFacade()); }
         }
 
-        public SingleService SingleService
-        {
-            get { return new SingleService(new DALFacade()); }
-        }
+        //public SingleService SingleService
+        //{
+        //    get { return new SingleService(new DALFacade()); }
+        //}
 
-        public DoubleService DoubleService
-        {
-            get { return new DoubleService(new DALFacade()); }
-        }
+        //public DoubleService DoubleService
+        //{
+        //    get { return new DoubleService(new DALFacade()); }
+        //}
 
         public SuiteService SuiteService
         {
