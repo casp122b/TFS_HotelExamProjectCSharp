@@ -50,13 +50,6 @@ namespace RestAPI
 
                 var facade = new BLLFacade();
 
-                var room1 = facade.RoomService.Create(
-                    new RoomBO()
-                    {
-                        Price = 7.1,
-                        Available = 2
-                    });
-
                 var guest1 = facade.GuestService.Create(
                     new GuestBO()
                     {
