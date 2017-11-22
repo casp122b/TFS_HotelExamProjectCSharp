@@ -65,7 +65,7 @@ namespace BLL.Services
                     throw new InvalidOperationException("room not found");
                 }
                 updateSingleRoom.Price = single.Price;
-                updateSingleRoom.Avalible = single.Avalible;
+                updateSingleRoom.Available = single.Available;
                 uow.Complete();
                 return roomConv.Convert(updateSingleRoom);
             };
