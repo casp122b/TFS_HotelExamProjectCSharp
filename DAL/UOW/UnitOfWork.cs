@@ -1,4 +1,5 @@
 ﻿using DAL.Context;
+using DAL.Entities;
 using DAL.Repositories;
 
 namespace DAL.UOW
@@ -6,7 +7,7 @@ namespace DAL.UOW
     public class UnitOfWork : IUnitOfWork
     {
         public IGuestRepository GuestRepository { get; internal set; }
-        public ISingleRepository SingleRepository { get; internal set; }
+        public IRepository<SingleRoom> SingleRepository { get; internal set; }
         public IDoubleRepository DoubleRepository { get; internal set; }
         public ISuiteRepository SuiteRepository { get; internal set; }
         private HotelExamContext context;
@@ -16,7 +17,7 @@ namespace DAL.UOW
             context = new HotelExamContext();
             context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
-            SingleRepository = new SingleRepository(context);
+            SingleRepository = new SingleRoomRepository(context);
             DoubleRepository = new DoubleRepository(context);
             SuiteRepository = new SuiteRepository(context);
         }

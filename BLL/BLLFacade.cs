@@ -10,9 +10,9 @@ namespace BLL
             get { return new GuestService(new DALFacade()); }
         }
 
-        public SingleService SingleService
+        public SingleRoomService SingleRoomService
         {
-            get { return new SingleService(new DALFacade()); }
+            get { return new SingleRoomService(new DALFacade()); }
         }
 
         public DoubleService DoubleService
