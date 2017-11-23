@@ -4,7 +4,6 @@ using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BLL.Services
 {
@@ -43,6 +42,8 @@ namespace BLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 var getSingleRoom = uow.SingleRoomRepository.Get(Id);
+                var getGuest = uow.GuestRepository.Get(Id);
+                getSingleRoom.Guest = uow.GuestRepository.Get(getSingleRoom.GuestId);
                 return roomConv.Convert(getSingleRoom);
             }
         }
@@ -66,6 +67,7 @@ namespace BLL.Services
                 }
                 updateSingleRoom.Price = singleRoomBO.Price;
                 updateSingleRoom.Available = singleRoomBO.Available;
+                updateSingleRoom.GuestId = singleRoomBO.GuestId;
                 uow.Complete();
                 return roomConv.Convert(updateSingleRoom);
             };

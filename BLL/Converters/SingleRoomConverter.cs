@@ -1,8 +1,5 @@
 ﻿using BLL.BusinessObjects;
 using DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BLL.Converters
 {
@@ -15,7 +12,8 @@ namespace BLL.Converters
             {
                 Id = singleRoomBO.Id,
                 Price = singleRoomBO.Price,
-                Available = singleRoomBO.Available
+                Available = singleRoomBO.Available,
+                GuestId = singleRoomBO.GuestId
             };
         }
 
@@ -26,7 +24,9 @@ namespace BLL.Converters
             {
                 Id = singleRoom.Id,
                 Price = singleRoom.Price,
-                Available = singleRoom.Available
+                Available = singleRoom.Available,
+                Guest = new GuestConverter().Convert(singleRoom.Guest),
+                GuestId = singleRoom.GuestId
             };
         }
     }

@@ -31,7 +31,8 @@ namespace RestAPI
         {
             services.AddMvc();
 
-            services.AddCors(o => o.AddPolicy("MyPolicy", builder => {
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
                 builder.WithOrigins("http://localhost:4200")
                        .AllowAnyMethod()
                        .AllowAnyHeader();
@@ -54,21 +55,8 @@ namespace RestAPI
                     new SuiteBO()
                     {
                         Price = 15.5,
-                        Available = 4
-                    });
-
-                var singleRoom1 = facade.SingleRoomService.Create(
-                    new SingleRoomBO()
-                    {
-                        Price = 10.1,
-                        Available = 8
-                    });
-
-                var doubleRoom1 = facade.DoubleRoomService.Create(
-                    new DoubleRoomBO()
-                    {
-                        Price = 12.5,
-                        Available = 5
+                        Available = 4,
+                        GuestId = 1
                     });
 
                 var guest1 = facade.GuestService.Create(
@@ -85,6 +73,33 @@ namespace RestAPI
                         FirstName = "Line",
                         LastName = "Høj",
                         Address = "Lundgade 3"
+                    });
+
+                var singleRoom1 = facade.SingleRoomService.Create(
+                    new SingleRoomBO()
+                    {
+                        Price = 10.1,
+                        Available = 8,
+                        GuestId = guest1.Id
+                    });
+
+
+
+                var suite2 = facade.SuiteService.Create(
+                    new SuiteBO()
+                    {
+                        Price = 15.5,
+                        Available = 4,
+                        GuestId = guest2.Id
+                    });
+
+
+                var doubleRoom1 = facade.DoubleRoomService.Create(
+                    new DoubleRoomBO()
+                    {
+                        Price = 12.5,
+                        Available = 5,
+                        GuestId = guest1.Id
                     });
             }
 
