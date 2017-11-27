@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BLL.BusinessObjects
+﻿namespace BLL.BusinessObjects
 {
     public class GuestBO : IBusinessObject
     {

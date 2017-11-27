@@ -1,6 +1,4 @@
-﻿using DAL.Entities;
-
-namespace BLL.BusinessObjects
+﻿namespace BLL.BusinessObjects
 {
     public class DoubleRoomBO : IBusinessObject
     {
