@@ -4,9 +4,11 @@ using System;
 
 namespace DAL.UOW
 {
-    public interface IUnitOfWork :IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         GuestRepository GuestRepository { get; }
+        AdminRepository AdminRepository { get; }
+        BookingRepository BookingRepository { get; }
         SingleRoomRepository SingleRoomRepository { get; }
         DoubleRoomRepository DoubleRoomRepository { get; }
         SuiteRepository SuiteRepository { get; }
