@@ -10,11 +10,6 @@ namespace BLL
             get { return new GuestService(new DALFacade()); }
         }
 
-        public AdminService AdminService
-        {
-            get { return new AdminService(new DALFacade()); }
-        }
-
         public SingleRoomService SingleRoomService
         {
             get { return new SingleRoomService(new DALFacade()); }
