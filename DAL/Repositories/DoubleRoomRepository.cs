@@ -1,8 +1,6 @@
-﻿using DAL.Entities;
-using System;
+﻿using DAL.Context;
+using DAL.Entities;
 using System.Collections.Generic;
-using System.Text;
-using DAL.Context;
 using System.Linq;
 
 namespace DAL.Repositories

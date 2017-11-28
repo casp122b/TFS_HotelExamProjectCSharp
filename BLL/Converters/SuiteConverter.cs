@@ -12,7 +12,8 @@ namespace BLL.Converters
             {
                 Id = suiteBO.Id,
                 Price = suiteBO.Price,
-                Available = suiteBO.Available
+                Available = suiteBO.Available,
+                GuestId = suiteBO.GuestId
             };
         }
 
@@ -23,7 +24,9 @@ namespace BLL.Converters
             {
                 Id = suite.Id,
                 Price = suite.Price,
-                Available = suite.Available
+                Available = suite.Available,
+                Guest = new GuestConverter().Convert(suite.Guest),
+                GuestId = suite.GuestId
             };
         }
     }

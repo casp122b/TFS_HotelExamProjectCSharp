@@ -1,5 +1,4 @@
 ﻿using BLL;
-using BLL.BusinessObjects;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,7 +30,8 @@ namespace RestAPI
         {
             services.AddMvc();
 
-            services.AddCors(o => o.AddPolicy("MyPolicy", builder => {
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
                 builder.WithOrigins("http://localhost:4200")
                        .AllowAnyMethod()
                        .AllowAnyHeader();
@@ -48,44 +48,50 @@ namespace RestAPI
             {
                 app.UseDeveloperExceptionPage();
 
-                var facade = new BLLFacade();
+                //var facade = new BLLFacade();
 
-                var suite1 = facade.SuiteService.Create(
-                    new SuiteBO()
-                    {
-                        Price = 15.5,
-                        Available = 4
-                    });
+                //var guest1 = facade.GuestService.Create(
+                //    new GuestBO()
+                //    {
+                //        FirstName = "Hans",
+                //        LastName = "Madsen",
+                //        Address = "Spangsbjergvej 13"
+                //    });
 
-                var singleRoom1 = facade.SingleRoomService.Create(
-                    new SingleRoomBO()
-                    {
-                        Price = 10.1,
-                        Available = 8
-                    });
+                //var guest2 = facade.GuestService.Create(
+                //    new GuestBO()
+                //    {
+                //        FirstName = "Line",
+                //        LastName = "Høj",
+                //        Address = "Lundgade 3"
+                //    });
 
-                var doubleRoom1 = facade.DoubleRoomService.Create(
-                    new DoubleRoomBO()
-                    {
-                        Price = 12.5,
-                        Available = 5
-                    });
+                //var singleRoom1 = facade.SingleRoomService.Create(
+                //    new SingleRoomBO()
+                //    {
+                //        Price = 10.1,
+                //        Available = 8,
+                //        GuestId = guest1.Id
+                //    });
 
-                var guest1 = facade.GuestService.Create(
-                    new GuestBO()
-                    {
-                        FirstName = "Hans",
-                        LastName = "Madsen",
-                        Address = "Spangsbjergvej 13"
-                    });
 
-                var guest2 = facade.GuestService.Create(
-                    new GuestBO()
-                    {
-                        FirstName = "Line",
-                        LastName = "Høj",
-                        Address = "Lundgade 3"
-                    });
+
+                //var suite2 = facade.SuiteService.Create(
+                //    new SuiteBO()
+                //    {
+                //        Price = 15.5,
+                //        Available = 4,
+                //        GuestId = guest2.Id
+                //    });
+
+
+                //var doubleRoom1 = facade.DoubleRoomService.Create(
+                //    new DoubleRoomBO()
+                //    {
+                //        Price = 12.5,
+                //        Available = 5,
+                //        GuestId = guest1.Id
+                //    });
             }
 
             app.UseMvc();
