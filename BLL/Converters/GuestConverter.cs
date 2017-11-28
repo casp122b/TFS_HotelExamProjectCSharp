@@ -16,7 +16,9 @@ namespace BLL.Converters
                 Id = guest.Id,
                 FirstName = guest.FirstName,
                 LastName = guest.LastName,
-                Address = guest.Address
+                Address = guest.Address,
+                UserName = guest.UserName,
+                Password = guest.Password
             };
         }
 
@@ -28,7 +30,9 @@ namespace BLL.Converters
                 Id = guest.Id,
                 FirstName = guest.FirstName,
                 LastName = guest.LastName,
-                Address = guest.Address
+                Address = guest.Address,
+                UserName = guest.UserName,
+                Password = guest.Password
             };
         }
     }

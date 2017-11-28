@@ -67,6 +67,8 @@ namespace BLL.Services
                 updateGuest.FirstName = guest.FirstName;
                 updateGuest.LastName = guest.LastName;
                 updateGuest.Address = guest.Address;
+                updateGuest.UserName = guest.UserName;
+                updateGuest.Password = guest.Password;
                 uow.Complete();
                 return guestConv.Convert(updateGuest);
             };

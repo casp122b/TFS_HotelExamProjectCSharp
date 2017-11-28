@@ -5,5 +5,7 @@
         string FirstName { get; set; }
         string LastName { get; set; }
         string Address { get; set; }
+        string UserName { get; set; }
+        string Password { get; set; }
     }
 }
