@@ -16,9 +16,7 @@ namespace BLL.Converters
                 Id = admin.Id,
                 FirstName = admin.FirstName,
                 LastName = admin.LastName,
-                Address = admin.Address,
-                UserName = admin.UserName,
-                Password = admin.Password
+                Address = admin.Address
             };
         }
 
@@ -30,9 +28,7 @@ namespace BLL.Converters
                 Id = admin.Id,
                 FirstName = admin.FirstName,
                 LastName = admin.LastName,
-                Address = admin.Address,
-                UserName = admin.UserName,
-                Password = admin.Password
+                Address = admin.Address
             };
         }
     }

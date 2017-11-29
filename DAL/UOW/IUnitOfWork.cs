@@ -8,6 +8,7 @@ namespace DAL.UOW
     {
         GuestRepository GuestRepository { get; }
         AdminRepository AdminRepository { get; }
+        UserRepository UserRepository { get; }
         BookingRepository BookingRepository { get; }
         SingleRoomRepository SingleRoomRepository { get; }
         DoubleRoomRepository DoubleRoomRepository { get; }

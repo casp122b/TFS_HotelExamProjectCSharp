@@ -7,6 +7,7 @@ namespace DAL.UOW
     {
         public GuestRepository GuestRepository { get; internal set; }
         public AdminRepository AdminRepository { get; internal set; }
+        public UserRepository UserRepository { get; internal set; }
         public BookingRepository BookingRepository { get; internal set; }
         public SingleRoomRepository SingleRoomRepository { get; internal set; }
         public DoubleRoomRepository DoubleRoomRepository { get; internal set; }
@@ -19,6 +20,7 @@ namespace DAL.UOW
             context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);
+            UserRepository = new UserRepository(context);
             BookingRepository = new BookingRepository(context);
             SingleRoomRepository = new SingleRoomRepository(context);
             DoubleRoomRepository = new DoubleRoomRepository(context);

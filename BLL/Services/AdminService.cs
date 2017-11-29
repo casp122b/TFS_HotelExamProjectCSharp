@@ -67,8 +67,6 @@ namespace BLL.Services
                 updateAdmin.FirstName = admin.FirstName;
                 updateAdmin.LastName = admin.LastName;
                 updateAdmin.Address = admin.Address;
-                updateAdmin.UserName = admin.UserName;
-                updateAdmin.Password = admin.Password;
                 uow.Complete();
                 return adminConv.Convert(updateAdmin);
             };
