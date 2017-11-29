@@ -34,5 +34,13 @@ namespace BLL
         {
             get { return new SuiteService(new DALFacade()); }
         }
+
+        public UserService UserService
+        {
+            get { return new UserService(new DALFacade()); }
+
+
+        }
     }
 }
+

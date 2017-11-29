@@ -1,8 +1,13 @@
-﻿using BLL;
+﻿using System;
+using System.Text;
+using BLL;
+using BLL.BusinessObjects;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace RestAPI
 {
@@ -39,15 +44,44 @@ namespace RestAPI
 
             services.AddSingleton(Configuration);
             services.AddScoped<BLLFacade>();
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = "Jwt";
+                options.DefaultChallengeScheme = "Jwt";
+            }).AddJwtBearer("Jwt", options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = false,
+                    //ValidAudience = "the audience you want to validate",
+                    ValidateIssuer = false,
+                    //ValidIssuer = "the isser you want to validate",
+
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("BOErgeOsTSpiser AErter 123 STK I ALT!")),
+
+                    ValidateLifetime = true, //validate the expiration and not before values in the token
+
+                    ClockSkew = TimeSpan.FromMinutes(5) //5 minute tolerance for the expiration date
+                };
+            });
         }
+    
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory, IHostingEnvironment env, BLLFacade facade)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+                loggerFactory.AddDebug();
 
+                //Add a DB stuff
+               // facade.GuestService.Create(new GuestBO() { FirstName = "Bongo", LastName = "Bingo" });
+               // facade.GuestService.Create(new GuestBO() { FirstName = "Drinky", LastName = "MacSnurf" });
+                //facade.UserService.Create(new UserBO() { Username = "lbilde", Password = "shh" });
+               // facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha" });
                 //var facade = new BLLFacade();
 
                 //var guest1 = facade.GuestService.Create(
@@ -93,7 +127,7 @@ namespace RestAPI
                 //        GuestId = guest1.Id
                 //    });
             }
-
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
