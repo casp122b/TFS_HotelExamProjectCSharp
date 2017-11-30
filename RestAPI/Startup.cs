@@ -80,8 +80,9 @@ namespace RestAPI
                 //Add a DB stuff
                // facade.GuestService.Create(new GuestBO() { FirstName = "Bongo", LastName = "Bingo" });
                // facade.GuestService.Create(new GuestBO() { FirstName = "Drinky", LastName = "MacSnurf" });
-                //facade.UserService.Create(new UserBO() { Username = "lbilde", Password = "shh" });
-               // facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha" });
+
+                facade.UserService.Create(new UserBO() { Username = "lbilde", Password = "shh" });
+                facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha" });
                 //var facade = new BLLFacade();
 
                 //var guest1 = facade.GuestService.Create(
