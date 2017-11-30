@@ -15,7 +15,10 @@ namespace BLL.Converters
             {
                 Id = book.Id,
                 CheckIn = book.CheckIn,
-                CheckOut = book.CheckOut
+                CheckOut = book.CheckOut,
+                SingleRoomId = book.SingleRoomId,
+                DoubleRoomId = book.DoubleRoomId,
+                SuiteId = book.SuiteId
             };
         }
 
@@ -26,7 +29,13 @@ namespace BLL.Converters
             {
                 Id = book.Id,
                 CheckIn = book.CheckIn,
-                CheckOut = book.CheckOut
+                CheckOut = book.CheckOut,
+                SingleRoom = new SingleRoomConverter().Convert(book.SingleRoom),
+                DoubleRoom = new DoubleRoomConverter().Convert(book.DoubleRoom),
+                Suite = new SuiteConverter().Convert(book.Suite),
+                SingleRoomId = book.SingleRoomId,
+                DoubleRoomId = book.DoubleRoomId,
+                SuiteId = book.SuiteId
             };
         }
     }
