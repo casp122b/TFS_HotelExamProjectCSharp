@@ -17,6 +17,7 @@ namespace DAL.UOW
         public UnitOfWork()
         {
             context = new HotelExamContext();
+            
             context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);

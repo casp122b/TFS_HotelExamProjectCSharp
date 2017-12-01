@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using System.Collections.Generic;
 
 namespace RestAPI
 {
@@ -78,53 +79,70 @@ namespace RestAPI
                 loggerFactory.AddDebug();
 
                 //Add a DB stuff
-               // facade.GuestService.Create(new GuestBO() { FirstName = "Bongo", LastName = "Bingo" });
-               // facade.GuestService.Create(new GuestBO() { FirstName = "Drinky", LastName = "MacSnurf" });
+                // facade.GuestService.Create(new GuestBO() { FirstName = "Bongo", LastName = "Bingo" });
+                // facade.GuestService.Create(new GuestBO() { FirstName = "Drinky", LastName = "MacSnurf" });
                 //facade.UserService.Create(new UserBO() { Username = "lbilde", Password = "shh" });
-               // facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha" });
+                // facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha" });
                 //var facade = new BLLFacade();
 
-                //var guest1 = facade.GuestService.Create(
+                var guest1 = facade.GuestService.Create(
+                    new GuestBO()
+                    {
+                        FirstName = "Hans",
+                        LastName = "Madsen",
+                        Address = "Spangsbjergvej 13"
+                    });
+
+                var guest2 = facade.GuestService.Create(
+                    new GuestBO()
+                    {
+                        FirstName = "Line",
+                        LastName = "Høj",
+                        Address = "Lundgade 3"
+                    });
+
+                var singleRoom1 = facade.SingleRoomService.Create(
+                    new SingleRoomBO()
+                    {
+                        Price = 10.1,
+                        Available = 8,
+                        GuestId = guest1.Id
+                    });
+
+
+
+                var suite2 = facade.SuiteService.Create(
+                    new SuiteBO()
+                    {
+                        Price = 15.5,
+                        Available = 4,
+                        GuestId = guest2.Id
+                    });
+
+
+                var doubleRoom1 = facade.DoubleRoomService.Create(
+                    new DoubleRoomBO()
+                    {
+                        Price = 12.5,
+                        Available = 5,
+                        GuestId = guest1.Id
+                    });
+
+                var booking1 = facade.BookingService.Create(
+                    new BookingBO()
+                    {
+                        CheckIn = DateTime.Now.AddDays(-1),
+                        CheckOut = DateTime.Now.AddDays(1),
+                        SingleRoomId = singleRoom1.Id
+                    });
+
+                //var guest3 = facade.GuestService.Create(
                 //    new GuestBO()
                 //    {
                 //        FirstName = "Hans",
                 //        LastName = "Madsen",
-                //        Address = "Spangsbjergvej 13"
-                //    });
-
-                //var guest2 = facade.GuestService.Create(
-                //    new GuestBO()
-                //    {
-                //        FirstName = "Line",
-                //        LastName = "Høj",
-                //        Address = "Lundgade 3"
-                //    });
-
-                //var singleRoom1 = facade.SingleRoomService.Create(
-                //    new SingleRoomBO()
-                //    {
-                //        Price = 10.1,
-                //        Available = 8,
-                //        GuestId = guest1.Id
-                //    });
-
-
-
-                //var suite2 = facade.SuiteService.Create(
-                //    new SuiteBO()
-                //    {
-                //        Price = 15.5,
-                //        Available = 4,
-                //        GuestId = guest2.Id
-                //    });
-
-
-                //var doubleRoom1 = facade.DoubleRoomService.Create(
-                //    new DoubleRoomBO()
-                //    {
-                //        Price = 12.5,
-                //        Available = 5,
-                //        GuestId = guest1.Id
+                //        Address = "Spangsbjergvej 13",
+                //        BookingIds = new List<int>() { booking1.Id }
                 //    });
             }
             app.UseAuthentication();
