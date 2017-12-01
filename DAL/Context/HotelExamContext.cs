@@ -5,9 +5,9 @@ namespace DAL.Context
 {
     public class HotelExamContext : DbContext
     {
-        //static DbContextOptions<HotelExamContext> options = new DbContextOptionsBuilder<HotelExamContext>().UseInMemoryDatabase("InternalDb").Options;
+        static DbContextOptions<HotelExamContext> options = new DbContextOptionsBuilder<HotelExamContext>().UseInMemoryDatabase("InternalDb").Options;
 
-        //public HotelExamContext() : base(options) { }
+        public HotelExamContext() : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -19,6 +19,14 @@ namespace DAL.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Guest>()
+                .HasKey(g => g.Id);
+
+            modelBuilder.Entity<Guest>()
+                .HasMany(g => g.Bookings)
+                .WithOne(b => b.Guest)
+                .HasForeignKey(b => b.GuestId);
+
             base.OnModelCreating(modelBuilder);
         }
 
