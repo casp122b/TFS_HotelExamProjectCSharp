@@ -19,14 +19,6 @@ namespace DAL.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Guest>()
-                .HasKey(g => g.Id);
-
-            modelBuilder.Entity<Guest>()
-                .HasMany(g => g.Bookings)
-                .WithOne(b => b.Guest)
-                .HasForeignKey(b => b.GuestId);
-
             base.OnModelCreating(modelBuilder);
         }
 
