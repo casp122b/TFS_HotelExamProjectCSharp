@@ -1,22 +1,40 @@
 ﻿using DAL.Context;
+using DAL.Entities;
 using DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace DAL.UOW
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public GuestRepository GuestRepository { get; internal set; }
-        public AdminRepository AdminRepository { get; internal set; }
-        public UserRepository UserRepository { get; internal set; }
-        public BookingRepository BookingRepository { get; internal set; }
-        public SingleRoomRepository SingleRoomRepository { get; internal set; }
-        public DoubleRoomRepository DoubleRoomRepository { get; internal set; }
-        public SuiteRepository SuiteRepository { get; internal set; }
+        public IRepository<Guest> GuestRepository { get; internal set; }
+        public IRepository<Admin> AdminRepository { get; internal set; }
+        public IRepository<User> UserRepository { get; internal set; }
+        public IRepository<Booking> BookingRepository { get; internal set; }
+        public IRepository<SingleRoom> SingleRoomRepository { get; internal set; }
+        public IRepository<DoubleRoom> DoubleRoomRepository { get; internal set; }
+        public IRepository<Suite> SuiteRepository { get; internal set; }
         private HotelExamContext context;
 
-        public UnitOfWork()
+        public UnitOfWork(DbOptions opt)
         {
-            context = new HotelExamContext();
+            DbContextOptions<HotelExamContext> options;
+            if (opt.Environment == "Development" && String.IsNullOrEmpty(opt.ConnectionString))
+            {
+                Console.WriteLine("Fuck alt!");
+                options = new DbContextOptionsBuilder<HotelExamContext>()
+                   .UseInMemoryDatabase("InternalDb")
+                   .Options;
+            }
+            else
+            {
+                options = new DbContextOptionsBuilder<HotelExamContext>()
+                .UseSqlServer(opt.ConnectionString)
+                    .Options;
+            }
+
+            context = new HotelExamContext(options);
             context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);

@@ -1,43 +1,55 @@
-﻿using BLL.Services;
+﻿using BLL.BusinessObjects;
+using BLL.Services;
 using DAL;
+using Microsoft.Extensions.Configuration;
+using System;
 
 namespace BLL
 {
-    public class BLLFacade
+    public class BLLFacade : IBLLFacade
     {
-        public GuestService GuestService
+        DALFacade facade;
+        public BLLFacade(IConfiguration conf)
         {
-            get { return new GuestService(new DALFacade()); }
+            facade = new DALFacade(new DbOptions()
+            {
+                ConnectionString = conf.GetConnectionString("SecretConnectionString"),
+                Environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
+            });
+        }
+        public IService<GuestBO> GuestService
+        {
+            get { return new GuestService(facade); }
         }
 
-        public AdminService AdminService
+        public IService<AdminBO> AdminService
         {
-            get { return new AdminService(new DALFacade()); }
+            get { return new AdminService(facade); }
         }
 
-        public BookingService BookingService
+        public IService<BookingBO> BookingService
         {
-            get { return new BookingService(new DALFacade()); }
+            get { return new BookingService(facade); }
         }
 
-        public SingleRoomService SingleRoomService
+        public IService<SingleRoomBO> SingleRoomService
         {
-            get { return new SingleRoomService(new DALFacade()); }
+            get { return new SingleRoomService(facade); }
         }
 
-        public DoubleRoomService DoubleRoomService
+        public IService<DoubleRoomBO> DoubleRoomService
         {
-            get { return new DoubleRoomService(new DALFacade()); }
+            get { return new DoubleRoomService(facade); }
         }
 
-        public SuiteService SuiteService
+        public IService<SuiteBO> SuiteService
         {
-            get { return new SuiteService(new DALFacade()); }
+            get { return new SuiteService(facade); }
         }
 
-        public UserService UserService
+        public IService<UserBO> UserService
         {
-            get { return new UserService(new DALFacade()); }
+            get { return new UserService(facade); }
 
 
         }

@@ -15,7 +15,13 @@ namespace RestAPI.Controllers
     [Route("api/[controller]")]
     public class BookingsController : Controller
     {
-        BLLFacade facade = new BLLFacade();
+        IBLLFacade facade;
+
+        public BookingsController(IBLLFacade facade)
+        {
+            this.facade = facade;
+        }
+
         // GET: api/values
         [HttpGet]
         public IEnumerable<BookingBO> Get()

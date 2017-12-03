@@ -8,14 +8,15 @@ namespace BLL.Converters
 {
     public class UserConverter : IConverter<User, UserBO>
     {
-        public User Convert(UserBO user)
+        public User Convert(UserBO userBO)
         {
-            if (user == null) { return null; }
+            if (userBO == null) { return null; }
             return new User()
             {
-                Id = user.Id,
-                Username = user.Username,
-                Password = user.Password
+                Id = userBO.Id,
+                Username = userBO.Username,
+                Password = userBO.Password,
+                Role = userBO.Role
             };
         }
 
@@ -26,7 +27,8 @@ namespace BLL.Converters
             {
                 Id = user.Id,
                 Username = user.Username,
-                Password = user.Password
+                Password = user.Password,
+                Role = user.Role
             };
         }
     }

@@ -12,7 +12,13 @@ namespace RestAPI.Controllers
     [Route("api/[controller]")]
     public class DoubleRoomsController : Controller
     {
-        BLLFacade facade = new BLLFacade();
+        IBLLFacade facade;
+
+        public DoubleRoomsController(IBLLFacade facade)
+        {
+            this.facade = facade;
+        }
+
         // GET: api/DoubleRooms
         [HttpGet]
         public IEnumerable<DoubleRoomBO> Get()

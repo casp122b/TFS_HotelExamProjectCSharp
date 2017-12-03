@@ -6,13 +6,13 @@ namespace DAL.UOW
 {
     public interface IUnitOfWork : IDisposable
     {
-        GuestRepository GuestRepository { get; }
-        AdminRepository AdminRepository { get; }
-        UserRepository UserRepository { get; }
-        BookingRepository BookingRepository { get; }
-        SingleRoomRepository SingleRoomRepository { get; }
-        DoubleRoomRepository DoubleRoomRepository { get; }
-        SuiteRepository SuiteRepository { get; }
+        IRepository<Guest> GuestRepository { get; }
+        IRepository<Admin> AdminRepository { get; }
+        IRepository<User> UserRepository { get; }
+        IRepository<Booking> BookingRepository { get; }
+        IRepository<SingleRoom> SingleRoomRepository { get; }
+        IRepository<DoubleRoom> DoubleRoomRepository { get; }
+        IRepository<Suite> SuiteRepository { get; }
         int Complete();
     }
 }

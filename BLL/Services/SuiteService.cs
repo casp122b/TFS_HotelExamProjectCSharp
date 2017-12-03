@@ -10,7 +10,7 @@ namespace BLL.Services
     public class SuiteService : IService<SuiteBO>
     {
         SuiteConverter suiteConv = new SuiteConverter();
-        DALFacade _facade = new DALFacade();
+        DALFacade _facade;
 
         public SuiteService(DALFacade facade)
         {

@@ -7,5 +7,5 @@
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
-
+  
 </Project>

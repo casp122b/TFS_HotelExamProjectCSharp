@@ -5,9 +5,11 @@ namespace DAL.Context
 {
     public class HotelExamContext : DbContext
     {
-        //static DbContextOptions<HotelExamContext> options = new DbContextOptionsBuilder<HotelExamContext>().UseInMemoryDatabase("InternalDb").Options;
 
-        //public HotelExamContext() : base(options) { }
+        public HotelExamContext(DbContextOptions<HotelExamContext> options) : base(options)
+        {
+
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

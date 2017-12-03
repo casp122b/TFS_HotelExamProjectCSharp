@@ -7,7 +7,7 @@ namespace DAL.Repositories
 {
     public class SuiteRepository : IRepository<Suite>
     {
-        HotelExamContext _context = new HotelExamContext();
+        HotelExamContext _context;
 
         public SuiteRepository(HotelExamContext context)
         {
