@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text;
-using BLL;
+﻿using BLL;
 using BLL.BusinessObjects;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,27 +6,31 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Text;
 
 namespace RestAPI
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        public Startup(IHostingEnvironment env)
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
-        }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment Environment2 { get; }
+        public Startup(IHostingEnvironment env, IConfiguration configuration)
+        {
+            Environment2 = env;
+            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Environment2.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{Environment2.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
+            
+        }
+
+        
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -43,7 +45,7 @@ namespace RestAPI
             }));
 
             services.AddSingleton(Configuration);
-            services.AddScoped<BLLFacade>();
+            services.AddScoped<IBLLFacade, BLLFacade>();
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = "Jwt";
@@ -69,64 +71,64 @@ namespace RestAPI
     
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory, IHostingEnvironment env, BLLFacade facade)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory, IBLLFacade facade)
         {
-            if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                
                 loggerFactory.AddConsole(Configuration.GetSection("Logging"));
                 loggerFactory.AddDebug();
 
                 //Add a DB stuff
-               // facade.GuestService.Create(new GuestBO() { FirstName = "Bongo", LastName = "Bingo" });
-               // facade.GuestService.Create(new GuestBO() { FirstName = "Drinky", LastName = "MacSnurf" });
+                //facade.GuestService.Create(new GuestBO() { FirstName = "Bongo", LastName = "Bingo", Address = "halm 5" });
+                //facade.GuestService.Create(new GuestBO() { FirstName = "Drinky", LastName = "MacSnurf", Address = "halm 9" });
 
-                facade.UserService.Create(new UserBO() { Username = "lbilde", Password = "shh" });
-                facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha" });
+                //var user1 = facade.UserService.Create(new UserBO() { Username = "lbilde", Password = "shh", Role = "Administrator" });
+                //var user2 = facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha", Role = "" });
                 //var facade = new BLLFacade();
 
-                //var guest1 = facade.GuestService.Create(
-                //    new GuestBO()
-                //    {
-                //        FirstName = "Hans",
-                //        LastName = "Madsen",
-                //        Address = "Spangsbjergvej 13"
-                //    });
+                var guest1 = facade.GuestService.Create(
+                    new GuestBO()
+                    {
+                        FirstName = "Hans",
+                        LastName = "Madsen",
+                        Address = "Spangsbjergvej 13"
+                    });
 
-                //var guest2 = facade.GuestService.Create(
-                //    new GuestBO()
-                //    {
-                //        FirstName = "Line",
-                //        LastName = "Høj",
-                //        Address = "Lundgade 3"
-                //    });
+                var guest2 = facade.GuestService.Create(
+                    new GuestBO()
+                    {
+                        FirstName = "Line",
+                        LastName = "Høj",
+                        Address = "Lundgade 3"
+                    });
 
-                //var singleRoom1 = facade.SingleRoomService.Create(
-                //    new SingleRoomBO()
-                //    {
-                //        Price = 10.1,
-                //        Available = 8,
-                //        GuestId = guest1.Id
-                //    });
-
-
-
-                //var suite2 = facade.SuiteService.Create(
-                //    new SuiteBO()
-                //    {
-                //        Price = 15.5,
-                //        Available = 4,
-                //        GuestId = guest2.Id
-                //    });
+                var singleRoom1 = facade.SingleRoomService.Create(
+                    new SingleRoomBO()
+                    {
+                        Price = 10.1,
+                        Available = 8,
+                        GuestId = guest1.Id
+                    });
 
 
-                //var doubleRoom1 = facade.DoubleRoomService.Create(
-                //    new DoubleRoomBO()
-                //    {
-                //        Price = 12.5,
-                //        Available = 5,
-                //        GuestId = guest1.Id
-                //    });
+
+                var suite2 = facade.SuiteService.Create(
+                    new SuiteBO()
+                    {
+                        Price = 15.5,
+                        Available = 4,
+                        GuestId = guest2.Id
+                    });
+
+
+                var doubleRoom1 = facade.DoubleRoomService.Create(
+                    new DoubleRoomBO()
+                    {
+                        Price = 12.5,
+                        Available = 5,
+                        GuestId = guest1.Id
+                    });
+                app.UseDeveloperExceptionPage();
             }
             app.UseAuthentication();
             app.UseMvc();

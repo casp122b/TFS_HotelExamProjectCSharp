@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
 using BLL;
 using BLL.BusinessObjects;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestAPI.Controllers
 {
@@ -15,8 +16,15 @@ namespace RestAPI.Controllers
     [Route("api/[controller]")]
     public class GuestsController : Controller
     {
-        BLLFacade facade = new BLLFacade();
+        IBLLFacade facade;
+
+        public GuestsController(IBLLFacade facade)
+        {
+            this.facade = facade;
+        }
+
         // GET: api/values
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IEnumerable<GuestBO> Get()
         {
