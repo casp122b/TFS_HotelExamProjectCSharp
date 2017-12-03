@@ -1,4 +1,6 @@
-﻿namespace DAL.Entities
+﻿using System.Collections.Generic;
+
+namespace DAL.Entities
 {
     public class Guest : IPerson
     {
@@ -6,5 +8,7 @@
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
+        public int BookingId { get; set; }
+        public List<Booking> Bookings { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Text;
 using DAL.Entities;
 using DAL.Context;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
@@ -38,7 +39,9 @@ namespace DAL.Repositories
 
         public IEnumerable<Guest> GetAll()
         {
-            return _context.Guests.ToList();
+            return _context.Guests
+                .Include(g => g.Bookings)
+                .ToList();
         }
     }
 }

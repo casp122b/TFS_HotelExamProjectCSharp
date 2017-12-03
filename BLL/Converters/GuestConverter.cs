@@ -2,6 +2,7 @@
 using DAL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BLL.Converters
@@ -16,7 +17,13 @@ namespace BLL.Converters
                 Id = guest.Id,
                 FirstName = guest.FirstName,
                 LastName = guest.LastName,
-                Address = guest.Address
+                Address = guest.Address,
+                Bookings = guest.BookingIds?.Select(bId => new Booking()
+                {
+                    Id = bId,
+                    GuestId = guest.Id
+                }).ToList()
+
             };
         }
 
@@ -28,7 +35,8 @@ namespace BLL.Converters
                 Id = guest.Id,
                 FirstName = guest.FirstName,
                 LastName = guest.LastName,
-                Address = guest.Address
+                Address = guest.Address,
+                BookingIds = guest.Bookings?.Select(b => b.Id).ToList()
             };
         }
     }

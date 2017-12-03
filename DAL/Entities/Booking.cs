@@ -13,5 +13,7 @@ namespace DAL.Entities
         public SingleRoom SingleRoom { get; set; }
         public DoubleRoom DoubleRoom { get; set; }
         public Suite Suite { get; set; }
+        public int GuestId { get; set; }
+        public Guest Guest { get; set; }
     }
 }
