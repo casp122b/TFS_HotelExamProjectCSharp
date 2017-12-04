@@ -8,10 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
-<<<<<<< HEAD
 using System.Collections.Generic;
-=======
->>>>>>> bb2c48234646537a1c27312aef757178c5cba90e
 
 namespace RestAPI
 {
@@ -88,13 +85,10 @@ namespace RestAPI
 
                 //var user1 = facade.UserService.Create(new UserBO() { Username = "lbilde", Password = "shh", Role = "Administrator" });
                 //var user2 = facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha", Role = "" });
-<<<<<<< HEAD
                 // facade.GuestService.Create(new GuestBO() { FirstName = "Bongo", LastName = "Bingo" });
                 // facade.GuestService.Create(new GuestBO() { FirstName = "Drinky", LastName = "MacSnurf" });
                 //facade.UserService.Create(new UserBO() { Username = "lbilde", Password = "shh" });
                 // facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha" });
-=======
->>>>>>> bb2c48234646537a1c27312aef757178c5cba90e
                 //var facade = new BLLFacade();
 
                 var guest1 = facade.GuestService.Create(
@@ -140,7 +134,6 @@ namespace RestAPI
                         GuestId = guest1.Id
                     });
                 app.UseDeveloperExceptionPage();
-<<<<<<< HEAD
 
                 var booking1 = facade.BookingService.Create(
                     new BookingBO()
@@ -158,8 +151,6 @@ namespace RestAPI
                 //        Address = "Spangsbjergvej 13",
                 //        BookingIds = new List<int>() { booking1.Id }
                 //    });
-=======
->>>>>>> bb2c48234646537a1c27312aef757178c5cba90e
             }
             app.UseAuthentication();
             app.UseMvc();

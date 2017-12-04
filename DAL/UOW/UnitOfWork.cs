@@ -35,11 +35,8 @@ namespace DAL.UOW
             }
 
             context = new HotelExamContext(options);
-<<<<<<< HEAD
             context = new HotelExamContext();
             
-=======
->>>>>>> bb2c48234646537a1c27312aef757178c5cba90e
             context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);
