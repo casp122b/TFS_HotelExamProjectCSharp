@@ -17,7 +17,7 @@ namespace DAL.Repositories
 
         public SingleRoom Create(SingleRoom singleRoom)
         {
-            _context.Singles.Add(singleRoom);
+            _context.SingleRooms.Add(singleRoom);
             return singleRoom;
         }
 
@@ -26,19 +26,19 @@ namespace DAL.Repositories
             var singleRoom = Get(Id);
             if (singleRoom != null)
             {
-                _context.Singles.Remove(singleRoom);
+                _context.SingleRooms.Remove(singleRoom);
             }
             return singleRoom;
         }
 
         public SingleRoom Get(int Id)
         {
-            return _context.Singles.FirstOrDefault(s => s.Id == Id);
+            return _context.SingleRooms.FirstOrDefault(s => s.Id == Id);
         }
 
         public IEnumerable<SingleRoom> GetAll()
         {
-            return _context.Singles.ToList();
+            return _context.SingleRooms.ToList();
         }
     }
 }
