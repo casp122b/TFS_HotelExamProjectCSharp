@@ -15,7 +15,7 @@ namespace DAL.Repositories
 
         public DoubleRoom Create(DoubleRoom doubleRoom)
         {
-            _context.Doubles.Add(doubleRoom);
+            _context.DoubleRooms.Add(doubleRoom);
             return doubleRoom;
         }
 
@@ -24,19 +24,19 @@ namespace DAL.Repositories
             var doubleRoom = Get(Id);
             if (doubleRoom != null)
             {
-                _context.Doubles.Remove(doubleRoom);
+                _context.DoubleRooms.Remove(doubleRoom);
             }
             return doubleRoom;
         }
 
         public DoubleRoom Get(int Id)
         {
-            return _context.Doubles.FirstOrDefault(d => d.Id == Id);
+            return _context.DoubleRooms.FirstOrDefault(d => d.Id == Id);
         }
 
         public IEnumerable<DoubleRoom> GetAll()
         {
-            return _context.Doubles.ToList();
+            return _context.DoubleRooms.ToList();
         }
     }
 }

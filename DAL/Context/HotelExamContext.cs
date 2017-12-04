@@ -5,13 +5,13 @@ namespace DAL.Context
 {
     public class HotelExamContext : DbContext
     {
-        public HotelExamContext(DbContextOptions<HotelExamContext> options) : base(options)
-        {
+        //public HotelExamContext(DbContextOptions<HotelExamContext> options) : base(options)
+        //{
 
-        }
-        //static DbContextOptions<HotelExamContext> options = new DbContextOptionsBuilder<HotelExamContext>().UseInMemoryDatabase("InternalDb").Options;
+        //}
+        static DbContextOptions<HotelExamContext> options = new DbContextOptionsBuilder<HotelExamContext>().UseInMemoryDatabase("InternalDb").Options;
 
-        //public HotelExamContext() : base(options) { }
+        public HotelExamContext() : base(options) { }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
@@ -30,8 +30,8 @@ namespace DAL.Context
         public DbSet<Admin> Admins { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Booking> Bookings { get; set; }
-        public DbSet<SingleRoom> Singles { get; set; }
-        public DbSet<DoubleRoom> Doubles { get; set; }
+        public DbSet<SingleRoom> SingleRooms { get; set; }
+        public DbSet<DoubleRoom> DoubleRooms { get; set; }
         public DbSet<Suite> Suites { get; set; }
     }
 }

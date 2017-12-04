@@ -19,28 +19,28 @@ namespace DAL.UOW
 
         public UnitOfWork(DbOptions opt)
         {
-            Console.WriteLine(opt.ConnectionString);
-            DbContextOptions<HotelExamContext> options;
-            if (opt.Environment == "Development" && String.IsNullOrEmpty(opt.ConnectionString))
-            {
-                Console.WriteLine("Fuck alt!");
-                options = new DbContextOptionsBuilder<HotelExamContext>()
-                   .UseInMemoryDatabase("InternalDb")
-                   .Options;
-            }
-            else
-            {
-                Console.WriteLine("Hej");
-                options = new DbContextOptionsBuilder<HotelExamContext>()
-                .UseSqlServer(opt.ConnectionString)
-                    .Options;
-            }
+            //DbContextOptions<HotelExamContext> options;
+
+            //if (opt.Environment == "Development" && String.IsNullOrEmpty(opt.ConnectionString))
+            //{
+            //    Console.WriteLine("Fuck alt!");
+            //    options = new DbContextOptionsBuilder<HotelExamContext>()
+            //       .UseInMemoryDatabase("InternalDb")
+            //       .Options;
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Hej");
+            //    options = new DbContextOptionsBuilder<HotelExamContext>()
+            //    .UseSqlServer(opt.ConnectionString)
+            //        .Options;
+            //}
 
 
-            context = new HotelExamContext(options);
-            //context = new HotelExamContext();
-            
-            //context.Database.EnsureCreated();
+            //context = new HotelExamContext(options);
+            context = new HotelExamContext();
+
+
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);
             UserRepository = new UserRepository(context);
