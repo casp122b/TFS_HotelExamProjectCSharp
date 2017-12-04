@@ -9,6 +9,13 @@ namespace BLL.Converters
 {
     public class GuestConverter : IConverter<Guest, GuestBO>
     {
+        private BookingConverter bConv;
+
+        public GuestConverter()
+        {
+            bConv = new BookingConverter();
+        }
+
         public Guest Convert(GuestBO guest)
         {
             if (guest == null) { return null; }
@@ -37,6 +44,13 @@ namespace BLL.Converters
                 LastName = guest.LastName,
                 Address = guest.Address,
                 BookingIds = guest.Bookings?.Select(b => b.Id).ToList()
+                //Bookings = guest.Bookings?.Select(b => new BookingBO()
+                //{
+                //    Id = b.Id,
+                //    CheckIn = b.CheckIn,
+                //    CheckOut = b.CheckOut
+
+                //}).ToList()
             };
         }
     }

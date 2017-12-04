@@ -6,12 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-<<<<<<< HEAD
 using System;
 using System.Text;
-=======
 using System.Collections.Generic;
->>>>>>> origin/master
 
 namespace RestAPI
 {
@@ -83,18 +80,15 @@ namespace RestAPI
                 loggerFactory.AddDebug();
 
                 //Add a DB stuff
-<<<<<<< HEAD
                 //facade.GuestService.Create(new GuestBO() { FirstName = "Bongo", LastName = "Bingo", Address = "halm 5" });
                 //facade.GuestService.Create(new GuestBO() { FirstName = "Drinky", LastName = "MacSnurf", Address = "halm 9" });
 
                 //var user1 = facade.UserService.Create(new UserBO() { Username = "lbilde", Password = "shh", Role = "Administrator" });
                 //var user2 = facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha", Role = "" });
-=======
                 // facade.GuestService.Create(new GuestBO() { FirstName = "Bongo", LastName = "Bingo" });
                 // facade.GuestService.Create(new GuestBO() { FirstName = "Drinky", LastName = "MacSnurf" });
                 //facade.UserService.Create(new UserBO() { Username = "lbilde", Password = "shh" });
                 // facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha" });
->>>>>>> origin/master
                 //var facade = new BLLFacade();
 
                 var guest1 = facade.GuestService.Create(
@@ -139,9 +133,7 @@ namespace RestAPI
                         Available = 5,
                         GuestId = guest1.Id
                     });
-<<<<<<< HEAD
                 app.UseDeveloperExceptionPage();
-=======
 
                 var booking1 = facade.BookingService.Create(
                     new BookingBO()
@@ -159,7 +151,6 @@ namespace RestAPI
                 //        Address = "Spangsbjergvej 13",
                 //        BookingIds = new List<int>() { booking1.Id }
                 //    });
->>>>>>> origin/master
             }
             app.UseAuthentication();
             app.UseMvc();

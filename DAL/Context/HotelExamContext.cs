@@ -5,17 +5,13 @@ namespace DAL.Context
 {
     public class HotelExamContext : DbContext
     {
-<<<<<<< HEAD
-
         public HotelExamContext(DbContextOptions<HotelExamContext> options) : base(options)
         {
 
         }
-=======
         static DbContextOptions<HotelExamContext> options = new DbContextOptionsBuilder<HotelExamContext>().UseInMemoryDatabase("InternalDb").Options;
 
         public HotelExamContext() : base(options) { }
->>>>>>> origin/master
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

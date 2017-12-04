@@ -44,14 +44,10 @@ namespace BLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 var getGuest = guestConv.Convert(uow.GuestRepository.Get(Id));
-                if (getGuest.Bookings == null) { return getGuest; }
-                else
-                {
-                    getGuest.Bookings = uow.BookingRepository.GetAllById(getGuest.BookingIds)
+                getGuest.Bookings = uow.BookingRepository.GetAllById(getGuest.BookingIds)
                     .Select(b => bookConv.Convert(b))
                     .ToList();
-                    return getGuest;
-                }
+                return getGuest;
             }
         }
 
@@ -74,18 +70,17 @@ namespace BLL.Services
                 }
                 var guestUpdated = guestConv.Convert(guest);
        
-
                 updateGuest.FirstName = guest.FirstName;
                 updateGuest.LastName = guest.LastName;
                 updateGuest.Address = guest.Address;
 
                 updateGuest.Bookings.RemoveAll(
-                    b => updateGuest.Bookings.Exists(
+                    b => !updateGuest.Bookings.Exists(
                         g => g.GuestId == b.GuestId &&
                         g.Id == b.Id));
 
                 guestUpdated.Bookings.RemoveAll(
-                    b => !guestUpdated.Bookings.Exists(
+                    b => guestUpdated.Bookings.Exists(
                         g => g.GuestId == b.GuestId &&
                         g.Id == b.Id));
 

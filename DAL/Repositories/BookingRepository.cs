@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DAL.Repositories
 {
-    public class BookingRepository : IRepository<Booking>
+    public class BookingRepository : IBookingRepository
     {
         HotelExamContext _context;
         public BookingRepository(HotelExamContext context)

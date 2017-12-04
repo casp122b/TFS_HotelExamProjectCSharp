@@ -11,7 +11,7 @@ namespace DAL.UOW
         public IRepository<Guest> GuestRepository { get; internal set; }
         public IRepository<Admin> AdminRepository { get; internal set; }
         public IRepository<User> UserRepository { get; internal set; }
-        public IRepository<Booking> BookingRepository { get; internal set; }
+        public IBookingRepository BookingRepository { get; internal set; }
         public IRepository<SingleRoom> SingleRoomRepository { get; internal set; }
         public IRepository<DoubleRoom> DoubleRoomRepository { get; internal set; }
         public IRepository<Suite> SuiteRepository { get; internal set; }
@@ -19,7 +19,6 @@ namespace DAL.UOW
 
         public UnitOfWork(DbOptions opt)
         {
-<<<<<<< HEAD
             DbContextOptions<HotelExamContext> options;
             if (opt.Environment == "Development" && String.IsNullOrEmpty(opt.ConnectionString))
             {
@@ -36,10 +35,8 @@ namespace DAL.UOW
             }
 
             context = new HotelExamContext(options);
-=======
             context = new HotelExamContext();
             
->>>>>>> origin/master
             context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);
