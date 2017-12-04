@@ -5,13 +5,20 @@ namespace DAL.Context
 {
     public class HotelExamContext : DbContext
     {
+<<<<<<< HEAD
+=======
+
+>>>>>>> bb2c48234646537a1c27312aef757178c5cba90e
         public HotelExamContext(DbContextOptions<HotelExamContext> options) : base(options)
         {
 
         }
+<<<<<<< HEAD
         static DbContextOptions<HotelExamContext> options = new DbContextOptionsBuilder<HotelExamContext>().UseInMemoryDatabase("InternalDb").Options;
 
         public HotelExamContext() : base(options) { }
+=======
+>>>>>>> bb2c48234646537a1c27312aef757178c5cba90e
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
