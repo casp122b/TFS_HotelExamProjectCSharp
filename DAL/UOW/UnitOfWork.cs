@@ -19,6 +19,7 @@ namespace DAL.UOW
 
         public UnitOfWork(DbOptions opt)
         {
+            Console.WriteLine(opt.ConnectionString);
             DbContextOptions<HotelExamContext> options;
             if (opt.Environment == "Development" && String.IsNullOrEmpty(opt.ConnectionString))
             {
@@ -29,15 +30,17 @@ namespace DAL.UOW
             }
             else
             {
+                Console.WriteLine("Hej");
                 options = new DbContextOptionsBuilder<HotelExamContext>()
                 .UseSqlServer(opt.ConnectionString)
                     .Options;
             }
 
+
             context = new HotelExamContext(options);
-            context = new HotelExamContext();
+            //context = new HotelExamContext();
             
-            context.Database.EnsureCreated();
+            //context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);
             UserRepository = new UserRepository(context);

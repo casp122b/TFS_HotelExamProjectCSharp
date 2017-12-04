@@ -8,7 +8,7 @@ namespace BLL
 {
     public class BLLFacade : IBLLFacade
     {
-        DALFacade facade;
+        private DALFacade facade;
         public BLLFacade(IConfiguration conf)
         {
             facade = new DALFacade(new DbOptions()

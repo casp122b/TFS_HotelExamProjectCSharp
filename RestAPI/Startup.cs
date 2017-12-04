@@ -74,10 +74,12 @@ namespace RestAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory, IBLLFacade facade)
         {
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
             {
                 
                 loggerFactory.AddConsole(Configuration.GetSection("Logging"));
                 loggerFactory.AddDebug();
+                //app.UseDeveloperExceptionPage();
 
                 //Add a DB stuff
                 //facade.GuestService.Create(new GuestBO() { FirstName = "Bongo", LastName = "Bingo", Address = "halm 5" });
@@ -85,63 +87,69 @@ namespace RestAPI
 
                 //var user1 = facade.UserService.Create(new UserBO() { Username = "lbilde", Password = "shh", Role = "Administrator" });
                 //var user2 = facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha", Role = "" });
-                // facade.GuestService.Create(new GuestBO() { FirstName = "Bongo", LastName = "Bingo" });
+                //facade.GuestService.Create(new GuestBO() { FirstName = "Bongo", LastName = "Bingo" });
                 // facade.GuestService.Create(new GuestBO() { FirstName = "Drinky", LastName = "MacSnurf" });
                 //facade.UserService.Create(new UserBO() { Username = "lbilde", Password = "shh" });
-                // facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha" });
+                //facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha" });
+
+                facade.UserService.Create(new UserBO() { Username = "hans", Password = "aaa", Role = "Administrator" });
+
+                facade.AdminService.Create(new AdminBO() { FirstName = "Bo", LastName = "Is", Address = "ooo" });
+
+                app.UseDeveloperExceptionPage();
                 //var facade = new BLLFacade();
 
-                var guest1 = facade.GuestService.Create(
-                    new GuestBO()
-                    {
-                        FirstName = "Hans",
-                        LastName = "Madsen",
-                        Address = "Spangsbjergvej 13"
-                    });
+                //var guest1 = facade.GuestService.Create(
+                //    new GuestBO()
+                //    {
+                //        FirstName = "Hans",
+                //        LastName = "Madsen",
+                //        Address = "Spangsbjergvej 13"
+                //    });
 
-                var guest2 = facade.GuestService.Create(
-                    new GuestBO()
-                    {
-                        FirstName = "Line",
-                        LastName = "Høj",
-                        Address = "Lundgade 3"
-                    });
+                //var guest2 = facade.GuestService.Create(
+                //    new GuestBO()
+                //    {
+                //        FirstName = "Line",
+                //        LastName = "Høj",
+                //        Address = "Lundgade 3"
+                //    });
 
-                var singleRoom1 = facade.SingleRoomService.Create(
-                    new SingleRoomBO()
-                    {
-                        Price = 10.1,
-                        Available = 8,
-                        GuestId = guest1.Id
-                    });
-
-
-
-                var suite2 = facade.SuiteService.Create(
-                    new SuiteBO()
-                    {
-                        Price = 15.5,
-                        Available = 4,
-                        GuestId = guest2.Id
-                    });
+                //var singleRoom1 = facade.SingleRoomService.Create(
+                //    new SingleRoomBO()
+                //    {
+                //        Price = 10.1,
+                //        Available = 8,
+                //        GuestId = guest1.Id
+                //    });
 
 
-                var doubleRoom1 = facade.DoubleRoomService.Create(
-                    new DoubleRoomBO()
-                    {
-                        Price = 12.5,
-                        Available = 5,
-                        GuestId = guest1.Id
-                    });
-                app.UseDeveloperExceptionPage();
 
-                var booking1 = facade.BookingService.Create(
-                    new BookingBO()
-                    {
-                        CheckIn = DateTime.Now.AddDays(-1),
-                        CheckOut = DateTime.Now.AddDays(1),
-                        SingleRoomId = singleRoom1.Id
-                    });
+                //var suite2 = facade.SuiteService.Create(
+                //    new SuiteBO()
+                //    {
+                //        Price = 15.5,
+                //        Available = 4,
+                //        GuestId = guest2.Id
+                //    });
+
+
+                //var doubleRoom1 = facade.DoubleRoomService.Create(
+                //    new DoubleRoomBO()
+                //    {
+                //        Price = 12.5,
+                //        Available = 5,
+                //        GuestId = guest1.Id
+                //    });
+                //app.UseDeveloperExceptionPage();
+
+                //var booking1 = facade.BookingService.Create(
+                //    new BookingBO()
+                //    {
+                //        CheckIn = DateTime.Now.AddDays(-1),
+                //        CheckOut = DateTime.Now.AddDays(1),
+                //        SingleRoomId = singleRoom1.Id
+                //    });
 
                 //var guest3 = facade.GuestService.Create(
                 //    new GuestBO()

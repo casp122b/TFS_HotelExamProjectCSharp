@@ -9,17 +9,17 @@ namespace DAL.Context
         {
 
         }
-        static DbContextOptions<HotelExamContext> options = new DbContextOptionsBuilder<HotelExamContext>().UseInMemoryDatabase("InternalDb").Options;
+        //static DbContextOptions<HotelExamContext> options = new DbContextOptionsBuilder<HotelExamContext>().UseInMemoryDatabase("InternalDb").Options;
 
-        public HotelExamContext() : base(options) { }
+        //public HotelExamContext() : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(@"Server=tcp:hotelexam.database.windows.net,1433;Initial Catalog=HotelExamDB;Persist Security Info=False;User ID=hahahahahahahaha5000;Password=azurefordenledeklingeA1@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-            }
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        optionsBuilder.UseSqlServer(@"Server=tcp:hotelexam.database.windows.net,1433;Initial Catalog=HotelExamDB;Persist Security Info=False;User ID=hahahahahahahaha5000;Password=azurefordenledeklingeA1@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        //    }
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Cors;
 using BLL;
 using BLL.BusinessObjects;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestAPI.Controllers
 {
@@ -23,6 +24,7 @@ namespace RestAPI.Controllers
         }
 
         // GET: api/values
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IEnumerable<AdminBO> Get()
         {
@@ -37,6 +39,7 @@ namespace RestAPI.Controllers
         }
 
         // POST
+        [Authorize]
         [HttpPost]
         public IActionResult Post([FromBody]AdminBO admin)
         {

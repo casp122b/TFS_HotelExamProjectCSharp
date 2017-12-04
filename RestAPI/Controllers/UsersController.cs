@@ -26,7 +26,7 @@ namespace RestAPI.Controllers
         }
 
         // GET: api/orders/5
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         [HttpGet("{id}")]
         public UserBO Get(int id)
         {

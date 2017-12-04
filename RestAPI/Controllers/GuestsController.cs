@@ -24,7 +24,7 @@ namespace RestAPI.Controllers
         }
 
         // GET: api/values
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         [HttpGet]
         public IEnumerable<GuestBO> Get()
         {
