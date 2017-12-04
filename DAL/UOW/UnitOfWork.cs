@@ -19,7 +19,6 @@ namespace DAL.UOW
 
         public UnitOfWork(DbOptions opt)
         {
-<<<<<<< HEAD
             DbContextOptions<HotelExamContext> options;
             if (opt.Environment == "Development" && String.IsNullOrEmpty(opt.ConnectionString))
             {
@@ -36,10 +35,6 @@ namespace DAL.UOW
             }
 
             context = new HotelExamContext(options);
-=======
-            context = new HotelExamContext();
-            
->>>>>>> origin/master
             context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);
