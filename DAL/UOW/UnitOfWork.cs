@@ -17,7 +17,7 @@ namespace DAL.UOW
         public IRepository<Suite> SuiteRepository { get; internal set; }
         private HotelExamContext context;
 
-        public UnitOfWork(DbOptions opt)
+        public UnitOfWork()
         {
             //DbContextOptions<HotelExamContext> options;
 
@@ -38,8 +38,12 @@ namespace DAL.UOW
 
 
             //context = new HotelExamContext(options);
-            context = new HotelExamContext();
 
+
+            
+            context = new HotelExamContext();
+            Console.WriteLine("Flyv");
+            context.Database.EnsureCreated();
 
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);
@@ -48,6 +52,7 @@ namespace DAL.UOW
             SingleRoomRepository = new SingleRoomRepository(context);
             DoubleRoomRepository = new DoubleRoomRepository(context);
             SuiteRepository = new SuiteRepository(context);
+            
         }
 
         public int Complete()

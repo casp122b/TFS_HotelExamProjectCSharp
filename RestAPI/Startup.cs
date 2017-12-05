@@ -88,14 +88,14 @@ namespace RestAPI
                 //var user2 = facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha", Role = "" });
                 //facade.GuestService.Create(new GuestBO() { FirstName = "Bongo", LastName = "Bingo" });
                 // facade.GuestService.Create(new GuestBO() { FirstName = "Drinky", LastName = "MacSnurf" });
-                facade.UserService.Create(new UserBO() { Username = "fgjfj", Password = "fhjjghj" });
+                //facade.UserService.Create(new UserBO() { Username = "fgjfj", Password = "fhjjghj" });
                 //facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha" });
 
                 //facade.UserService.Create(new UserBO() { Username = "wwww", Password = "aaa", Role = "Administrator" });
 
                 //facade.AdminService.Create(new AdminBO() { FirstName = "wtwy", LastName = "Is", Address = "dsdjjd" });
 
-                
+
                 //var facade = new BLLFacade();
 
                 //var guest1 = facade.GuestService.Create(
@@ -129,7 +129,7 @@ namespace RestAPI
                 //    {
                 //        Price = 15.5,
                 //        Available = 4,
-                //        GuestId = guest2.Id
+                //        GuestId = 1
                 //    });
 
 
@@ -156,7 +156,7 @@ namespace RestAPI
                 //        FirstName = "Hans",
                 //        LastName = "Madsen",
                 //        Address = "Spangsbjergvej 13",
-                //        BookingIds = new List<int>() { booking1.Id }
+                //        BookingId = new List<int>() { booking1.Id }
                 //    });
                 app.UseDeveloperExceptionPage();
             }

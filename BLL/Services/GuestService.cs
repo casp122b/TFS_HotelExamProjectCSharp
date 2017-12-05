@@ -10,12 +10,14 @@ namespace BLL.Services
 {
     public class GuestService : IService<GuestBO>
     {
-        GuestConverter guestConv = new GuestConverter();
-        BookingConverter bookConv = new BookingConverter();
+        private GuestConverter guestConv;
+        private BookingConverter bookConv;
         DALFacade _facade;
 
         public GuestService(DALFacade facade)
         {
+            guestConv = new GuestConverter();
+            bookConv = new BookingConverter();
             _facade = facade;
         }
 

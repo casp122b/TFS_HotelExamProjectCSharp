@@ -9,26 +9,19 @@ namespace BLL.Converters
 {
     public class GuestConverter : IConverter<Guest, GuestBO>
     {
-        private BookingConverter bConv;
-
-        public GuestConverter()
+        public Guest Convert(GuestBO guestBO)
         {
-            bConv = new BookingConverter();
-        }
-
-        public Guest Convert(GuestBO guest)
-        {
-            if (guest == null) { return null; }
+            if (guestBO == null) { return null; }
             return new Guest()
             {
-                Id = guest.Id,
-                FirstName = guest.FirstName,
-                LastName = guest.LastName,
-                Address = guest.Address,
-                Bookings = guest.BookingIds?.Select(bId => new Booking()
+                Id = guestBO.Id,
+                FirstName = guestBO.FirstName,
+                LastName = guestBO.LastName,
+                Address = guestBO.Address,
+                Bookings = guestBO.BookingIds?.Select(bId => new Booking()
                 {
                     Id = bId,
-                    GuestId = guest.Id
+                    GuestId = guestBO.Id
                 }).ToList()
 
             };
