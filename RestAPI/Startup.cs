@@ -103,15 +103,54 @@ namespace RestAPI
                     {
                         FirstName = "Hans",
                         LastName = "Madsen",
-                        Address = "Spangsbjergvej 13"
+                        Address = "Spangsbjergvej 13",
+                        BookingIds = { 0 }
                     });
+
+                var doubleRoom1 = facade.DoubleRoomService.Create(
+                    new DoubleRoomBO()
+                    {
+                        Price = 12.5,
+                        Available = 5,
+                        GuestId = guest1.Id
+                    });
+
+                var suite2 = facade.SuiteService.Create(
+                    new SuiteBO()
+                    {
+                        Price = 15.5,
+                        Available = 4,
+                        GuestId = guest1.Id
+                    });
+
+                var singleRoom13 = facade.SingleRoomService.Create(
+                    new SingleRoomBO()
+                    {
+                        Price = 22.1,
+                        Available = 8,
+                        GuestId = guest1.Id
+                    });
+
+
+                var booking1 = facade.BookingService.Create(
+                    new BookingBO()
+                    {
+                        CheckIn = DateTime.Now.AddDays(-1),
+                        CheckOut = DateTime.Now.AddDays(1),
+                        SingleRoomId = singleRoom13.Id,
+                        DoubleRoomId = doubleRoom1.Id,
+                        SuiteId = suite2.Id
+                    });
+
+
 
                 var guest2 = facade.GuestService.Create(
                     new GuestBO()
                     {
                         FirstName = "Line",
                         LastName = "Høj",
-                        Address = "Lundgade 3"
+                        Address = "Lundgade 3",
+                        BookingIds = { booking1.Id}
                     });
 
                 var singleRoom1 = facade.SingleRoomService.Create(
@@ -124,32 +163,12 @@ namespace RestAPI
 
 
 
-                var suite2 = facade.SuiteService.Create(
-                    new SuiteBO()
-                    {
-                        Price = 15.5,
-                        Available = 4,
-                        GuestId = guest2.Id
-                    });
+                
 
 
-                var doubleRoom1 = facade.DoubleRoomService.Create(
-                    new DoubleRoomBO()
-                    {
-                        Price = 12.5,
-                        Available = 5,
-                        GuestId = guest1.Id
-                    });
+                
 
-                var booking1 = facade.BookingService.Create(
-                    new BookingBO()
-                    {
-                        CheckIn = DateTime.Now.AddDays(-1),
-                        CheckOut = DateTime.Now.AddDays(1),
-                        SingleRoomId = singleRoom1.Id,
-                        DoubleRoomId = doubleRoom1.Id,
-                        SuiteId = suite2.Id
-                    });
+                
 
                 //var guest3 = facade.GuestService.Create(
                 //    new GuestBO()

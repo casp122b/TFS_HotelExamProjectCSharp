@@ -12,13 +12,14 @@ namespace BLL.Services
     {
         private GuestConverter guestConv;
         private BookingConverter bookConv;
-        DALFacade _facade;
+        private DALFacade _facade;
 
         public GuestService(DALFacade facade)
         {
+            _facade = facade;
             guestConv = new GuestConverter();
             bookConv = new BookingConverter();
-            _facade = facade;
+            
         }
 
         public GuestBO Create(GuestBO guest)
