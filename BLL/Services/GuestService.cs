@@ -70,6 +70,8 @@ namespace BLL.Services
                 {
                     throw new InvalidOperationException("guest not found");
                 }
+                var guestUpdated = guestConv.Convert(guest);
+       
                 updateGuest.FirstName = guest.FirstName;
                 updateGuest.LastName = guest.LastName;
                 updateGuest.Address = guest.Address;
