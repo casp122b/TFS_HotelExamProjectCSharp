@@ -28,7 +28,8 @@ namespace DAL.Context
         {
             //foreach (var relationship in modelbuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             //{
-            //    relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            //    Console.WriteLine(relationship);
+            //    //relationship.DeleteBehavior = DeleteBehavior.Restrict;
             //}
 
             base.OnModelCreating(modelbuilder);
