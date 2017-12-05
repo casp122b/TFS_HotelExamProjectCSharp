@@ -17,33 +17,33 @@ namespace DAL.UOW
         public IRepository<Suite> SuiteRepository { get; internal set; }
         private HotelExamContext context;
 
-        public UnitOfWork()
+        public UnitOfWork(DbOptions opt)
         {
-            //DbContextOptions<HotelExamContext> options;
+            DbContextOptions<HotelExamContext> options;
 
-            //if (opt.Environment == "Development" && String.IsNullOrEmpty(opt.ConnectionString))
-            //{
-            //    Console.WriteLine("Fuck alt!");
-            //    options = new DbContextOptionsBuilder<HotelExamContext>()
-            //       .UseInMemoryDatabase("InternalDb")
-            //       .Options;
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Hej");
-            //    options = new DbContextOptionsBuilder<HotelExamContext>()
-            //    .UseSqlServer(opt.ConnectionString)
-            //        .Options;
-            //}
+            if (opt.Environment == "Development" && String.IsNullOrEmpty(opt.ConnectionString))
+            {
+                Console.WriteLine("Fuck alt!");
+                options = new DbContextOptionsBuilder<HotelExamContext>()
+                   .UseInMemoryDatabase("InternalDb")
+                   .Options;
+            }
+            else
+            {
+                Console.WriteLine("Hej");
+                options = new DbContextOptionsBuilder<HotelExamContext>()
+                .UseSqlServer(opt.ConnectionString)
+                    .Options;
+            }
 
 
-            //context = new HotelExamContext(options);
+            context = new HotelExamContext(options);
 
 
             
-            context = new HotelExamContext();
+            //context = new HotelExamContext();
             Console.WriteLine("Flyv");
-            context.Database.EnsureCreated();
+            //context.Database.EnsureCreated();
 
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);

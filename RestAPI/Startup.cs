@@ -91,64 +91,65 @@ namespace RestAPI
                 //facade.UserService.Create(new UserBO() { Username = "fgjfj", Password = "fhjjghj" });
                 //facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha" });
 
-                //facade.UserService.Create(new UserBO() { Username = "wwww", Password = "aaa", Role = "Administrator" });
+                facade.UserService.Create(new UserBO() { Username = "wwww", Password = "aaa", Role = "Administrator" });
 
                 //facade.AdminService.Create(new AdminBO() { FirstName = "wtwy", LastName = "Is", Address = "dsdjjd" });
 
 
                 //var facade = new BLLFacade();
 
-                //var guest1 = facade.GuestService.Create(
-                //    new GuestBO()
-                //    {
-                //        FirstName = "Hans",
-                //        LastName = "Madsen",
-                //        Address = "Spangsbjergvej 13"
-                //    });
+                var guest1 = facade.GuestService.Create(
+                    new GuestBO()
+                    {
+                        FirstName = "Hans",
+                        LastName = "Madsen",
+                        Address = "Spangsbjergvej 13"
+                    });
 
-                //var guest2 = facade.GuestService.Create(
-                //    new GuestBO()
-                //    {
-                //        FirstName = "Line",
-                //        LastName = "Høj",
-                //        Address = "Lundgade 3"
-                //    });
+                var guest2 = facade.GuestService.Create(
+                    new GuestBO()
+                    {
+                        FirstName = "Line",
+                        LastName = "Høj",
+                        Address = "Lundgade 3"
+                    });
 
-                //var singleRoom1 = facade.SingleRoomService.Create(
-                //    new SingleRoomBO()
-                //    {
-                //        Price = 10.1,
-                //        Available = 8,
-                //        GuestId = 1
-                //    });
-
-
-
-                //var suite2 = facade.SuiteService.Create(
-                //    new SuiteBO()
-                //    {
-                //        Price = 15.5,
-                //        Available = 4,
-                //        GuestId = 1
-                //    });
+                var singleRoom1 = facade.SingleRoomService.Create(
+                    new SingleRoomBO()
+                    {
+                        Price = 10.1,
+                        Available = 8,
+                        GuestId = guest1.Id
+                    });
 
 
-                //var doubleRoom1 = facade.DoubleRoomService.Create(
-                //    new DoubleRoomBO()
-                //    {
-                //        Price = 12.5,
-                //        Available = 5,
-                //        GuestId = guest1.Id
-                //    });
-                //app.UseDeveloperExceptionPage();
 
-                //var booking1 = facade.BookingService.Create(
-                //    new BookingBO()
-                //    {
-                //        CheckIn = DateTime.Now.AddDays(-1),
-                //        CheckOut = DateTime.Now.AddDays(1),
-                //        SingleRoomId = singleRoom1.Id
-                //    });
+                var suite2 = facade.SuiteService.Create(
+                    new SuiteBO()
+                    {
+                        Price = 15.5,
+                        Available = 4,
+                        GuestId = guest2.Id
+                    });
+
+
+                var doubleRoom1 = facade.DoubleRoomService.Create(
+                    new DoubleRoomBO()
+                    {
+                        Price = 12.5,
+                        Available = 5,
+                        GuestId = guest1.Id
+                    });
+
+                var booking1 = facade.BookingService.Create(
+                    new BookingBO()
+                    {
+                        CheckIn = DateTime.Now.AddDays(-1),
+                        CheckOut = DateTime.Now.AddDays(1),
+                        SingleRoomId = singleRoom1.Id,
+                        DoubleRoomId = doubleRoom1.Id,
+                        SuiteId = suite2.Id
+                    });
 
                 //var guest3 = facade.GuestService.Create(
                 //    new GuestBO()
