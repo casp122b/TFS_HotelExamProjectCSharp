@@ -21,29 +21,29 @@ namespace DAL.UOW
         {
             DbContextOptions<HotelExamContext> options;
 
-            //if (opt.Environment == "Development" && String.IsNullOrEmpty(opt.ConnectionString))
-            //{
+            if (opt.Environment == "Development" && String.IsNullOrEmpty(opt.ConnectionString))
+            {
                 Console.WriteLine("Fuck alt!");
                 options = new DbContextOptionsBuilder<HotelExamContext>()
                    .UseInMemoryDatabase("InternalDb")
                    .Options;
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Hej");
-            //    options = new DbContextOptionsBuilder<HotelExamContext>()
-            //    .UseSqlServer(opt.ConnectionString)
-            //        .Options;
-            //}
+        }
+            else
+            {
+                Console.WriteLine("Hej");
+                options = new DbContextOptionsBuilder<HotelExamContext>()
+                .UseSqlServer(opt.ConnectionString)
+                    .Options;
+            }
 
 
-            context = new HotelExamContext(options);
+    context = new HotelExamContext(options);
 
 
             
             //context = new HotelExamContext();
             Console.WriteLine("Flyv");
-            //context.Database.EnsureCreated();
+            context.Database.EnsureCreated();
 
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);
