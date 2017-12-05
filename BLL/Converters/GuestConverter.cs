@@ -37,13 +37,6 @@ namespace BLL.Converters
                 LastName = guest.LastName,
                 Address = guest.Address,
                 BookingIds = guest.Bookings?.Select(b => b.Id).ToList()
-                //Bookings = guest.Bookings?.Select(b => new BookingBO()
-                //{
-                //    Id = b.Id,
-                //    CheckIn = b.CheckIn,
-                //    CheckOut = b.CheckOut
-
-                //}).ToList()
             };
         }
     }
