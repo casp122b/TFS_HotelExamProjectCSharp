@@ -39,5 +39,10 @@ namespace DAL.Repositories
         {
             return _context.Suites.ToList();
         }
+
+        public IEnumerable<Suite> GetAllById(List<int> ids)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

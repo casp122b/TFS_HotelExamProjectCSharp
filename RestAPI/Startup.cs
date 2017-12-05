@@ -154,10 +154,10 @@ namespace RestAPI
                 //var guest3 = facade.GuestService.Create(
                 //    new GuestBO()
                 //    {
-                //        FirstName = "Hans",
-                //        LastName = "Madsen",
-                //        Address = "Spangsbjergvej 13",
-                //        BookingId = new List<int>() { booking1.Id }
+                //        FirstName = "hans",
+                //        LastName = "madsen",
+                //        Address = "spangsbjergvej 13",
+                //        BookingIds = new List<int>() { booking1.Id }
                 //    });
                 app.UseDeveloperExceptionPage();
             }

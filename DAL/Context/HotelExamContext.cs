@@ -26,30 +26,6 @@ namespace DAL.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<GuestBooking>()
-            //    .HasKey(gb => new { gb.GuestId, gb.BookingId });
-
-            //modelBuilder.Entity<GuestBooking>()
-            //    .HasOne(gb => gb.Guest)
-            //    .WithMany(g => g.Bookings)
-            //    .HasForeignKey(gb => gb.GuestId);
-
-            //modelBuilder.Entity<GuestBooking>()
-            //    .HasOne(gb => gb.Booking)
-            //    .WithOne(b => b.Guest)
-            //    .HasForeignKey( => );
-
-            modelBuilder.Entity<Booking>()
-                .HasOne(b => b.Guest)
-                .WithMany(g => g.Bookings)
-                .HasForeignKey(b => b.GuestId)
-                .HasConstraintName("ForeignKey_Booking_Guest");
-
-            //foreach (var relationship in modelbuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
-            //{
-            //    relationship.DeleteBehavior = DeleteBehavior.Restrict;
-            //}
-
             base.OnModelCreating(modelBuilder);
         }
 

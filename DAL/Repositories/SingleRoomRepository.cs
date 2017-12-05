@@ -40,5 +40,10 @@ namespace DAL.Repositories
         {
             return _context.SingleRooms.ToList();
         }
+
+        public IEnumerable<SingleRoom> GetAllById(List<int> ids)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

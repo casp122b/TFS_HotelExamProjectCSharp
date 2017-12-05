@@ -70,22 +70,9 @@ namespace BLL.Services
                 {
                     throw new InvalidOperationException("guest not found");
                 }
-                var guestUpdated = guestConv.Convert(guest);
-       
                 updateGuest.FirstName = guest.FirstName;
                 updateGuest.LastName = guest.LastName;
                 updateGuest.Address = guest.Address;
-
-                updateGuest.Bookings.RemoveAll(
-                    b => !updateGuest.Bookings.Exists(
-                        g => g.GuestId == b.GuestId &&
-                        g.Id == b.Id));
-
-                guestUpdated.Bookings.RemoveAll(
-                    b => guestUpdated.Bookings.Exists(
-                        g => g.GuestId == b.GuestId &&
-                        g.Id == b.Id));
-
                 updateGuest.Bookings.AddRange(guestUpdated.Bookings);
 
                 uow.Complete();

@@ -12,6 +12,7 @@ namespace DAL.Repositories
         //Read
         IEnumerable<IEntity> GetAll();
         IEntity Get(int Id);
+        IEnumerable<IEntity> GetAllById(List<int> ids);
         //Delete
         IEntity Delete(int Id);
     }

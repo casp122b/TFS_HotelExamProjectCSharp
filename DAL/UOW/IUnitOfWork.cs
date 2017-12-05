@@ -9,7 +9,7 @@ namespace DAL.UOW
         IRepository<Guest> GuestRepository { get; }
         IRepository<Admin> AdminRepository { get; }
         IRepository<User> UserRepository { get; }
-        IBookingRepository BookingRepository { get; }
+        IRepository<Booking> BookingRepository { get; }
         IRepository<SingleRoom> SingleRoomRepository { get; }
         IRepository<DoubleRoom> DoubleRoomRepository { get; }
         IRepository<Suite> SuiteRepository { get; }

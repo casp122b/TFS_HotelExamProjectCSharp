@@ -40,5 +40,10 @@ namespace DAL.Repositories
         {
             return _context.Admins.ToList();
         }
+
+        public IEnumerable<Admin> GetAllById(List<int> ids)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
