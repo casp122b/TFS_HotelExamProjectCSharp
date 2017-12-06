@@ -8,6 +8,20 @@ namespace BLL.Converters
 {
     public class BookingConverter : IConverter<Booking, BookingBO>
     {
+        private SingleRoomConverter singleConv;
+        private DoubleRoomConverter doubleConv;
+        private SuiteConverter suiteConv;
+        private GuestConverter guestConv;
+
+
+        public BookingConverter()
+        {
+            singleConv = new SingleRoomConverter();
+            doubleConv = new DoubleRoomConverter();
+            suiteConv = new SuiteConverter();
+            guestConv = new GuestConverter();
+        }
+
         public Booking Convert(BookingBO book)
         {
             if (book == null) { return null; }
@@ -18,7 +32,8 @@ namespace BLL.Converters
                 CheckOut = book.CheckOut,
                 SingleRoomId = book.SingleRoomId,
                 DoubleRoomId = book.DoubleRoomId,
-                SuiteId = book.SuiteId
+                SuiteId = book.SuiteId,
+                GuestId = book.GuestId
             };
         }
 
@@ -30,12 +45,14 @@ namespace BLL.Converters
                 Id = book.Id,
                 CheckIn = book.CheckIn,
                 CheckOut = book.CheckOut,
-                SingleRoom = new SingleRoomConverter().Convert(book.SingleRoom),
-                DoubleRoom = new DoubleRoomConverter().Convert(book.DoubleRoom),
-                Suite = new SuiteConverter().Convert(book.Suite),
+                SingleRoom = singleConv.Convert(book.SingleRoom),
+                DoubleRoom = doubleConv.Convert(book.DoubleRoom),
+                Suite = suiteConv.Convert(book.Suite),
+                Guest = guestConv.Convert(book.Guest),
                 SingleRoomId = book.SingleRoomId,
                 DoubleRoomId = book.DoubleRoomId,
-                SuiteId = book.SuiteId
+                SuiteId = book.SuiteId,
+                GuestId = book.GuestId
             };
         }
     }

@@ -5,6 +5,12 @@ namespace BLL.Converters
 {
     public class SuiteConverter : IConverter<Suite, SuiteBO>
     {
+        private GuestConverter gconv;
+        public SuiteConverter()
+        {
+            gconv = new GuestConverter();
+        }
+
         public Suite Convert(SuiteBO suiteBO)
         {
             if (suiteBO == null) { return null; }
@@ -25,7 +31,7 @@ namespace BLL.Converters
                 Id = suite.Id,
                 Price = suite.Price,
                 Available = suite.Available,
-                Guest = new GuestConverter().Convert(suite.Guest),
+                Guest = gconv.Convert(suite.Guest),
                 GuestId = suite.GuestId
             };
         }

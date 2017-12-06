@@ -12,8 +12,10 @@ namespace BLL.BusinessObjects
         public int SingleRoomId { get; set; }
         public int DoubleRoomId { get; set; }
         public int SuiteId { get; set; }
+        public int GuestId { get; set; }
         public SingleRoomBO SingleRoom { get; set; }
         public DoubleRoomBO DoubleRoom { get; set; }
         public SuiteBO Suite { get; set; }
+        public GuestBO Guest { get; set; }
     }
 }
