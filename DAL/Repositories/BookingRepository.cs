@@ -40,12 +40,5 @@ namespace DAL.Repositories
         {
             return _context.Bookings.ToList();
         }
-
-        public IEnumerable<Booking> GetAllById(List<int> ids)
-        {
-            if (ids == null) { return null; };
-
-            return _context.Bookings.Where(b => ids.Contains(b.Id));
-        }
     }
 }

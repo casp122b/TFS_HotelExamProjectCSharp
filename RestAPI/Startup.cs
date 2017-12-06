@@ -104,7 +104,6 @@ namespace RestAPI
                         FirstName = "Hans",
                         LastName = "Madsen",
                         Address = "Spangsbjergvej 13",
-                        BookingIds = { 0 }
                     });
 
                 var doubleRoom1 = facade.DoubleRoomService.Create(
@@ -142,15 +141,12 @@ namespace RestAPI
                         SuiteId = suite2.Id
                     });
 
-
-
                 var guest2 = facade.GuestService.Create(
                     new GuestBO()
                     {
                         FirstName = "Line",
                         LastName = "Høj",
                         Address = "Lundgade 3",
-                        BookingIds = { booking1.Id}
                     });
 
                 var singleRoom1 = facade.SingleRoomService.Create(
@@ -160,24 +156,6 @@ namespace RestAPI
                         Available = 8,
                         GuestId = guest1.Id
                     });
-
-
-
-                
-
-
-                
-
-                
-
-                //var guest3 = facade.GuestService.Create(
-                //    new GuestBO()
-                //    {
-                //        FirstName = "hans",
-                //        LastName = "madsen",
-                //        Address = "spangsbjergvej 13",
-                //        BookingIds = new List<int>() { booking1.Id }
-                //    });
                 app.UseDeveloperExceptionPage();
             }
             app.UseAuthentication();

@@ -38,10 +38,5 @@ namespace DAL.Repositories
         {
             return _context.DoubleRooms.ToList();
         }
-
-        public IEnumerable<DoubleRoom> GetAllById(List<int> ids)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

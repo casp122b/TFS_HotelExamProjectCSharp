@@ -1,9 +1,5 @@
 ﻿using BLL.BusinessObjects;
 using DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace BLL.Converters
 {
@@ -17,12 +13,7 @@ namespace BLL.Converters
                 Id = guestBO.Id,
                 FirstName = guestBO.FirstName,
                 LastName = guestBO.LastName,
-                Address = guestBO.Address,
-                Bookings = guestBO.BookingIds?.Select(bId => new Booking()
-                {
-                    Id = bId
-                }).ToList()
-
+                Address = guestBO.Address
             };
         }
 
@@ -34,14 +25,7 @@ namespace BLL.Converters
                 Id = guest.Id,
                 FirstName = guest.FirstName,
                 LastName = guest.LastName,
-                Address = guest.Address,
-                //BookingIds = guest.Bookings?.Select(b => b.Id).ToList()
-                Bookings = guest.Bookings?.Select(b => new BookingBO()
-                {
-                    Id = b.Id,
-                    CheckIn = b.CheckIn,
-                    CheckOut = b.CheckOut
-                }).ToList()
+                Address = guest.Address
             };
         }
     }

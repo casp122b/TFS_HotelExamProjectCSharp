@@ -27,7 +27,7 @@ namespace DAL.UOW
                 options = new DbContextOptionsBuilder<HotelExamContext>()
                    .UseInMemoryDatabase("InternalDb")
                    .Options;
-        }
+            }
             else
             {
                 Console.WriteLine("Hej");
