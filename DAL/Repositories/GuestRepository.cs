@@ -34,14 +34,12 @@ namespace DAL.Repositories
 
         public Guest Get(int Id)
         {
-            return _context.Guests.Include(g => g.Bookings).FirstOrDefault(g => g.Id == Id);
+            return _context.Guests.FirstOrDefault(g => g.Id == Id);
         }
 
         public IEnumerable<Guest> GetAll()
         {
-            return _context.Guests
-                .Include(g => g.Bookings)
-                .ToList();
+            return _context.Guests.ToList();
         }
     }
 }

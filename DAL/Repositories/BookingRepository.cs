@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DAL.Repositories
 {
-    public class BookingRepository : IBookingRepository
+    public class BookingRepository : IRepository<Booking>
     {
         HotelExamContext _context;
         public BookingRepository(HotelExamContext context)
@@ -39,13 +39,6 @@ namespace DAL.Repositories
         public IEnumerable<Booking> GetAll()
         {
             return _context.Bookings.ToList();
-        }
-
-        public IEnumerable<Booking> GetAllById(List<int> ids)
-        {
-            if (ids == null) { return null; };
-
-            return _context.Bookings.Where(b => ids.Contains(b.Id));
         }
     }
 }

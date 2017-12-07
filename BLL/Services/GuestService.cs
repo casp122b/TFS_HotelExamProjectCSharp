@@ -10,15 +10,12 @@ namespace BLL.Services
 {
     public class GuestService : IService<GuestBO>
     {
-        private GuestConverter guestConv;
-        private BookingConverter bookConv;
-        DALFacade _facade;
+        GuestConverter guestConv = new GuestConverter();
+        private DALFacade _facade;
 
         public GuestService(DALFacade facade)
         {
-            guestConv = new GuestConverter();
-            bookConv = new BookingConverter();
-            _facade = facade;
+            _facade = facade;       
         }
 
         public GuestBO Create(GuestBO guest)
@@ -46,9 +43,6 @@ namespace BLL.Services
             using (var uow = _facade.UnitOfWork)
             {
                 var getGuest = guestConv.Convert(uow.GuestRepository.Get(Id));
-                getGuest.Bookings = uow.BookingRepository.GetAllById(getGuest.BookingIds)
-                    .Select(b => bookConv.Convert(b))
-                    .ToList();
                 return getGuest;
             }
         }
@@ -70,24 +64,9 @@ namespace BLL.Services
                 {
                     throw new InvalidOperationException("guest not found");
                 }
-                var guestUpdated = guestConv.Convert(guest);
-       
                 updateGuest.FirstName = guest.FirstName;
                 updateGuest.LastName = guest.LastName;
                 updateGuest.Address = guest.Address;
-
-                updateGuest.Bookings.RemoveAll(
-                    b => !updateGuest.Bookings.Exists(
-                        g => g.GuestId == b.GuestId &&
-                        g.Id == b.Id));
-
-                guestUpdated.Bookings.RemoveAll(
-                    b => guestUpdated.Bookings.Exists(
-                        g => g.GuestId == b.GuestId &&
-                        g.Id == b.Id));
-
-                updateGuest.Bookings.AddRange(guestUpdated.Bookings);
-
                 uow.Complete();
                 return guestConv.Convert(updateGuest);
             };
