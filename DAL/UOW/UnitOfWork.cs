@@ -20,8 +20,9 @@ namespace DAL.UOW
         public UnitOfWork(DbOptions opt)
         {
             DbContextOptions<HotelExamContext> options;
+            Console.WriteLine(opt.Environment);
 
-            if (opt.Environment == "Development" && String.IsNullOrEmpty(opt.ConnectionString))
+            if (opt.Environment == "Development")
             {
                 Console.WriteLine("Fuck alt!");
                 options = new DbContextOptionsBuilder<HotelExamContext>()
@@ -43,7 +44,8 @@ namespace DAL.UOW
             
             //context = new HotelExamContext();
             Console.WriteLine("Flyv");
-            context.Database.EnsureCreated();
+            //context.Database.EnsureCreated();
+
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);
             UserRepository = new UserRepository(context);

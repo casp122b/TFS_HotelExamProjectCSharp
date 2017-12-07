@@ -24,9 +24,15 @@ namespace DAL.Context
         //    }
         //}
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            //foreach (var relationship in modelbuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            //{
+            //    //Console.WriteLine(relationship);
+            //    relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            //}
+
+            base.OnModelCreating(modelbuilder);
         }
 
         public DbSet<Guest> Guests { get; set; }
