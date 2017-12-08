@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using DAL.Entities;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
@@ -38,7 +39,7 @@ namespace DAL.Repositories
 
         public IEnumerable<SingleRoom> GetAll()
         {
-            return _context.SingleRooms.ToList();
+            return _context.SingleRooms.Include(s => s.Guest).ToList();
         }
     }
 }
