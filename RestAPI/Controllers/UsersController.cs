@@ -1,14 +1,16 @@
 ﻿using BLL;
 using BLL.BusinessObjects;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
 namespace RestAPI.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Produces("application/json")]
-    [Route("api/Users")]
+    [Route("api/[controller]")]
     public class UsersController : Controller
     {
         IBLLFacade facade;

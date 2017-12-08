@@ -1,5 +1,6 @@
 ﻿using BLL;
 using BLL.BusinessObjects;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using RestAPI.Model;
@@ -12,6 +13,8 @@ using System.Text;
 
 namespace RestAPI.Controllers
 {
+    [EnableCors("MyPolicy")]
+    [Produces("application/json")]
     [Route("/login")]
     public class LoginController : Controller
     {
@@ -31,7 +34,12 @@ namespace RestAPI.Controllers
             if (!string.IsNullOrEmpty(username) && user != null)
             {
                 var token = GenerateToken(user);
-                return new ObjectResult(token);
+                return Ok(new
+                {
+                    username = user.Username,
+                    token = GenerateToken(user)
+                });
+                //return new ObjectResult(token);
             }
             return BadRequest();
         }
