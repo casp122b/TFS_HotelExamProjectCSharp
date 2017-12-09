@@ -15,7 +15,7 @@ namespace RestAPI.Controllers
 {
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
-    [Route("/login")]
+    [Route("api/login")]
     public class LoginController: Controller
     {
         IBLLFacade facade;
