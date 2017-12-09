@@ -15,8 +15,8 @@ namespace RestAPI.Controllers
 {
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
-    [Route("/login")]
-    public class LoginController : Controller
+    [Route("api/login")]
+    public class LoginController: Controller
     {
         IBLLFacade facade;
 
@@ -24,7 +24,7 @@ namespace RestAPI.Controllers
         {
             this.facade = facade;
         }
-        
+
         [HttpPost]
         public IActionResult Create([FromBody]LoginModel login)
         {
@@ -33,7 +33,7 @@ namespace RestAPI.Controllers
             var user = IsValidUserAndPasswordCombination(username, password);
             if (!string.IsNullOrEmpty(username) && user != null)
             {
-                var token = GenerateToken(user);
+                //var token = GenerateToken(user);
                 return Ok(new
                 {
                     username = user.Username,
