@@ -1,5 +1,6 @@
 ﻿using DAL.Context;
 using DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,7 +37,7 @@ namespace DAL.Repositories
 
         public IEnumerable<DoubleRoom> GetAll()
         {
-            return _context.DoubleRooms.ToList();
+            return _context.DoubleRooms.Include(s => s.Guest).ToList();
         }
     }
 }

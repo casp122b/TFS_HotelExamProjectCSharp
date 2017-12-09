@@ -1,5 +1,6 @@
 ﻿using DAL.Context;
 using DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -37,7 +38,7 @@ namespace DAL.Repositories
 
         public IEnumerable<Suite> GetAll()
         {
-            return _context.Suites.ToList();
+            return _context.Suites.Include(s => s.Guest).ToList();
         }
     }
 }
