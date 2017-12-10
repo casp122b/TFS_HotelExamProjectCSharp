@@ -10,7 +10,7 @@ namespace RestAPI.Controllers
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class SuitesController : Controller
+    public class SuitesController: Controller
     {
         IBLLFacade facade;
 
@@ -21,10 +21,7 @@ namespace RestAPI.Controllers
 
         // GET: api/Suites
         [HttpGet]
-        public IEnumerable<SuiteBO> Get()
-        {
-            return facade.SuiteService.GetAll();
-        }
+        public IEnumerable<SuiteBO> Get() => facade.SuiteService.GetAll();
 
         // GET: api/Suites/5
         [HttpGet("{id}", Name = "Get")]
@@ -32,7 +29,7 @@ namespace RestAPI.Controllers
         {
             return facade.SuiteService.Get(id);
         }
-        
+
         // POST: api/Suites
         [HttpPost]
         public IActionResult Post([FromBody]SuiteBO suiteBO)
@@ -41,6 +38,7 @@ namespace RestAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             return Ok(facade.SuiteService.Create(suiteBO));
         }
 
@@ -52,6 +50,7 @@ namespace RestAPI.Controllers
             {
                 return StatusCode(405, "Path Id does not match Room Id in json object");
             }
+
             try
             {
                 var suiteUpdated = facade.SuiteService.Update(suiteBO);
@@ -62,7 +61,7 @@ namespace RestAPI.Controllers
                 return StatusCode(404, e.Message);
             }
         }
-        
+
         // DELETE: api/Suites/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

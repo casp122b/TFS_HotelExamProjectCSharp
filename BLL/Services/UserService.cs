@@ -4,23 +4,22 @@ using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BLL.Services
 {
-    public class UserService : IService<UserBO>
+    public class UserService: IService<UserBO>
     {
         UserConverter userConv = new UserConverter();
-        DALFacade _facade;
+        DALFacade facade;
 
         public UserService(DALFacade facade)
         {
-            _facade = facade;
+            this.facade = facade;
         }
 
         public UserBO Create(UserBO user)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var newUser = uow.UserRepository.Create(userConv.Convert(user));
                 uow.Complete();
@@ -30,7 +29,7 @@ namespace BLL.Services
 
         public UserBO Delete(int Id)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var removeUser = uow.UserRepository.Delete(Id);
                 uow.Complete();
@@ -40,7 +39,7 @@ namespace BLL.Services
 
         public UserBO Get(int Id)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var getUser = uow.UserRepository.Get(Id);
                 return userConv.Convert(getUser);
@@ -49,26 +48,27 @@ namespace BLL.Services
 
         public List<UserBO> GetAll()
         {
-            using (var uow = _facade.UnitOfWork)
-            {
+            using (var uow = facade.UnitOfWork)
                 return uow.UserRepository.GetAll().Select(userConv.Convert).ToList();
-            }
+
         }
 
         public UserBO Update(UserBO user)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var updateUser = uow.UserRepository.Get(user.Id);
                 if (updateUser == null)
                 {
                     throw new InvalidOperationException("user not found");
                 }
+
                 updateUser.Username = user.Username;
                 updateUser.Password = user.Password;
                 uow.Complete();
                 return userConv.Convert(updateUser);
-            };
+            }
+;
         }
     }
 }

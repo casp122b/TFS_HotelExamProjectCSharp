@@ -4,23 +4,22 @@ using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BLL.Services
 {
-    public class BookingService : IService<BookingBO>
+    public class BookingService: IService<BookingBO>
     {
         BookingConverter bookConv = new BookingConverter();
-        DALFacade _facade;
+        DALFacade facade;
 
         public BookingService(DALFacade facade)
         {
-            _facade = facade;
+            this.facade = facade;
         }
 
         public BookingBO Create(BookingBO book)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var newBook = uow.BookingRepository.Create(bookConv.Convert(book));
                 uow.Complete();
@@ -30,7 +29,7 @@ namespace BLL.Services
 
         public BookingBO Delete(int Id)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var removeBook = uow.BookingRepository.Delete(Id);
                 uow.Complete();
@@ -40,7 +39,7 @@ namespace BLL.Services
 
         public BookingBO Get(int Id)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var getBook = uow.BookingRepository.Get(Id);
                 getBook.SingleRoom = uow.SingleRoomRepository.Get(getBook.SingleRoomId);
@@ -53,7 +52,7 @@ namespace BLL.Services
 
         public List<BookingBO> GetAll()
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 return uow.BookingRepository.GetAll().Select(bookConv.Convert).ToList();
             }
@@ -61,13 +60,14 @@ namespace BLL.Services
 
         public BookingBO Update(BookingBO book)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var updateBook = uow.BookingRepository.Get(book.Id);
                 if (updateBook == null)
                 {
                     throw new InvalidOperationException("booking not found");
                 }
+
                 updateBook.CheckIn = book.CheckIn;
                 updateBook.CheckOut = book.CheckOut;
                 updateBook.SingleRoomId = book.SingleRoomId;
@@ -76,7 +76,8 @@ namespace BLL.Services
                 updateBook.GuestId = book.GuestId;
                 uow.Complete();
                 return bookConv.Convert(updateBook);
-            };
+            }
+;
         }
     }
 }

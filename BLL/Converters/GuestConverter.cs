@@ -3,11 +3,15 @@ using DAL.Entities;
 
 namespace BLL.Converters
 {
-    public class GuestConverter : IConverter<Guest, GuestBO>
+    public class GuestConverter: IConverter<Guest, GuestBO>
     {
         public Guest Convert(GuestBO guestBO)
         {
-            if (guestBO == null) { return null; }
+            if (guestBO == null)
+            {
+                return null;
+            }
+
             return new Guest()
             {
                 Id = guestBO.Id,
@@ -19,7 +23,11 @@ namespace BLL.Converters
 
         public GuestBO Convert(Guest guest)
         {
-            if (guest == null) { return null; }
+            if (guest == null)
+            {
+                return null;
+            }
+
             return new GuestBO()
             {
                 Id = guest.Id,

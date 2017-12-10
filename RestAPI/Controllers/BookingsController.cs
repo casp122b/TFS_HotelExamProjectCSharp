@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Cors;
-using BLL;
+﻿using BLL;
 using BLL.BusinessObjects;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace RestAPI.Controllers
 {
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class BookingsController : Controller
+    public class BookingsController: Controller
     {
         IBLLFacade facade;
 
@@ -24,17 +21,12 @@ namespace RestAPI.Controllers
 
         // GET: api/values
         [HttpGet]
-        public IEnumerable<BookingBO> Get()
-        {
-            return facade.BookingService.GetAll();
-        }
+        public IEnumerable<BookingBO> Get() => facade.BookingService.GetAll();
 
         // GET
         [HttpGet("{id}")]
         public BookingBO Get(int id)
-        {
-            return facade.BookingService.Get(id);
-        }
+=> facade.BookingService.Get(id);
 
         // POST
         [HttpPost]
@@ -44,6 +36,7 @@ namespace RestAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             return Ok(facade.BookingService.Create(book));
         }
 
@@ -55,6 +48,7 @@ namespace RestAPI.Controllers
             {
                 return StatusCode(405, "Path Id does not match Booking Id in json object");
             }
+
             try
             {
                 var bookUpdated = facade.BookingService.Update(book);

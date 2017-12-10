@@ -10,7 +10,7 @@ namespace RestAPI.Controllers
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class DoubleRoomsController : Controller
+    public class DoubleRoomsController: Controller
     {
         IBLLFacade facade;
 
@@ -21,17 +21,12 @@ namespace RestAPI.Controllers
 
         // GET: api/DoubleRooms
         [HttpGet]
-        public IEnumerable<DoubleRoomBO> Get()
-        {
-            return facade.DoubleRoomService.GetAll();
-        }
+        public IEnumerable<DoubleRoomBO> Get() => facade.DoubleRoomService.GetAll();
 
         // GET: api/DoubleRooms/5
         [HttpGet("{id}")]
         public DoubleRoomBO Get(int id)
-        {
-            return facade.DoubleRoomService.Get(id);
-        }
+=> facade.DoubleRoomService.Get(id);
 
         // POST: api/DoubleRooms
         [HttpPost]
@@ -41,6 +36,7 @@ namespace RestAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             return Ok(facade.DoubleRoomService.Create(doubleRoomBO));
         }
 
@@ -52,6 +48,7 @@ namespace RestAPI.Controllers
             {
                 return StatusCode(405, "Path Id does not match Room Id in json object");
             }
+
             try
             {
                 var doubleRoomUpdated = facade.DoubleRoomService.Update(doubleRoomBO);

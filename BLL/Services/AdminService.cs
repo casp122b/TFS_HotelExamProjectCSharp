@@ -4,23 +4,22 @@ using DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BLL.Services
 {
-    public class AdminService : IService<AdminBO>
+    public class AdminService: IService<AdminBO>
     {
         AdminConverter adminConv = new AdminConverter();
-        DALFacade _facade;
+        DALFacade facade;
 
         public AdminService(DALFacade facade)
         {
-            _facade = facade;
+            this.facade = facade;
         }
 
         public AdminBO Create(AdminBO admin)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var newAdmin = uow.AdminRepository.Create(adminConv.Convert(admin));
                 uow.Complete();
@@ -30,7 +29,7 @@ namespace BLL.Services
 
         public AdminBO Delete(int Id)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var removeAdmin = uow.AdminRepository.Delete(Id);
                 uow.Complete();
@@ -40,7 +39,7 @@ namespace BLL.Services
 
         public AdminBO Get(int Id)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var getAdmin = uow.AdminRepository.Get(Id);
                 return adminConv.Convert(getAdmin);
@@ -49,7 +48,7 @@ namespace BLL.Services
 
         public List<AdminBO> GetAll()
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 return uow.AdminRepository.GetAll().Select(adminConv.Convert).ToList();
             }
@@ -57,19 +56,21 @@ namespace BLL.Services
 
         public AdminBO Update(AdminBO admin)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var updateAdmin = uow.AdminRepository.Get(admin.Id);
                 if (updateAdmin == null)
                 {
                     throw new InvalidOperationException("admin not found");
                 }
+
                 updateAdmin.FirstName = admin.FirstName;
                 updateAdmin.LastName = admin.LastName;
                 updateAdmin.Address = admin.Address;
                 uow.Complete();
                 return adminConv.Convert(updateAdmin);
-            };
+            }
+;
         }
     }
 }

@@ -1,18 +1,14 @@
 ﻿using BLL.BusinessObjects;
 using DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BLL.Converters
 {
-    public class BookingConverter : IConverter<Booking, BookingBO>
+    public class BookingConverter: IConverter<Booking, BookingBO>
     {
-        private SingleRoomConverter singleConv;
-        private DoubleRoomConverter doubleConv;
-        private SuiteConverter suiteConv;
-        private GuestConverter guestConv;
-
+        SingleRoomConverter singleConv;
+        DoubleRoomConverter doubleConv;
+        SuiteConverter suiteConv;
+        GuestConverter guestConv;
 
         public BookingConverter()
         {
@@ -24,7 +20,11 @@ namespace BLL.Converters
 
         public Booking Convert(BookingBO book)
         {
-            if (book == null) { return null; }
+            if (book == null)
+            {
+                return null;
+            }
+
             return new Booking()
             {
                 Id = book.Id,
@@ -39,7 +39,11 @@ namespace BLL.Converters
 
         public BookingBO Convert(Booking book)
         {
-            if (book == null) { return null; }
+            if (book == null)
+            {
+                return null;
+            }
+
             return new BookingBO()
             {
                 Id = book.Id,

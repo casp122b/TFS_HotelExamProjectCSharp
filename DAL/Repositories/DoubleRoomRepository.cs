@@ -6,17 +6,17 @@ using System.Linq;
 
 namespace DAL.Repositories
 {
-    public class DoubleRoomRepository : IRepository<DoubleRoom>
+    public class DoubleRoomRepository: IRepository<DoubleRoom>
     {
-        HotelExamContext _context;
+        HotelExamContext context;
         public DoubleRoomRepository(HotelExamContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         public DoubleRoom Create(DoubleRoom doubleRoom)
         {
-            _context.DoubleRooms.Add(doubleRoom);
+            context.DoubleRooms.Add(doubleRoom);
             return doubleRoom;
         }
 
@@ -25,19 +25,14 @@ namespace DAL.Repositories
             var doubleRoom = Get(Id);
             if (doubleRoom != null)
             {
-                _context.DoubleRooms.Remove(doubleRoom);
+                context.DoubleRooms.Remove(doubleRoom);
             }
+
             return doubleRoom;
         }
 
-        public DoubleRoom Get(int Id)
-        {
-            return _context.DoubleRooms.FirstOrDefault(d => d.Id == Id);
-        }
+        public DoubleRoom Get(int Id) => context.DoubleRooms.FirstOrDefault(d => d.Id == Id);
 
-        public IEnumerable<DoubleRoom> GetAll()
-        {
-            return _context.DoubleRooms.Include(s => s.Guest).ToList();
-        }
+        public IEnumerable<DoubleRoom> GetAll() => context.DoubleRooms.Include(s => s.Guest).ToList();
     }
 }

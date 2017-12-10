@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Cors;
-using BLL;
+﻿using BLL;
 using BLL.BusinessObjects;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace RestAPI.Controllers
 {
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class AdminsController : Controller
+    public class AdminsController: Controller
     {
         IBLLFacade facade;
 
@@ -34,9 +31,7 @@ namespace RestAPI.Controllers
         // GET
         [HttpGet("{id}")]
         public AdminBO Get(int id)
-        {
-            return facade.AdminService.Get(id);
-        }
+=> facade.AdminService.Get(id);
 
         // POST
         [Authorize]
@@ -47,6 +42,7 @@ namespace RestAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             return Ok(facade.AdminService.Create(admin));
         }
 
@@ -58,6 +54,7 @@ namespace RestAPI.Controllers
             {
                 return StatusCode(405, "Path Id does not match Admin Id in json object");
             }
+
             try
             {
                 var adminUpdated = facade.AdminService.Update(admin);

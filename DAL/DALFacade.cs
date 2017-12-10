@@ -10,13 +10,6 @@ namespace DAL
             this.opt = opt;
         }
 
-        public IUnitOfWork UnitOfWork
-        {
-            get
-            {
-                return new UnitOfWork(opt);
-            }
-        }
-
+        public IUnitOfWork UnitOfWork => new UnitOfWork(opt);
     }
 }

@@ -1,23 +1,21 @@
 ﻿using DAL.Context;
 using DAL.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DAL.Repositories
 {
-    public class AdminRepository : IRepository<Admin>
+    public class AdminRepository: IRepository<Admin>
     {
-        HotelExamContext _context;
+        HotelExamContext context;
         public AdminRepository(HotelExamContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         public Admin Create(Admin admin)
         {
-            _context.Admins.Add(admin);
+            context.Admins.Add(admin);
             return admin;
         }
 
@@ -26,19 +24,14 @@ namespace DAL.Repositories
             var admin = Get(Id);
             if (admin != null)
             {
-                _context.Admins.Remove(admin);
+                context.Admins.Remove(admin);
             }
+
             return admin;
         }
 
-        public Admin Get(int Id)
-        {
-            return _context.Admins.FirstOrDefault(a => a.Id == Id);
-        }
+        public Admin Get(int Id) => context.Admins.FirstOrDefault(a => a.Id == Id);
 
-        public IEnumerable<Admin> GetAll()
-        {
-            return _context.Admins.ToList();
-        }
+        public IEnumerable<Admin> GetAll() => context.Admins.ToList();
     }
 }

@@ -6,9 +6,9 @@ using System;
 
 namespace BLL
 {
-    public class BLLFacade : IBLLFacade
+    public class BLLFacade: IBLLFacade
     {
-        private DALFacade facade;
+        DALFacade facade;
         public BLLFacade(IConfiguration conf)
         {
             facade = new DALFacade(new DbOptions()
@@ -17,42 +17,18 @@ namespace BLL
                 Environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
             });
         }
-        public IService<GuestBO> GuestService
-        {
-            get { return new GuestService(facade); }
-        }
+        public IService<GuestBO> GuestService => new GuestService(facade);
 
-        public IService<AdminBO> AdminService
-        {
-            get { return new AdminService(facade); }
-        }
+        public IService<AdminBO> AdminService => new AdminService(facade);
 
-        public IService<BookingBO> BookingService
-        {
-            get { return new BookingService(facade); }
-        }
+        public IService<BookingBO> BookingService => new BookingService(facade);
 
-        public IService<SingleRoomBO> SingleRoomService
-        {
-            get { return new SingleRoomService(facade); }
-        }
+        public IService<SingleRoomBO> SingleRoomService => new SingleRoomService(facade);
 
-        public IService<DoubleRoomBO> DoubleRoomService
-        {
-            get { return new DoubleRoomService(facade); }
-        }
+        public IService<DoubleRoomBO> DoubleRoomService => new DoubleRoomService(facade);
 
-        public IService<SuiteBO> SuiteService
-        {
-            get { return new SuiteService(facade); }
-        }
+        public IService<SuiteBO> SuiteService => new SuiteService(facade);
 
-        public IService<UserBO> UserService
-        {
-            get { return new UserService(facade); }
-
-
-        }
+        public IService<UserBO> UserService => new UserService(facade);
     }
 }
-

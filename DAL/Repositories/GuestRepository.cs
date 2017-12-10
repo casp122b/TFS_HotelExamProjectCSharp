@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using DAL.Context;
 using DAL.Entities;
-using DAL.Context;
+using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
-    public class GuestRepository : IRepository<Guest>
+    public class GuestRepository: IRepository<Guest>
     {
-        HotelExamContext _context;
+        HotelExamContext context;
         public GuestRepository(HotelExamContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         public Guest Create(Guest guest)
         {
-            _context.Guests.Add(guest);
+            context.Guests.Add(guest);
             return guest;
         }
 
@@ -27,19 +24,14 @@ namespace DAL.Repositories
             var guest = Get(Id);
             if (guest != null)
             {
-                _context.Guests.Remove(guest);
+                context.Guests.Remove(guest);
             }
+
             return guest;
         }
 
-        public Guest Get(int Id)
-        {
-            return _context.Guests.FirstOrDefault(g => g.Id == Id);
-        }
+        public Guest Get(int Id) => context.Guests.FirstOrDefault(g => g.Id == Id);
 
-        public IEnumerable<Guest> GetAll()
-        {
-            return _context.Guests.ToList();
-        }
+        public IEnumerable<Guest> GetAll() => context.Guests.ToList();
     }
 }
