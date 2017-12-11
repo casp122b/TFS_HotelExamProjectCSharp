@@ -18,5 +18,21 @@
         {
             get; set;
         }
+        public int GuestId
+        {
+            get; set;
+        }
+        public GuestBO Guest
+        {
+            get; set;
+        }
+        public int AdminId
+        {
+            get; set;
+        }
+        public AdminBO Admin
+        {
+            get; set;
+        }
     }
 }
