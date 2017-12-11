@@ -3,11 +3,15 @@ using DAL.Entities;
 
 namespace BLL.Converters
 {
-    public class SingleRoomConverter : IConverter<SingleRoom, SingleRoomBO>
+    public class SingleRoomConverter: IConverter<SingleRoom, SingleRoomBO>
     {
         public SingleRoom Convert(SingleRoomBO singleRoomBO)
         {
-            if (singleRoomBO == null) { return null; }
+            if (singleRoomBO == null)
+            {
+                return null;
+            }
+
             return new SingleRoom()
             {
                 Id = singleRoomBO.Id,
@@ -19,7 +23,11 @@ namespace BLL.Converters
 
         public SingleRoomBO Convert(SingleRoom singleRoom)
         {
-            if (singleRoom == null) { return null; }
+            if (singleRoom == null)
+            {
+                return null;
+            }
+
             return new SingleRoomBO()
             {
                 Id = singleRoom.Id,

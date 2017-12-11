@@ -10,7 +10,7 @@ namespace RestAPI.Controllers
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class SingleRoomsController : Controller
+    public class SingleRoomsController: Controller
     {
         IBLLFacade facade;
 
@@ -21,17 +21,12 @@ namespace RestAPI.Controllers
 
         // GET: api/SingleRooms
         [HttpGet]
-        public IEnumerable<SingleRoomBO> Get()
-        {
-            return facade.SingleRoomService.GetAll();
-        }
+        public IEnumerable<SingleRoomBO> Get() => facade.SingleRoomService.GetAll();
 
         // GET: api/SingleRooms/5
         [HttpGet("{id}")]
         public SingleRoomBO Get(int id)
-        {
-            return facade.SingleRoomService.Get(id);
-        }
+=> facade.SingleRoomService.Get(id);
 
         // POST: api/SingleRooms
         [HttpPost]
@@ -41,6 +36,7 @@ namespace RestAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             return Ok(facade.SingleRoomService.Create(singleRoomBO));
         }
 
@@ -52,6 +48,7 @@ namespace RestAPI.Controllers
             {
                 return StatusCode(405, "Path Id does not match Room Id in json object");
             }
+
             try
             {
                 var singleRoomUpdated = facade.SingleRoomService.Update(singleRoomBO);

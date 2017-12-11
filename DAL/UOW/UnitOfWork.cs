@@ -6,16 +6,37 @@ using System;
 
 namespace DAL.UOW
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork: IUnitOfWork
     {
-        public IRepository<Guest> GuestRepository { get; internal set; }
-        public IRepository<Admin> AdminRepository { get; internal set; }
-        public IRepository<User> UserRepository { get; internal set; }
-        public IRepository<Booking> BookingRepository { get; internal set; }
-        public IRepository<SingleRoom> SingleRoomRepository { get; internal set; }
-        public IRepository<DoubleRoom> DoubleRoomRepository { get; internal set; }
-        public IRepository<Suite> SuiteRepository { get; internal set; }
-        private HotelExamContext context;
+        public IRepository<Guest> GuestRepository
+        {
+            get; internal set;
+        }
+        public IRepository<Admin> AdminRepository
+        {
+            get; internal set;
+        }
+        public IRepository<User> UserRepository
+        {
+            get; internal set;
+        }
+        public IRepository<Booking> BookingRepository
+        {
+            get; internal set;
+        }
+        public IRepository<SingleRoom> SingleRoomRepository
+        {
+            get; internal set;
+        }
+        public IRepository<DoubleRoom> DoubleRoomRepository
+        {
+            get; internal set;
+        }
+        public IRepository<Suite> SuiteRepository
+        {
+            get; internal set;
+        }
+        HotelExamContext context;
 
         public UnitOfWork(DbOptions opt)
         {
@@ -37,14 +58,11 @@ namespace DAL.UOW
                     .Options;
             }
 
-
             context = new HotelExamContext(options);
 
-
-            
-            //context = new HotelExamContext();
+            // context = new HotelExamContext();
             Console.WriteLine("Flyv");
-            //context.Database.EnsureCreated();
+            // context.Database.EnsureCreated();
 
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);
@@ -53,17 +71,10 @@ namespace DAL.UOW
             SingleRoomRepository = new SingleRoomRepository(context);
             DoubleRoomRepository = new DoubleRoomRepository(context);
             SuiteRepository = new SuiteRepository(context);
-            
         }
 
-        public int Complete()
-        {
-            return context.SaveChanges();
-        }
+        public int Complete() => context.SaveChanges();
 
-        public void Dispose()
-        {
-            context.Dispose();
-        }
+        public void Dispose() => context.Dispose();
     }
 }

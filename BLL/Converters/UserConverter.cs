@@ -1,16 +1,17 @@
 ﻿using BLL.BusinessObjects;
 using DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BLL.Converters
 {
-    public class UserConverter : IConverter<User, UserBO>
+    public class UserConverter: IConverter<User, UserBO>
     {
         public User Convert(UserBO userBO)
         {
-            if (userBO == null) { return null; }
+            if (userBO == null)
+            {
+                return null;
+            }
+
             return new User()
             {
                 Id = userBO.Id,
@@ -22,7 +23,11 @@ namespace BLL.Converters
 
         public UserBO Convert(User user)
         {
-            if (user == null) { return null; }
+            if (user == null)
+            {
+                return null;
+            }
+
             return new UserBO()
             {
                 Id = user.Id,

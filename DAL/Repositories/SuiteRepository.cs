@@ -6,18 +6,18 @@ using System.Linq;
 
 namespace DAL.Repositories
 {
-    public class SuiteRepository : IRepository<Suite>
+    public class SuiteRepository: IRepository<Suite>
     {
-        HotelExamContext _context;
+        HotelExamContext context;
 
         public SuiteRepository(HotelExamContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         public Suite Create(Suite suite)
         {
-            _context.Suites.Add(suite);
+            context.Suites.Add(suite);
             return suite;
         }
 
@@ -26,19 +26,14 @@ namespace DAL.Repositories
             var suite = Get(Id);
             if (suite != null)
             {
-                _context.Suites.Remove(suite);
+                context.Suites.Remove(suite);
             }
+
             return suite;
         }
 
-        public Suite Get(int Id)
-        {
-            return _context.Suites.FirstOrDefault(s => s.Id == Id);
-        }
+        public Suite Get(int Id) => context.Suites.FirstOrDefault(s => s.Id == Id);
 
-        public IEnumerable<Suite> GetAll()
-        {
-            return _context.Suites.Include(s => s.Guest).ToList();
-        }
+        public IEnumerable<Suite> GetAll() => context.Suites.Include(s => s.Guest).ToList();
     }
 }

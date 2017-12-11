@@ -33,25 +33,26 @@ namespace RestAPI.Controllers
             var user = IsValidUserAndPasswordCombination(username, password);
             if (!string.IsNullOrEmpty(username) && user != null)
             {
-                //var token = GenerateToken(user);
+                // var token = GenerateToken(user);
                 return Ok(new
                 {
                     username = user.Username,
                     token = GenerateToken(user)
                 });
-                //return new ObjectResult(token);
+                // return new ObjectResult(token);
             }
+
             return BadRequest();
         }
 
-        private UserBO IsValidUserAndPasswordCombination(string username, string password)
+        UserBO IsValidUserAndPasswordCombination(string username, string password)
         {
             List<UserBO> list = facade.UserService.GetAll();
             var userFound = list.FirstOrDefault(u => u.Username == username && u.Password == password);
             return userFound;
         }
 
-        private string GenerateToken(UserBO user)
+        string GenerateToken(UserBO user)
         {
             var claims = new List<Claim>
             {
@@ -62,7 +63,6 @@ namespace RestAPI.Controllers
 
             if (user.Role == "Administrator")
                 claims.Add(new Claim(ClaimTypes.Role, "Administrator"));
-
 
             var token = new JwtSecurityToken(
                 new JwtHeader(new SigningCredentials(

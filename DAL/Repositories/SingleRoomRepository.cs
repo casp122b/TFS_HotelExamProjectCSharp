@@ -1,24 +1,22 @@
 ﻿using DAL.Context;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using DAL.Entities;
-using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DAL.Repositories
 {
-    public class SingleRoomRepository : IRepository<SingleRoom>
+    public class SingleRoomRepository: IRepository<SingleRoom>
     {
-        HotelExamContext _context;
+        HotelExamContext context;
         public SingleRoomRepository(HotelExamContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         public SingleRoom Create(SingleRoom singleRoom)
         {
-            _context.SingleRooms.Add(singleRoom);
+            context.SingleRooms.Add(singleRoom);
             return singleRoom;
         }
 
@@ -27,19 +25,14 @@ namespace DAL.Repositories
             var singleRoom = Get(Id);
             if (singleRoom != null)
             {
-                _context.SingleRooms.Remove(singleRoom);
+                context.SingleRooms.Remove(singleRoom);
             }
+
             return singleRoom;
         }
 
-        public SingleRoom Get(int Id)
-        {
-            return _context.SingleRooms.FirstOrDefault(s => s.Id == Id);
-        }
+        public SingleRoom Get(int Id) => context.SingleRooms.FirstOrDefault(s => s.Id == Id);
 
-        public IEnumerable<SingleRoom> GetAll()
-        {
-            return _context.SingleRooms.Include(s => s.Guest).ToList();
-        }
+        public IEnumerable<SingleRoom> GetAll() => context.SingleRooms.Include(s => s.Guest).ToList();
     }
 }

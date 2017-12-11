@@ -7,19 +7,19 @@ using System.Linq;
 
 namespace BLL.Services
 {
-    public class SuiteService : IService<SuiteBO>
+    public class SuiteService: IService<SuiteBO>
     {
         SuiteConverter suiteConv = new SuiteConverter();
-        DALFacade _facade;
+        DALFacade facade;
 
         public SuiteService(DALFacade facade)
         {
-            _facade = facade;
+            this.facade = facade;
         }
 
         public SuiteBO Create(SuiteBO suiteBO)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var newSuite = uow.SuiteRepository.Create(suiteConv.Convert(suiteBO));
                 uow.Complete();
@@ -29,7 +29,7 @@ namespace BLL.Services
 
         public SuiteBO Delete(int Id)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var removeSuite = uow.SuiteRepository.Delete(Id);
                 uow.Complete();
@@ -39,7 +39,7 @@ namespace BLL.Services
 
         public SuiteBO Get(int Id)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var getSuite = uow.SuiteRepository.Get(Id);
                 var getGuest = uow.GuestRepository.Get(Id);
@@ -50,7 +50,7 @@ namespace BLL.Services
 
         public List<SuiteBO> GetAll()
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 return uow.SuiteRepository.GetAll().Select(suiteConv.Convert).ToList();
             }
@@ -58,19 +58,21 @@ namespace BLL.Services
 
         public SuiteBO Update(SuiteBO suiteBO)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var updateSuite = uow.SuiteRepository.Get(suiteBO.Id);
                 if (updateSuite == null)
                 {
                     throw new InvalidOperationException("Suite not found");
                 }
+
                 updateSuite.Price = suiteBO.Price;
                 updateSuite.Available = suiteBO.Available;
                 updateSuite.GuestId = suiteBO.GuestId;
                 uow.Complete();
                 return suiteConv.Convert(updateSuite);
-            };
+            }
+;
         }
     }
 }

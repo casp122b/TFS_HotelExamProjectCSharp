@@ -3,9 +3,9 @@ using DAL.Entities;
 
 namespace BLL.Converters
 {
-    public class SuiteConverter : IConverter<Suite, SuiteBO>
+    public class SuiteConverter: IConverter<Suite, SuiteBO>
     {
-        private GuestConverter gconv;
+        GuestConverter gconv;
         public SuiteConverter()
         {
             gconv = new GuestConverter();
@@ -13,7 +13,11 @@ namespace BLL.Converters
 
         public Suite Convert(SuiteBO suiteBO)
         {
-            if (suiteBO == null) { return null; }
+            if (suiteBO == null)
+            {
+                return null;
+            }
+
             return new Suite()
             {
                 Id = suiteBO.Id,
@@ -25,7 +29,11 @@ namespace BLL.Converters
 
         public SuiteBO Convert(Suite suite)
         {
-            if (suite == null) { return null; }
+            if (suite == null)
+            {
+                return null;
+            }
+
             return new SuiteBO()
             {
                 Id = suite.Id,

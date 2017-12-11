@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Cors;
-using BLL;
+﻿using BLL;
 using BLL.BusinessObjects;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace RestAPI.Controllers
 {
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class GuestsController : Controller
+    public class GuestsController: Controller
     {
         IBLLFacade facade;
 
@@ -24,19 +20,14 @@ namespace RestAPI.Controllers
         }
 
         // GET: api/values
-        //[Authorize(Roles = "Administrator")]
+        // [Authorize(Roles = "Administrator")]
         [HttpGet]
-        public IEnumerable<GuestBO> Get()
-        {
-            return facade.GuestService.GetAll();
-        }
+        public IEnumerable<GuestBO> Get() => facade.GuestService.GetAll();
 
         // GET
         [HttpGet("{id}")]
         public GuestBO Get(int id)
-        {
-            return facade.GuestService.Get(id);
-        }
+=> facade.GuestService.Get(id);
 
         // POST
         [HttpPost]
@@ -46,6 +37,7 @@ namespace RestAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             return Ok(facade.GuestService.Create(guest));
         }
 
@@ -57,6 +49,7 @@ namespace RestAPI.Controllers
             {
                 return StatusCode(405, "Path Id does not match Guest Id in json object");
             }
+
             try
             {
                 var guestUpdated = facade.GuestService.Update(guest);

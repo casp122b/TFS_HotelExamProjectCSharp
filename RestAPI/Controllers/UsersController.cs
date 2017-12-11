@@ -1,6 +1,5 @@
 ﻿using BLL;
 using BLL.BusinessObjects;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,7 +10,7 @@ namespace RestAPI.Controllers
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class UsersController : Controller
+    public class UsersController: Controller
     {
         IBLLFacade facade;
 
@@ -22,18 +21,13 @@ namespace RestAPI.Controllers
 
         // GET: api/Orders
         [HttpGet]
-        public IEnumerable<UserBO> Get()
-        {
-            return facade.UserService.GetAll();
-        }
+        public IEnumerable<UserBO> Get() => facade.UserService.GetAll();
 
         // GET: api/orders/5
-        //[Authorize(Roles = "Administrator")]
+        // [Authorize(Roles = "Administrator")]
         [HttpGet("{id}")]
         public UserBO Get(int id)
-        {
-            return facade.UserService.Get(id);
-        }
+=> facade.UserService.Get(id);
 
         // POST: api/orders
         [HttpPost]
@@ -43,6 +37,7 @@ namespace RestAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+
             return Ok(facade.UserService.Create(user));
         }
 
@@ -55,6 +50,7 @@ namespace RestAPI.Controllers
             {
                 return BadRequest("Path Id does not match Customer ID in json object");
             }
+
             try
             {
                 var userUpdated = facade.UserService.Update(user);

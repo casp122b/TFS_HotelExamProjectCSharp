@@ -7,19 +7,19 @@ using System.Linq;
 
 namespace BLL.Services
 {
-    public class SingleRoomService : IService<SingleRoomBO>
+    public class SingleRoomService: IService<SingleRoomBO>
     {
         SingleRoomConverter roomConv = new SingleRoomConverter();
-        DALFacade _facade;
+        DALFacade facade;
 
         public SingleRoomService(DALFacade facade)
         {
-            _facade = facade;
+            this.facade = facade;
         }
 
         public SingleRoomBO Create(SingleRoomBO singleRoom)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var newSingleRoom = uow.SingleRoomRepository.Create(roomConv.Convert(singleRoom));
                 uow.Complete();
@@ -29,7 +29,7 @@ namespace BLL.Services
 
         public SingleRoomBO Delete(int Id)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var removeSingleRoom = uow.SingleRoomRepository.Delete(Id);
                 uow.Complete();
@@ -39,7 +39,7 @@ namespace BLL.Services
 
         public SingleRoomBO Get(int Id)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var getSingleRoom = uow.SingleRoomRepository.Get(Id);
                 var getGuest = uow.GuestRepository.Get(Id);
@@ -50,7 +50,7 @@ namespace BLL.Services
 
         public List<SingleRoomBO> GetAll()
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 return uow.SingleRoomRepository.GetAll().Select(roomConv.Convert).ToList();
             }
@@ -58,19 +58,21 @@ namespace BLL.Services
 
         public SingleRoomBO Update(SingleRoomBO singleRoomBO)
         {
-            using (var uow = _facade.UnitOfWork)
+            using (var uow = facade.UnitOfWork)
             {
                 var updateSingleRoom = uow.SingleRoomRepository.Get(singleRoomBO.Id);
                 if (updateSingleRoom == null)
                 {
                     throw new InvalidOperationException("room not found");
                 }
+
                 updateSingleRoom.Price = singleRoomBO.Price;
                 updateSingleRoom.Available = singleRoomBO.Available;
                 updateSingleRoom.GuestId = singleRoomBO.GuestId;
                 uow.Complete();
                 return roomConv.Convert(updateSingleRoom);
-            };
+            }
+;
         }
     }
 }
