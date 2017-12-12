@@ -42,8 +42,6 @@ namespace BLL.Services
             using (var uow = facade.UnitOfWork)
             {
                 var getUser = uow.UserRepository.Get(Id);
-                getUser.Guest = uow.GuestRepository.Get(getUser.GuestId);
-                getUser.Admin = uow.AdminRepository.Get(getUser.AdminId);
                 return userConv.Convert(getUser);
             }
         }
@@ -67,8 +65,6 @@ namespace BLL.Services
 
                 updateUser.Username = user.Username;
                 updateUser.Password = user.Password;
-                updateUser.GuestId = user.GuestId;
-                updateUser.AdminId = user.AdminId;
                 uow.Complete();
                 return userConv.Convert(updateUser);
             }
