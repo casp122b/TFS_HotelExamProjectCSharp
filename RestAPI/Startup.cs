@@ -15,8 +15,14 @@ namespace RestAPI
     public class Startup
     {
 
-        public IConfiguration Configuration { get; }
-        public IHostingEnvironment Environment2 { get; }
+        public IConfiguration Configuration
+        {
+            get;
+        }
+        public IHostingEnvironment Environment2
+        {
+            get;
+        }
         public Startup(IHostingEnvironment env, IConfiguration configuration)
         {
             Environment2 = env;
@@ -28,10 +34,10 @@ namespace RestAPI
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
-            
+
         }
 
-        
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -69,7 +75,7 @@ namespace RestAPI
                 };
             });
         }
-    
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory, IBLLFacade facade)
@@ -98,65 +104,65 @@ namespace RestAPI
 
                 //var facade = new BLLFacade();
 
-                //var guest1 = facade.GuestService.Create(
-                //    new GuestBO()
-                //    {
-                //        FirstName = "Hans",
-                //        LastName = "Madsen",
-                //        Address = "Spangsbjergvej 13",
-                //    });
+                var guest1 = facade.GuestService.Create(
+                    new GuestBO()
+                    {
+                        FirstName = "Hans",
+                        LastName = "Madsen",
+                        Address = "Spangsbjergvej 13",
+                    });
 
-                //var doubleRoom1 = facade.DoubleRoomService.Create(
-                //    new DoubleRoomBO()
-                //    {
-                //        Price = 12.5,
-                //        Available = 5,
-                //        GuestId = guest1.Id
-                //    });
+                var doubleRoom1 = facade.DoubleRoomService.Create(
+                    new DoubleRoomBO()
+                    {
+                        Price = 12.5,
+                        Available = 5,
+                        GuestId = guest1.Id
+                    });
 
-                //var suite2 = facade.SuiteService.Create(
-                //    new SuiteBO()
-                //    {
-                //        Price = 15.5,
-                //        Available = 4,
-                //        GuestId = guest1.Id
-                //    });
+                var suite2 = facade.SuiteService.Create(
+                    new SuiteBO()
+                    {
+                        Price = 15.5,
+                        Available = 4,
+                        GuestId = guest1.Id
+                    });
 
-                //var singleRoom13 = facade.SingleRoomService.Create(
-                //    new SingleRoomBO()
-                //    {
-                //        Price = 22.1,
-                //        Available = 8,
-                //        GuestId = guest1.Id
-                //    });
+                var singleRoom13 = facade.SingleRoomService.Create(
+                    new SingleRoomBO()
+                    {
+                        Price = 22.1,
+                        Available = 8,
+                        GuestId = guest1.Id
+                    });
 
 
-                //var booking1 = facade.BookingService.Create(
-                //    new BookingBO()
-                //    {
-                //        CheckIn = DateTime.Now.AddDays(-1),
-                //        CheckOut = DateTime.Now.AddDays(1),
-                //        SingleRoomId = singleRoom13.Id,
-                //        DoubleRoomId = doubleRoom1.Id,
-                //        SuiteId = suite2.Id,
-                //        GuestId = guest1.Id
-                //    });
+                var booking1 = facade.BookingService.Create(
+                    new BookingBO()
+                    {
+                        CheckIn = DateTime.Now.AddDays(-1),
+                        CheckOut = DateTime.Now.AddDays(1),
+                        SingleRoomId = singleRoom13.Id,
+                        DoubleRoomId = doubleRoom1.Id,
+                        SuiteId = suite2.Id,
+                        GuestId = guest1.Id
+                    });
 
-                //var guest2 = facade.GuestService.Create(
-                //    new GuestBO()
-                //    {
-                //        FirstName = "Line",
-                //        LastName = "Høj",
-                //        Address = "Lundgade 3",
-                //    });
+                var guest2 = facade.GuestService.Create(
+                    new GuestBO()
+                    {
+                        FirstName = "Line",
+                        LastName = "Høj",
+                        Address = "Lundgade 3",
+                    });
 
-                //var singleRoom1 = facade.SingleRoomService.Create(
-                //    new SingleRoomBO()
-                //    {
-                //        Price = 10.1,
-                //        Available = 8,
-                //        GuestId = guest1.Id
-                //    });
+                var singleRoom1 = facade.SingleRoomService.Create(
+                    new SingleRoomBO()
+                    {
+                        Price = 10.1,
+                        Available = 8,
+                        GuestId = guest1.Id
+                    });
                 app.UseDeveloperExceptionPage();
             }
             app.UseAuthentication();

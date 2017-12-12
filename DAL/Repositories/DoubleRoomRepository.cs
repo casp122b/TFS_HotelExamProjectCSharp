@@ -33,6 +33,6 @@ namespace DAL.Repositories
 
         public DoubleRoom Get(int Id) => context.DoubleRooms.FirstOrDefault(d => d.Id == Id);
 
-        public IEnumerable<DoubleRoom> GetAll() => context.DoubleRooms.Include(s => s.Guest).ToList();
+        public IEnumerable<DoubleRoom> GetAll() => context.DoubleRooms.ToList();
     }
 }
