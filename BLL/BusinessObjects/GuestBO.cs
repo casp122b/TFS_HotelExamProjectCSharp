@@ -18,5 +18,13 @@
         {
             get; set;
         }
+        public int UserId
+        {
+            get; set;
+        }
+        public UserBO User
+        {
+            get; set;
+        }
     }
 }
