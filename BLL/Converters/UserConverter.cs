@@ -17,8 +17,7 @@ namespace BLL.Converters
                 Id = userBO.Id,
                 Username = userBO.Username,
                 Password = userBO.Password,
-                Role = userBO.Role,
-                GuestId = userBO.GuestId
+                Role = userBO.Role
             };
         }
 
@@ -34,9 +33,7 @@ namespace BLL.Converters
                 Id = user.Id,
                 Username = user.Username,
                 Password = user.Password,
-                Role = user.Role,
-                Guest = new GuestConverter().Convert(user.Guest),
-                GuestId = user.GuestId
+                Role = user.Role
             };
         }
     }
