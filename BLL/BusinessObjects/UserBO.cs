@@ -18,5 +18,13 @@
         {
             get; set;
         }
+        public int GuestId
+        {
+            get; set;
+        }
+        public GuestBO Guest
+        {
+            get; set;
+        }
     }
 }
