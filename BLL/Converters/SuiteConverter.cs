@@ -5,12 +5,6 @@ namespace BLL.Converters
 {
     public class SuiteConverter: IConverter<Suite, SuiteBO>
     {
-        GuestConverter gconv;
-        public SuiteConverter()
-        {
-            gconv = new GuestConverter();
-        }
-
         public Suite Convert(SuiteBO suiteBO)
         {
             if (suiteBO == null)
@@ -23,7 +17,7 @@ namespace BLL.Converters
                 Id = suiteBO.Id,
                 Price = suiteBO.Price,
                 Available = suiteBO.Available,
-                GuestId = suiteBO.GuestId
+                UserId = suiteBO.UserId
             };
         }
 
@@ -39,8 +33,8 @@ namespace BLL.Converters
                 Id = suite.Id,
                 Price = suite.Price,
                 Available = suite.Available,
-                Guest = gconv.Convert(suite.Guest),
-                GuestId = suite.GuestId
+                User = new UserConverter().Convert(suite.User),
+                UserId = suite.UserId
             };
         }
     }

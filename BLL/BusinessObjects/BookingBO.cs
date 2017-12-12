@@ -28,7 +28,7 @@ namespace BLL.BusinessObjects
         {
             get; set;
         }
-        public int GuestId
+        public int UserId
         {
             get; set;
         }
@@ -44,7 +44,7 @@ namespace BLL.BusinessObjects
         {
             get; set;
         }
-        public GuestBO Guest
+        public UserBO User
         {
             get; set;
         }

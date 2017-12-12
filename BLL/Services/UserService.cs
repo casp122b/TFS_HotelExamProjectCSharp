@@ -65,6 +65,9 @@ namespace BLL.Services
 
                 updateUser.Username = user.Username;
                 updateUser.Password = user.Password;
+                updateUser.Firstname = user.Firstname;
+                updateUser.Lastname = user.Lastname;
+                updateUser.Address = user.Address;
                 uow.Complete();
                 return userConv.Convert(updateUser);
             }

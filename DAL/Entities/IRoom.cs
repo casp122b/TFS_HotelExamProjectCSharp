@@ -10,11 +10,11 @@
         {
             get; set;
         }
-        int GuestId
+        int UserId
         {
             get; set;
         }
-        Guest Guest
+        User User
         {
             get; set;
         }

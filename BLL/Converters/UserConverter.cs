@@ -17,7 +17,10 @@ namespace BLL.Converters
                 Id = userBO.Id,
                 Username = userBO.Username,
                 Password = userBO.Password,
-                Role = userBO.Role
+                Role = userBO.Role,
+                Firstname = userBO.Firstname,
+                Lastname = userBO.Lastname,
+                Address = userBO.Address
             };
         }
 
@@ -33,7 +36,10 @@ namespace BLL.Converters
                 Id = user.Id,
                 Username = user.Username,
                 Password = user.Password,
-                Role = user.Role
+                Role = user.Role,
+                Firstname = user.Firstname,
+                Lastname = user.Lastname,
+                Address = user.Address
             };
         }
     }

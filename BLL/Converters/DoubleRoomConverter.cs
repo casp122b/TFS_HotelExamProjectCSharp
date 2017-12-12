@@ -17,7 +17,7 @@ namespace BLL.Converters
                 Id = doubleRoomBO.Id,
                 Price = doubleRoomBO.Price,
                 Available = doubleRoomBO.Available,
-                GuestId = doubleRoomBO.GuestId
+                UserId = doubleRoomBO.UserId
             };
         }
 
@@ -33,8 +33,8 @@ namespace BLL.Converters
                 Id = doubleRoom.Id,
                 Price = doubleRoom.Price,
                 Available = doubleRoom.Available,
-                Guest = new GuestConverter().Convert(doubleRoom.Guest),
-                GuestId = doubleRoom.GuestId
+                User = new UserConverter().Convert(doubleRoom.User),
+                UserId = doubleRoom.UserId
             };
         }
     }

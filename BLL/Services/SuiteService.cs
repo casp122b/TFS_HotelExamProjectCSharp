@@ -42,8 +42,7 @@ namespace BLL.Services
             using (var uow = facade.UnitOfWork)
             {
                 var getSuite = uow.SuiteRepository.Get(Id);
-                var getGuest = uow.GuestRepository.Get(Id);
-                getSuite.Guest = uow.GuestRepository.Get(getSuite.GuestId);
+                getSuite.User = uow.UserRepository.Get(getSuite.UserId);
                 return suiteConv.Convert(getSuite);
             }
         }
@@ -68,7 +67,7 @@ namespace BLL.Services
 
                 updateSuite.Price = suiteBO.Price;
                 updateSuite.Available = suiteBO.Available;
-                updateSuite.GuestId = suiteBO.GuestId;
+                updateSuite.UserId = suiteBO.UserId;
                 uow.Complete();
                 return suiteConv.Convert(updateSuite);
             }

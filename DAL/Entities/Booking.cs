@@ -40,11 +40,11 @@ namespace DAL.Entities
         {
             get; set;
         }
-        public int GuestId
+        public int UserId
         {
             get; set;
         }
-        public Guest Guest
+        public User User
         {
             get; set;
         }

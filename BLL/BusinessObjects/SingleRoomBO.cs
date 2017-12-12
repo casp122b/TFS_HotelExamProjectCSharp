@@ -14,11 +14,11 @@
         {
             get; set;
         }
-        public int GuestId
+        public int UserId
         {
             get; set;
         }
-        public GuestBO Guest
+        public UserBO User
         {
             get; set;
         }

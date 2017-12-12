@@ -45,7 +45,7 @@ namespace BLL.Services
                 getBook.SingleRoom = uow.SingleRoomRepository.Get(getBook.SingleRoomId);
                 getBook.DoubleRoom = uow.DoubleRoomRepository.Get(getBook.DoubleRoomId);
                 getBook.Suite = uow.SuiteRepository.Get(getBook.SuiteId);
-                getBook.Guest = uow.GuestRepository.Get(getBook.GuestId);
+                getBook.User = uow.UserRepository.Get(getBook.UserId);
                 return bookConv.Convert(getBook);
             }
         }
@@ -73,7 +73,7 @@ namespace BLL.Services
                 updateBook.SingleRoomId = book.SingleRoomId;
                 updateBook.DoubleRoomId = book.DoubleRoomId;
                 updateBook.SuiteId = book.SuiteId;
-                updateBook.GuestId = book.GuestId;
+                updateBook.UserId = book.UserId;
                 uow.Complete();
                 return bookConv.Convert(updateBook);
             }
