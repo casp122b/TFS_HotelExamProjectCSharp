@@ -1,5 +1,6 @@
 ﻿using BLL;
 using BLL.BusinessObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,15 +20,14 @@ namespace RestAPI.Controllers
             this.facade = facade;
         }
 
-        // GET: api/values
-        // [Authorize(Roles = "Administrator")]
+        // GET all guests
+        //[Authorize(Roles = "Administrator")]
         [HttpGet]
         public IEnumerable<GuestBO> Get() => facade.GuestService.GetAll();
 
         // GET
         [HttpGet("{id}")]
-        public GuestBO Get(int id)
-=> facade.GuestService.Get(id);
+        public GuestBO Get(int id) => facade.GuestService.Get(id);
 
         // POST
         [HttpPost]

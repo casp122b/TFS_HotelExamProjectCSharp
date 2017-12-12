@@ -33,13 +33,12 @@ namespace RestAPI.Controllers
             var user = IsValidUserAndPasswordCombination(username, password);
             if (!string.IsNullOrEmpty(username) && user != null)
             {
-                // var token = GenerateToken(user);
                 return Ok(new
                 {
                     username = user.Username,
-                    token = GenerateToken(user)
+                    token = GenerateToken(user),
+                    role = user.Role
                 });
-                // return new ObjectResult(token);
             }
 
             return BadRequest();
