@@ -34,6 +34,6 @@ namespace DAL.Repositories
 
         public Suite Get(int Id) => context.Suites.FirstOrDefault(s => s.Id == Id);
 
-        public IEnumerable<Suite> GetAll() => context.Suites.ToList();
+        public IEnumerable<Suite> GetAll() => context.Suites.Include(s => s.Guest).ToList();
     }
 }
