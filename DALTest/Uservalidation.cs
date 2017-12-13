@@ -2,29 +2,29 @@
 using System.Text.RegularExpressions;
 using DAL;
 using DAL.Entities;
-using Xunit;
+using NUnit.Framework;
 
 
 namespace DALTest
 {
-    
+    [TestFixture]
     public class UservalidationTest
     {
-        [Fact]
+        [Test]
         public void NullTestUser()
         {
             var exception = Assert.Throws<ArgumentException>(
                 () => new UserValidation(null));
-            Assert.Equal("User cannot be null", exception.Message);
+            Assert.AreEqual("User cannot be null", exception.Message);
         }
 
-        [Fact]
+        [Test]
         public void NullTestUserName()
         {
             var user = new User() { Username = null };
             var exception = Assert.Throws<ArgumentException>(
                 () => new UserValidation(user));
-            Assert.Equal("Username cannot be null", exception.Message);
+            Assert.AreEqual("Username cannot be null", exception.Message);
 
         }
      
