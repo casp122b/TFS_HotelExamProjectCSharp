@@ -33,6 +33,6 @@ namespace DAL.Repositories
 
         public SingleRoom Get(int Id) => context.SingleRooms.FirstOrDefault(s => s.Id == Id);
 
-        public IEnumerable<SingleRoom> GetAll() => context.SingleRooms.Include(s => s.Guest).ToList();
+        public IEnumerable<SingleRoom> GetAll() => context.SingleRooms.ToList();
     }
 }
