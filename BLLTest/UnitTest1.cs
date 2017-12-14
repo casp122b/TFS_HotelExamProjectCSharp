@@ -9,12 +9,12 @@ using BLLTest.TestInterfacesBLL;
 
 namespace BLLTest
 {
-    public class BLLTests
+    public class BllTests
     {
         [Fact]
         public void CRUDTestSuites()
         {
-            ISuitTestService _service = new SuiteTestMock();
+            ISuitTestService _service = new SuiteServiceTestMock();
             var SuiteTest = _service.Create(new SuiteBO
             {
                Available = 1
@@ -38,7 +38,7 @@ namespace BLLTest
         [Fact]
         public void CRUDTestUsers()
         {
-            IUserTestService _service = new UserTestMock();
+            IUserTestService _service = new UserServiceTestMock();
             var UserTest = _service.Create(new UserBO 
             {
                Username = "skipperBent1",
