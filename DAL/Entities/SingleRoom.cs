@@ -14,7 +14,7 @@
         {
             get; set;
         }
-        public int? GuestId
+        public int GuestId
         {
             get; set;
         }
