@@ -21,7 +21,7 @@ namespace RestAPI.Controllers
         }
 
         // GET: api/values
-        [Authorize(Roles = "Administrator")]
+        //[Authorize(Roles = "Administrator")]
         [HttpGet]
         public IEnumerable<AdminBO> Get()
         {
@@ -30,11 +30,10 @@ namespace RestAPI.Controllers
 
         // GET
         [HttpGet("{id}")]
-        public AdminBO Get(int id)
-=> facade.AdminService.Get(id);
+        public AdminBO Get(int id) => facade.AdminService.Get(id);
 
         // POST
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         public IActionResult Post([FromBody]AdminBO admin)
         {
