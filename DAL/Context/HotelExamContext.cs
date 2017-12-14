@@ -28,6 +28,9 @@ namespace DAL.Context
             //    //Console.WriteLine(relationship);
             //    relationship.DeleteBehavior = DeleteBehavior.Restrict;
             // }
+            //modelbuilder.Entity<SingleRoom>()
+            //    .Property<Guest>(s => s.GuestId) 
+            //    .is
 
             base.OnModelCreating(modelbuilder);
         }

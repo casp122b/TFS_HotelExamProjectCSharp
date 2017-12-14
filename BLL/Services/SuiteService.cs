@@ -43,7 +43,7 @@ namespace BLL.Services
             {
                 var getSuite = uow.SuiteRepository.Get(Id);
                 var getGuest = uow.GuestRepository.Get(Id);
-                getSuite.Guest = uow.GuestRepository.Get(getSuite.GuestId);
+                //getSuite.Guest = uow.GuestRepository.Get(getSuite.GuestId);
                 return suiteConv.Convert(getSuite);
             }
         }
