@@ -43,7 +43,7 @@ namespace BLL.Services
             {
                 var getSingleRoom = uow.SingleRoomRepository.Get(Id);
                 var getGuest = uow.GuestRepository.Get(Id);
-                //getSingleRoom.Guest = uow.GuestRepository.Get(getSingleRoom.GuestId);
+                getSingleRoom.Guest = uow.GuestRepository.Get(getGuest.Id);
                 return roomConv.Convert(getSingleRoom);
             }
         }
