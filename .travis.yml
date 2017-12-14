@@ -7,7 +7,7 @@ install:
 script:
 - dotnet build
 - dotnet test DALTest/DALTest.csproj
--dotnet test BLLTest/BLLTest.csproj
+- dotnet test BLLTest/BLLTest.csproj
 branches:
   only:
   - master
