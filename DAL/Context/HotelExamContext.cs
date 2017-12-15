@@ -31,10 +31,6 @@ namespace DAL.Context
             //modelbuilder.Entity<SingleRoom>()
             //    .Property<Guest>(s => s.GuestId) 
             //    .is
-
-            modelbuilder.Entity<Guest>()
-                .H
-
             base.OnModelCreating(modelbuilder);
         }
 
