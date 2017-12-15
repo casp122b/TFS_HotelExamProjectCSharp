@@ -45,7 +45,7 @@ namespace DAL.UOW
 
             if (opt.Environment == "Development")
             {
-                Console.WriteLine("Fuck alt!");
+                //Console.WriteLine("Fuck alt!");
                 options = new DbContextOptionsBuilder<HotelExamContext>()
                    .UseInMemoryDatabase("InternalDb")
                    .Options;
@@ -61,7 +61,7 @@ namespace DAL.UOW
             context = new HotelExamContext(options);
 
             // context = new HotelExamContext();
-            Console.WriteLine("Flyv");
+            //Console.WriteLine("Flyv");
 
             context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
