@@ -103,7 +103,7 @@ namespace RestAPI
 
                 //var facade = new BLLFacade();
 
-                var guest1 = facade.GuestService.Create(
+                /*var guest1 = facade.GuestService.Create(
                     new GuestBO()
                     {
                         FirstName = "Hans",
@@ -165,7 +165,7 @@ namespace RestAPI
                         Name = "test rum",
                         Available = false,
                         GuestId = guest1.Id
-                    });
+                    });*/
                 app.UseDeveloperExceptionPage();
             }
             app.UseAuthentication();
