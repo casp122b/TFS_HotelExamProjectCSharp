@@ -10,7 +10,7 @@
         {
             get; set;
         }
-        int GuestId
+        int? GuestId
         {
             get; set;
         }
