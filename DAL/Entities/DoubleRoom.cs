@@ -1,7 +1,11 @@
-﻿namespace DAL.Entities
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace DAL.Entities
 {
     public class DoubleRoom: IRoom
     {
+        [Key]
         public int Id
         {
             get; set;
@@ -23,6 +27,10 @@
             get; set;
         }
         public Guest Guest
+        {
+            get; set;
+        }
+        public List<Booking> Bookings
         {
             get; set;
         }

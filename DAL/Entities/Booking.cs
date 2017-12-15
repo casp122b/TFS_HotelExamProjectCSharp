@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Entities
 {
     public class Booking: IEntity
     {
+        [Key]
         public int Id
         {
             get; set;
@@ -16,15 +18,15 @@ namespace DAL.Entities
         {
             get; set;
         }
-        public int SingleRoomId
+        public int? SingleRoomId
         {
             get; set;
         }
-        public int DoubleRoomId
+        public int? DoubleRoomId
         {
             get; set;
         }
-        public int SuiteId
+        public int? SuiteId
         {
             get; set;
         }
@@ -40,7 +42,7 @@ namespace DAL.Entities
         {
             get; set;
         }
-        public int GuestId
+        public int? GuestId
         {
             get; set;
         }
