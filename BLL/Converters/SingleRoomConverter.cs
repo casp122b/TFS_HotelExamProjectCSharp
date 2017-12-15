@@ -15,6 +15,7 @@ namespace BLL.Converters
             return new SingleRoom()
             {
                 Id = singleRoomBO.Id,
+                Name = singleRoomBO.Name,
                 Price = singleRoomBO.Price,
                 Available = singleRoomBO.Available,
                 GuestId = singleRoomBO.GuestId
@@ -31,6 +32,7 @@ namespace BLL.Converters
             return new SingleRoomBO()
             {
                 Id = singleRoom.Id,
+                Name = singleRoom.Name,
                 Price = singleRoom.Price,
                 Available = singleRoom.Available,
                 Guest = new GuestConverter().Convert(singleRoom.Guest),

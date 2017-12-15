@@ -23,14 +23,59 @@ namespace DAL.Context
 
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
-            // foreach (var relationship in modelbuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
-            // {
-            //    //Console.WriteLine(relationship);
-            //    relationship.DeleteBehavior = DeleteBehavior.Restrict;
-            // }
-            //modelbuilder.Entity<SingleRoom>()
-            //    .Property<Guest>(s => s.GuestId) 
-            //    .is
+            modelbuilder.Entity<SingleRoom>()
+                .HasOne(s => s.Guest)
+                .WithMany(g => g.SingleRooms)
+                .HasForeignKey(s => s.GuestId)
+                .IsRequired(false);
+
+            modelbuilder.Entity<DoubleRoom>()
+                .HasOne(d => d.Guest)
+                .WithMany(g => g.DoubleRooms)
+                .HasForeignKey(d => d.GuestId)
+                .IsRequired(false);
+
+            modelbuilder.Entity<Suite>()
+                .HasOne(s => s.Guest)
+                .WithMany(g => g.Suites)
+                .HasForeignKey(s => s.GuestId)
+                .IsRequired(false);
+
+            modelbuilder.Entity<Guest>()
+                .HasOne(g => g.User)
+                .WithOne(u => u.Guest)
+                .HasForeignKey<Guest>(g => g.UserId)
+                .IsRequired(true);
+
+            modelbuilder.Entity<Admin>()
+                .HasOne(a => a.User)
+                .WithOne(u => u.Admin)
+                .HasForeignKey<Admin>(a => a.UserId)
+                .IsRequired(true);
+
+            modelbuilder.Entity<Booking>()
+                .HasOne(b => b.Guest)
+                .WithMany(g => g.Bookings)
+                .HasForeignKey(b => b.GuestId)
+                .IsRequired(true);
+
+            modelbuilder.Entity<Booking>()
+                .HasOne(b => b.SingleRoom)
+                .WithMany(g => g.Bookings)
+                .HasForeignKey(b => b.SingleRoomId)
+                .IsRequired(false);
+
+            modelbuilder.Entity<Booking>()
+                .HasOne(b => b.DoubleRoom)
+                .WithMany(g => g.Bookings)
+                .HasForeignKey(b => b.DoubleRoomId)
+                .IsRequired(false);
+
+            modelbuilder.Entity<Booking>()
+                .HasOne(b => b.Suite)
+                .WithMany(g => g.Bookings)
+                .HasForeignKey(b => b.SuiteId)
+                .IsRequired(false);
 
             base.OnModelCreating(modelbuilder);
         }

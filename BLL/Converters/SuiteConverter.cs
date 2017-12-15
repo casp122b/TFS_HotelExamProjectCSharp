@@ -21,6 +21,7 @@ namespace BLL.Converters
             return new Suite()
             {
                 Id = suiteBO.Id,
+                Name = suiteBO.Name,
                 Price = suiteBO.Price,
                 Available = suiteBO.Available,
                 GuestId = suiteBO.GuestId
@@ -37,6 +38,7 @@ namespace BLL.Converters
             return new SuiteBO()
             {
                 Id = suite.Id,
+                Name = suite.Name,
                 Price = suite.Price,
                 Available = suite.Available,
                 Guest = gconv.Convert(suite.Guest),

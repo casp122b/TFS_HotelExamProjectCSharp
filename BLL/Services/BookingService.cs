@@ -42,10 +42,10 @@ namespace BLL.Services
             using (var uow = facade.UnitOfWork)
             {
                 var getBook = uow.BookingRepository.Get(Id);
-                getBook.SingleRoom = uow.SingleRoomRepository.Get(getBook.SingleRoomId);
-                getBook.DoubleRoom = uow.DoubleRoomRepository.Get(getBook.DoubleRoomId);
-                getBook.Suite = uow.SuiteRepository.Get(getBook.SuiteId);
-                getBook.Guest = uow.GuestRepository.Get(getBook.GuestId);
+                //getBook.SingleRoom = uow.SingleRoomRepository.Get(getBook.SingleRoomId);
+                //getBook.DoubleRoom = uow.DoubleRoomRepository.Get(getBook.DoubleRoomId);
+                //getBook.Suite = uow.SuiteRepository.Get(getBook.SuiteId);
+                //getBook.Guest = uow.GuestRepository.Get(getBook.GuestId);
                 return bookConv.Convert(getBook);
             }
         }

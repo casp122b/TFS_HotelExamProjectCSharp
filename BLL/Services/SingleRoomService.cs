@@ -32,6 +32,11 @@ namespace BLL.Services
             using (var uow = facade.UnitOfWork)
             {
                 var removeSingleRoom = uow.SingleRoomRepository.Delete(Id);
+                if (removeSingleRoom == null)
+                {
+                    throw new InvalidOperationException("room not found");
+                }
+
                 uow.Complete();
                 return roomConv.Convert(removeSingleRoom);
             }
@@ -42,8 +47,6 @@ namespace BLL.Services
             using (var uow = facade.UnitOfWork)
             {
                 var getSingleRoom = uow.SingleRoomRepository.Get(Id);
-                var getGuest = uow.GuestRepository.Get(Id);
-                getSingleRoom.Guest = uow.GuestRepository.Get(getGuest.Id);
                 return roomConv.Convert(getSingleRoom);
             }
         }
@@ -68,6 +71,7 @@ namespace BLL.Services
 
                 updateSingleRoom.Price = singleRoomBO.Price;
                 updateSingleRoom.Available = singleRoomBO.Available;
+                updateSingleRoom.Name = singleRoomBO.Name;
                 updateSingleRoom.GuestId = singleRoomBO.GuestId;
                 uow.Complete();
                 return roomConv.Convert(updateSingleRoom);

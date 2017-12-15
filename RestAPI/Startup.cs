@@ -82,7 +82,6 @@ namespace RestAPI
         {
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
             {
-                Console.WriteLine("Solsort");
                 loggerFactory.AddConsole(Configuration.GetSection("Logging"));
                 loggerFactory.AddDebug();
 
@@ -104,7 +103,7 @@ namespace RestAPI
 
                 //var facade = new BLLFacade();
 
-                var guest1 = facade.GuestService.Create(
+                /*var guest1 = facade.GuestService.Create(
                     new GuestBO()
                     {
                         FirstName = "Hans",
@@ -116,7 +115,8 @@ namespace RestAPI
                     new DoubleRoomBO()
                     {
                         Price = 12.5,
-                        Available = 5,
+                        Name = "rum 3",
+                        Available = true,
                         GuestId = guest1.Id
                     });
 
@@ -124,7 +124,8 @@ namespace RestAPI
                     new SuiteBO()
                     {
                         Price = 15.5,
-                        Available = 4,
+                        Name = "rum 1",
+                        Available = false,
                         GuestId = guest1.Id
                     });
 
@@ -132,7 +133,8 @@ namespace RestAPI
                     new SingleRoomBO()
                     {
                         Price = 22.1,
-                        Available = 8,
+                        Name = "rum 2",
+                        Available = true,
                         GuestId = guest1.Id
                     });
 
@@ -160,9 +162,10 @@ namespace RestAPI
                     new SingleRoomBO()
                     {
                         Price = 10.1,
-                        Available = 8,
+                        Name = "test rum",
+                        Available = false,
                         GuestId = guest1.Id
-                    });
+                    });*/
                 app.UseDeveloperExceptionPage();
             }
             app.UseAuthentication();

@@ -1,8 +1,16 @@
-﻿namespace DAL.Entities
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace DAL.Entities
 {
     public class DoubleRoom: IRoom
     {
+        [Key]
         public int Id
+        {
+            get; set;
+        }
+        public string Name
         {
             get; set;
         }
@@ -10,7 +18,7 @@
         {
             get; set;
         }
-        public int Available
+        public bool Available
         {
             get; set;
         }
@@ -19,6 +27,10 @@
             get; set;
         }
         public Guest Guest
+        {
+            get; set;
+        }
+        public List<Booking> Bookings
         {
             get; set;
         }

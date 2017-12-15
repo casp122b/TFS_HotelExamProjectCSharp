@@ -45,10 +45,14 @@ namespace DAL.UOW
 
             if (opt.Environment == "Development")
             {
-                Console.WriteLine("Fuck alt!");
+                //Console.WriteLine("Fuck alt!");
+                //options = new DbContextOptionsBuilder<HotelExamContext>()
+                //   .UseInMemoryDatabase("InternalDb")
+                //   .Options;
                 options = new DbContextOptionsBuilder<HotelExamContext>()
-                   .UseInMemoryDatabase("InternalDb")
-                   .Options;
+                    .UseSqlServer("Server = tcp:hotelexam.database.windows.net,1433; Initial Catalog = hoteldb; Persist Security Info = False; User ID = hahahahahahahaha5000; Password = azurefordenledeklingeA1@; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;")
+                    .Options;
+               
             }
             else
             {
@@ -62,7 +66,6 @@ namespace DAL.UOW
 
             // context = new HotelExamContext();
             Console.WriteLine("Flyv");
-
             context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);

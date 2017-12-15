@@ -1,7 +1,10 @@
-﻿namespace DAL.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DAL.Entities
 {
     public class User: IEntity
     {
+        [Key]
         public int Id
         {
             get; set;
@@ -15,6 +18,14 @@
             get; set;
         }
         public string Role
+        {
+            get; set;
+        }
+        public Guest Guest
+        {
+            get; set;
+        }
+        public Admin Admin
         {
             get; set;
         }

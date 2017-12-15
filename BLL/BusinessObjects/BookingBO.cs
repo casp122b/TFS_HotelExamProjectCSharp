@@ -16,19 +16,19 @@ namespace BLL.BusinessObjects
         {
             get; set;
         }
-        public int SingleRoomId
+        public int? SingleRoomId
         {
             get; set;
         }
-        public int DoubleRoomId
+        public int? DoubleRoomId
         {
             get; set;
         }
-        public int SuiteId
+        public int? SuiteId
         {
             get; set;
         }
-        public int GuestId
+        public int? GuestId
         {
             get; set;
         }

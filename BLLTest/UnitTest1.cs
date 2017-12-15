@@ -17,17 +17,17 @@ namespace BLLTest
             ISuitTestService _service = new SuiteServiceTestMock();
             var SuiteTest = _service.Create(new SuiteBO
             {
-               Available = 1
+               Available = true
             });
 
             int id = SuiteTest.Id;
             Assert.NotNull(SuiteTest);
-            Assert.Equal(SuiteTest.Available, 1);
-            Assert.Equal(_service.GetById(id).Available, 1);
+            Assert.Equal(SuiteTest.Available, true);
+            Assert.Equal(_service.GetById(id).Available, true);
 
-            SuiteTest.Available = 2;
+            SuiteTest.Available = false;
             _service.Update(SuiteTest);
-            Assert.Equal(SuiteTest.Available, 2);
+            Assert.Equal(SuiteTest.Available, false);
 
             _service.Delete(SuiteTest.Id);
 
