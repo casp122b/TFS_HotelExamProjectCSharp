@@ -65,8 +65,7 @@ namespace DAL.UOW
             context = new HotelExamContext(options);
 
             // context = new HotelExamContext();
-            //Console.WriteLine("Flyv");
-
+            Console.WriteLine("Flyv");
             context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);
