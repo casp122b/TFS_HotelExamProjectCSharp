@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DAL.Repositories
 {
-    public class GuestRepository: IGuestRepository<Guest>
+    public class GuestRepository: IRepository<Guest>
     {
         HotelExamContext context;
         public GuestRepository(HotelExamContext context)
@@ -30,7 +30,7 @@ namespace DAL.Repositories
             return guest;
         }
 
-        public Guest Get(int? Id) => context.Guests.FirstOrDefault(g => g.Id == Id);
+        public Guest Get(int Id) => context.Guests.FirstOrDefault(g => g.Id == Id);
 
         public IEnumerable<Guest> GetAll() => context.Guests.ToList();
     }

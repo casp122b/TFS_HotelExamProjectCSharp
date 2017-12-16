@@ -1,8 +1,8 @@
 ﻿namespace BLL.BusinessObjects
 {
-    public class GuestBO
+    public class GuestBO: IBusinessObject
     {
-        public int? Id
+        public int Id
         {
             get; set;
         }
