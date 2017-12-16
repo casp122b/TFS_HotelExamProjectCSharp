@@ -8,7 +8,7 @@ namespace DAL.UOW
 {
     public class UnitOfWork: IUnitOfWork
     {
-        public IGuestRepository<Guest> GuestRepository
+        public IRepository<Guest> GuestRepository
         {
             get; internal set;
         }
