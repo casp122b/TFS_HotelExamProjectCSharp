@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Entities
 {
-    public class Guest: IPerson
+    public class Guest
     {
         [Key]
-        public int Id
+        public int? Id
         {
             get; set;
         }
