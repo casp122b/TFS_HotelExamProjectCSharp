@@ -6,7 +6,7 @@ namespace DAL.UOW
 {
     public interface IUnitOfWork: IDisposable
     {
-        IRepository<Guest> GuestRepository
+        IGuestRepository<Guest> GuestRepository
         {
             get;
         }
