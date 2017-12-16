@@ -21,6 +21,7 @@ namespace DAL.Context
         //    }
         // }
 
+        //Sets the rules for how the database operates
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             modelbuilder.Entity<SingleRoom>()

@@ -56,16 +56,14 @@ namespace DAL.UOW
             }
             else
             {
-                Console.WriteLine("Hej");
                 options = new DbContextOptionsBuilder<HotelExamContext>()
                 .UseSqlServer(opt.ConnectionString)
                     .Options;
             }
 
-            context = new HotelExamContext(options);
 
-            // context = new HotelExamContext();
-            Console.WriteLine("Flyv");
+            //Ensures that the database exsists 
+            context = new HotelExamContext(options);
             context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);

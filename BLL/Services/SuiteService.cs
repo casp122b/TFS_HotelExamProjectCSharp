@@ -51,8 +51,6 @@ namespace BLL.Services
                 {
                     throw new InvalidOperationException("Suite not found");
                 }
-                //var getGuest = uow.GuestRepository.Get(Id);
-                //getSuite.Guest = uow.GuestRepository.Get(getSuite.GuestId);
                 return suiteConv.Convert(getSuite);
             }
         }

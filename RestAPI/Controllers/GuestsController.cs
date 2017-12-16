@@ -25,11 +25,11 @@ namespace RestAPI.Controllers
         [HttpGet]
         public IEnumerable<GuestBO> Get() => facade.GuestService.GetAll();
 
-        // GET
+        // GET one guest by it's id
         [HttpGet("{id}")]
         public GuestBO Get(int id) => facade.GuestService.Get(id);
 
-        // POST
+        // POST (Create) one guest
         [HttpPost]
         public IActionResult Post([FromBody]GuestBO guest)
         {
@@ -41,7 +41,7 @@ namespace RestAPI.Controllers
             return Ok(facade.GuestService.Create(guest));
         }
 
-        // PUT
+        // PUT (Update) one guest
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]GuestBO guest)
         {
@@ -61,7 +61,7 @@ namespace RestAPI.Controllers
             }
         }
 
-        // DELETE
+        // DELETE one guest by it's id
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

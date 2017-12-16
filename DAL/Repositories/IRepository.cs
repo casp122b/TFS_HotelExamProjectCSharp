@@ -4,12 +4,13 @@ namespace DAL.Repositories
 {
     public interface IRepository<IEntity>
     {
-        //Create
+        //Create new entity
         IEntity Create(IEntity ent);
-        //Read
+        //Get all entities of this type
         IEnumerable<IEntity> GetAll();
+        //Get one entity by it's id
         IEntity Get(int Id);
-        //Delete
+        //Delete an exsisting entity by it's id
         IEntity Delete(int Id);
     }
 }
