@@ -20,15 +20,17 @@ namespace RestAPI.Controllers
         }
 
         // GET: api/DoubleRooms
+        // GET all doublerooms
         [HttpGet]
         public IEnumerable<DoubleRoomBO> Get() => facade.DoubleRoomService.GetAll();
 
-        // GET: api/DoubleRooms/5
+        // GET: api/DoubleRooms/id
+        // GET one doubleroom by it's id
         [HttpGet("{id}")]
-        public DoubleRoomBO Get(int id)
-=> facade.DoubleRoomService.Get(id);
+        public DoubleRoomBO Get(int id) => facade.DoubleRoomService.Get(id);
 
         // POST: api/DoubleRooms
+        // POST (Create) one doubleroom
         [HttpPost]
         public IActionResult Post([FromBody]DoubleRoomBO doubleRoomBO)
         {
@@ -40,7 +42,8 @@ namespace RestAPI.Controllers
             return Ok(facade.DoubleRoomService.Create(doubleRoomBO));
         }
 
-        // PUT: api/DoubleRooms/5
+        // PUT: api/DoubleRooms/id
+        // PUT (Update) one doubleroom
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]DoubleRoomBO doubleRoomBO)
         {
@@ -60,7 +63,8 @@ namespace RestAPI.Controllers
             }
         }
 
-        // DELETE: api/DoubleRooms/5
+        // DELETE: api/DoubleRooms/id
+        // DELETE one doubleroom by it's id
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

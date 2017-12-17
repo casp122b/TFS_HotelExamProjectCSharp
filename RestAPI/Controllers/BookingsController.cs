@@ -19,16 +19,18 @@ namespace RestAPI.Controllers
             this.facade = facade;
         }
 
-        // GET: api/values
+        // GET: api/Bookings
+        // GET all bookings
         [HttpGet]
         public IEnumerable<BookingBO> Get() => facade.BookingService.GetAll();
 
-        // GET
+        // GET: api/Bookings/id
+        // GET one booking by it's id
         [HttpGet("{id}")]
-        public BookingBO Get(int id)
-=> facade.BookingService.Get(id);
+        public BookingBO Get(int id) => facade.BookingService.Get(id);
 
-        // POST
+        // POST: api/Bookings
+        // POST (Create) one booking
         [HttpPost]
         public IActionResult Post([FromBody]BookingBO book)
         {
@@ -40,7 +42,8 @@ namespace RestAPI.Controllers
             return Ok(facade.BookingService.Create(book));
         }
 
-        // PUT
+        // PUT: api/Bookings/id
+        // PUT (Update) one booking
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]BookingBO book)
         {
@@ -60,7 +63,8 @@ namespace RestAPI.Controllers
             }
         }
 
-        // DELETE
+        // DELETE: api/Bookings/id
+        // DELETE one booking by it's id
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

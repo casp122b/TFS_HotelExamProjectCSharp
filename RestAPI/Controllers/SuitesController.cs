@@ -21,10 +21,12 @@ namespace RestAPI.Controllers
         }
 
         // GET: api/Suites
+        // GET all suites
         [HttpGet]
         public IEnumerable<SuiteBO> Get() => facade.SuiteService.GetAll();
 
-        // GET: api/Suites/5
+        // GET: api/Suites/id
+        // GET one suite by it's id
         [HttpGet("{id}", Name = "Get")]
         public SuiteBO Get(int id)
         {
@@ -32,6 +34,7 @@ namespace RestAPI.Controllers
         }
 
         // POST: api/Suites
+        // POST (Create) one suite
         [HttpPost]
         public IActionResult Post([FromBody]SuiteBO suiteBO)
         {
@@ -43,7 +46,8 @@ namespace RestAPI.Controllers
             return Ok(facade.SuiteService.Create(suiteBO));
         }
 
-        // PUT: api/Suites/5
+        // PUT: api/Suites/id
+        // PUT (Update) one suite
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]SuiteBO suiteBO)
         {
@@ -63,7 +67,8 @@ namespace RestAPI.Controllers
             }
         }
 
-        // DELETE: api/Suites/5
+        // DELETE: api/Suites/id
+        // DELETE one suite by it's id
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

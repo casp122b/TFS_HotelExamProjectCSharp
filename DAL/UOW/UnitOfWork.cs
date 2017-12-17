@@ -43,6 +43,7 @@ namespace DAL.UOW
             DbContextOptions<HotelExamContext> options;
             Console.WriteLine(opt.Environment);
 
+            //Connects to our database
             if (opt.Environment == "Development")
             {
                 //Console.WriteLine("Fuck alt!");

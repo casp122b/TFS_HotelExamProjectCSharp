@@ -21,7 +21,7 @@ namespace DAL.Context
         //    }
         // }
 
-        //Sets the rules for how the database operates
+        //Defines relationships between entities
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             modelbuilder.Entity<SingleRoom>()
@@ -81,6 +81,7 @@ namespace DAL.Context
             base.OnModelCreating(modelbuilder);
         }
 
+        // Saving to database
         public DbSet<Guest> Guests
         {
             get; set;

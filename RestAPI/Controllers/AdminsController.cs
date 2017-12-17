@@ -20,7 +20,8 @@ namespace RestAPI.Controllers
             this.facade = facade;
         }
 
-        // GET: api/values
+        // GET: api/Admins
+        // GET all admins
         //[Authorize(Roles = "Administrator")]
         [HttpGet]
         public IEnumerable<AdminBO> Get()
@@ -28,11 +29,13 @@ namespace RestAPI.Controllers
             return facade.AdminService.GetAll();
         }
 
-        // GET
+        // GET: api/Admins/id
+        // GET one admin by it's id
         [HttpGet("{id}")]
         public AdminBO Get(int id) => facade.AdminService.Get(id);
 
-        // POST
+        // POST: api/Admins
+        // POST (Create) one admin
         //[Authorize]
         [HttpPost]
         public IActionResult Post([FromBody]AdminBO admin)
@@ -45,7 +48,8 @@ namespace RestAPI.Controllers
             return Ok(facade.AdminService.Create(admin));
         }
 
-        // PUT
+        // PUT: api/Admins/id
+        // PUT (Update) one admin
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]AdminBO admin)
         {
@@ -65,7 +69,8 @@ namespace RestAPI.Controllers
             }
         }
 
-        // DELETE
+        // DELETE: api/Admins/id
+        // DELETE one admin by it's id
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
