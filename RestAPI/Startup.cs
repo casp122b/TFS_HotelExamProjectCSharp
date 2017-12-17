@@ -110,15 +110,15 @@ namespace RestAPI
                         LastName = "Madsen",
                         Address = "Spangsbjergvej 13",
                     });
-
+*/
                 var doubleRoom1 = facade.DoubleRoomService.Create(
                     new DoubleRoomBO()
                     {
                         Price = 12.5,
                         Name = "rum 3",
                         Available = true,
-                        GuestId = guest1.Id
                     });
+                /*
 
                 var suite2 = facade.SuiteService.Create(
                     new SuiteBO()

@@ -46,14 +46,10 @@ namespace DAL.UOW
             //Connects to our database
             if (opt.Environment == "Development")
             {
-                //Console.WriteLine("Fuck alt!");
-                //options = new DbContextOptionsBuilder<HotelExamContext>()
-                //   .UseInMemoryDatabase("InternalDb")
-                //   .Options;
                 options = new DbContextOptionsBuilder<HotelExamContext>()
-                    .UseSqlServer("Server = tcp:hotelexam.database.windows.net,1433; Initial Catalog = hoteldb; Persist Security Info = False; User ID = hahahahahahahaha5000; Password = azurefordenledeklingeA1@; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;")
-                    .Options;
-               
+                   .UseInMemoryDatabase("InternalDb")
+                   .Options;
+
             }
             else
             {
@@ -75,8 +71,10 @@ namespace DAL.UOW
             SuiteRepository = new SuiteRepository(context);
         }
 
+        //Savechanges represents the number of of objects  written to the underlying database
         public int Complete() => context.SaveChanges();
 
+        //Dispose context when it is done
         public void Dispose() => context.Dispose();
     }
 }

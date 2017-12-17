@@ -8,18 +8,6 @@ namespace DAL.Context
         public HotelExamContext(DbContextOptions<HotelExamContext> options) : base(options)
         {
         }
-        // static DbContextOptions<HotelExamContext> options = new DbContextOptionsBuilder<HotelExamContext>().UseInMemoryDatabase("InternalDb").Options;
-
-        // public HotelExamContext() : base(options) { }
-
-        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        // {
-        //    if (!optionsBuilder.IsConfigured)
-        //    {
-        //        optionsBuilder.UseSqlServer(@"Server=tcp:hotelexam.database.windows.net,1433;Initial Catalog=hoteldb;Persist Security Info=False;User ID=hahahahahahahaha5000;Password=azurefordenledeklingeA1@;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-        //        Console.WriteLine("Ko");
-        //    }
-        // }
 
         //Defines relationships between entities
         protected override void OnModelCreating(ModelBuilder modelbuilder)
