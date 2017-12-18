@@ -27,6 +27,7 @@ namespace RestAPI.Controllers
 
         // GET: api/Suites/id
         // GET one suite by it's id
+        [Authorize(Roles = "Administrator")]
         [HttpGet("{id}", Name = "Get")]
         public SuiteBO Get(int id)
         {
@@ -35,6 +36,7 @@ namespace RestAPI.Controllers
 
         // POST: api/Suites
         // POST (Create) one suite
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public IActionResult Post([FromBody]SuiteBO suiteBO)
         {
@@ -48,6 +50,7 @@ namespace RestAPI.Controllers
 
         // PUT: api/Suites/id
         // PUT (Update) one suite
+        [Authorize(Roles = "Administrator")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]SuiteBO suiteBO)
         {
@@ -69,6 +72,7 @@ namespace RestAPI.Controllers
 
         // DELETE: api/Suites/id
         // DELETE one suite by it's id
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

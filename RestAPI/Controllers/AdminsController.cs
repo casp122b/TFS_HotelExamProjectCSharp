@@ -8,6 +8,8 @@ using System.Collections.Generic;
 
 namespace RestAPI.Controllers
 {
+    //Only administrators can use methods in this class.
+    [Authorize(Roles = "Administrator")]
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]

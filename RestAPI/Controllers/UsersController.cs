@@ -1,5 +1,6 @@
 ﻿using BLL;
 using BLL.BusinessObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,6 +22,7 @@ namespace RestAPI.Controllers
 
         // GET: api/Users
         // GET all users
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IEnumerable<UserBO> Get() => facade.UserService.GetAll();
 
@@ -66,6 +68,7 @@ namespace RestAPI.Controllers
 
         // DELETE: api/Users/id
         // DELETE one user by it's id
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

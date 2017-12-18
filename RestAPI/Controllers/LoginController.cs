@@ -46,6 +46,7 @@ namespace RestAPI.Controllers
 
         UserBO IsValidUserAndPasswordCombination(string username, string password)
         {
+            //checks if username/password exists in the database. If they exist, the user is returned.
             List<UserBO> list = facade.UserService.GetAll();
             var userFound = list.FirstOrDefault(u => u.Username == username && u.Password == password);
             return userFound;
@@ -53,6 +54,7 @@ namespace RestAPI.Controllers
 
         string GenerateToken(UserBO user)
         {
+            //a list of claims containing username, start time and expiration time is created.
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Username),
@@ -60,15 +62,18 @@ namespace RestAPI.Controllers
                 new Claim(JwtRegisteredClaimNames.Exp, new DateTimeOffset(DateTime.Now.AddDays(1)).ToUnixTimeSeconds().ToString()),
             };
 
+            //If the role is Administrator, a role claim is added to the list of claims.
             if (user.Role == "Administrator")
                 claims.Add(new Claim(ClaimTypes.Role, "Administrator"));
 
+            //a token containing header (algorithm definition and key) and payload (the list of claims) is defined.
             var token = new JwtSecurityToken(
                 new JwtHeader(new SigningCredentials(
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes("BOErgeOsTSpiser AErter 123 STK I ALT!")),
                                              SecurityAlgorithms.HmacSha256)),
                 new JwtPayload(claims));
 
+            //the token gets creates.
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }

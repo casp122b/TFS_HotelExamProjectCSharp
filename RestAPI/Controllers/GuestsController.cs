@@ -22,7 +22,7 @@ namespace RestAPI.Controllers
 
         // GET: api/Guests
         // GET all guests
-        //[Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IEnumerable<GuestBO> Get() => facade.GuestService.GetAll();
 

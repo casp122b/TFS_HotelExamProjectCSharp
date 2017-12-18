@@ -1,5 +1,6 @@
 ﻿using BLL;
 using BLL.BusinessObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -26,11 +27,13 @@ namespace RestAPI.Controllers
 
         // GET: api/SingleRooms/id
         // GET one singleroom by it's id
+        [Authorize(Roles = "Administrator")]
         [HttpGet("{id}")]
         public SingleRoomBO Get(int id) => facade.SingleRoomService.Get(id);
 
         // POST: api/SingleRooms
         // POST (Create) one singleroom
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public IActionResult Post([FromBody]SingleRoomBO singleRoomBO)
         {
@@ -44,6 +47,7 @@ namespace RestAPI.Controllers
 
         // PUT: api/SingleRooms/id
         // PUT (Update) one singleroom
+        [Authorize(Roles = "Administrator")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]SingleRoomBO singleRoomBO)
         {
@@ -65,6 +69,7 @@ namespace RestAPI.Controllers
 
         // DELETE: api/SingleRooms/id
         // DELETE one singleRoom by it's id
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

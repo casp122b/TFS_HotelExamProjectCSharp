@@ -1,5 +1,6 @@
 ﻿using BLL;
 using BLL.BusinessObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -26,11 +27,13 @@ namespace RestAPI.Controllers
 
         // GET: api/DoubleRooms/id
         // GET one doubleroom by it's id
+        [Authorize(Roles = "Administrator")]
         [HttpGet("{id}")]
         public DoubleRoomBO Get(int id) => facade.DoubleRoomService.Get(id);
 
         // POST: api/DoubleRooms
         // POST (Create) one doubleroom
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public IActionResult Post([FromBody]DoubleRoomBO doubleRoomBO)
         {
@@ -44,6 +47,7 @@ namespace RestAPI.Controllers
 
         // PUT: api/DoubleRooms/id
         // PUT (Update) one doubleroom
+        [Authorize(Roles = "Administrator")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]DoubleRoomBO doubleRoomBO)
         {
@@ -65,6 +69,7 @@ namespace RestAPI.Controllers
 
         // DELETE: api/DoubleRooms/id
         // DELETE one doubleroom by it's id
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
