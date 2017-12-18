@@ -64,6 +64,7 @@ namespace BLL.Services
             }
         }
 
+        //Goes through the facade to get doubleroom by it's id and changes it's values, it returns a converted doubleroom, the id must already exsist
         public DoubleRoomBO Update(DoubleRoomBO doubleRoomBO)
         {
             using (var uow = facade.UnitOfWork)

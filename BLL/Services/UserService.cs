@@ -63,6 +63,7 @@ namespace BLL.Services
 
         }
 
+        //Goes through the facade to get user by it's id and changes it's values, it returns a converted user, the id must already exsist
         public UserBO Update(UserBO user)
         {
             using (var uow = facade.UnitOfWork)

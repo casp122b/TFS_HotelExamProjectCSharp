@@ -65,6 +65,7 @@ namespace BLL.Services
             }
         }
 
+        //Goes through the facade to get guest by it's id and changes it's values, it returns a converted guest, the id must already exsist
         public GuestBO Update(GuestBO guest)
         {
             using (var uow = facade.UnitOfWork)

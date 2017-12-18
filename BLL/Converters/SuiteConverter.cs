@@ -11,6 +11,7 @@ namespace BLL.Converters
             gconv = new GuestConverter();
         }
 
+        //Converts suiteBO to suite
         public Suite Convert(SuiteBO suiteBO)
         {
             if (suiteBO == null)
@@ -28,6 +29,7 @@ namespace BLL.Converters
             };
         }
 
+        //Converts suite to suiteBO
         public SuiteBO Convert(Suite suite)
         {
             if (suite == null)

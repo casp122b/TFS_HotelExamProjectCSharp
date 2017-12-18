@@ -65,6 +65,7 @@ namespace BLL.Services
             }
         }
 
+        //Goes through the facade to get an admin by it's id and changes it's values, it returns a converted admin, the id must already exsist
         public AdminBO Update(AdminBO admin)
         {
             using (var uow = facade.UnitOfWork)

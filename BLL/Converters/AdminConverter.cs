@@ -5,6 +5,7 @@ namespace BLL.Converters
 {
     public class AdminConverter: IConverter<Admin, AdminBO>
     {
+        //Converts adminBO to admin
         public Admin Convert(AdminBO admin)
         {
             if (admin == null)
@@ -22,6 +23,7 @@ namespace BLL.Converters
             };
         }
 
+        //Converts admin to adminBO
         public AdminBO Convert(Admin admin)
         {
             if (admin == null)
