@@ -43,7 +43,7 @@ namespace DAL.UOW
             DbContextOptions<HotelExamContext> options;
             Console.WriteLine(opt.Environment);
 
-            //Connects to our database
+            //Connects to our in memory database
             if (opt.Environment == "Development")
             {
                 options = new DbContextOptionsBuilder<HotelExamContext>()
@@ -51,6 +51,7 @@ namespace DAL.UOW
                    .Options;
 
             }
+            //Connects to our actual database
             else
             {
                 options = new DbContextOptionsBuilder<HotelExamContext>()
