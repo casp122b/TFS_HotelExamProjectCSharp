@@ -12,11 +12,12 @@ namespace BLL.Services
         SingleRoomConverter roomConv = new SingleRoomConverter();
         DALFacade facade;
 
+        //Makes the facade available in the class
         public SingleRoomService(DALFacade facade)
         {
             this.facade = facade;
         }
-
+        //Converts singleroom and goes through the facade to create and save it, then returns the singleroom converted back
         public SingleRoomBO Create(SingleRoomBO singleRoom)
         {
             using (var uow = facade.UnitOfWork)
@@ -27,6 +28,7 @@ namespace BLL.Services
             }
         }
 
+        //Goes through the facade to delete singleroom by it's id and save the change, then returns the singleroom converted back, the id must already exsist
         public SingleRoomBO Delete(int Id)
         {
             using (var uow = facade.UnitOfWork)
@@ -42,6 +44,7 @@ namespace BLL.Services
             }
         }
 
+        //Goes through the facade to get a singleroom by it's id, it returns a converted singleroom, the id must already exsist
         public SingleRoomBO Get(int Id)
         {
             using (var uow = facade.UnitOfWork)
@@ -51,6 +54,7 @@ namespace BLL.Services
             }
         }
 
+        //Goes through the facade  to get a list of singlerooms and return them converted
         public List<SingleRoomBO> GetAll()
         {
             using (var uow = facade.UnitOfWork)

@@ -9,7 +9,7 @@ namespace DAL.Repositories
     {
         HotelExamContext context;
 
-        //Makes the context avalible in the class
+        //Makes the context available in the class
         public UserRepository(HotelExamContext context)
         {
             this.context = context;

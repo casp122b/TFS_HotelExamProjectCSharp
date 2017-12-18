@@ -12,11 +12,13 @@ namespace BLL.Services
         UserConverter userConv = new UserConverter();
         DALFacade facade;
 
+        //Makes the facade available in the class
         public UserService(DALFacade facade)
         {
             this.facade = facade;
         }
 
+        //Converts user and goes through the facade to create and save it, then returns the user converted back
         public UserBO Create(UserBO user)
         {
             using (var uow = facade.UnitOfWork)
@@ -27,16 +29,23 @@ namespace BLL.Services
             }
         }
 
+        //Goes through the facade to delete user by it's id and save the change, then returns the user converted back, the id must already exsist
         public UserBO Delete(int Id)
         {
             using (var uow = facade.UnitOfWork)
             {
                 var removeUser = uow.UserRepository.Delete(Id);
+                if (removeUser == null)
+                {
+                    throw new InvalidOperationException("user not found");
+                }
+
                 uow.Complete();
                 return userConv.Convert(removeUser);
             }
         }
 
+        //Goes through the facade to get a user by it's id, it returns a converted user, the id must already exsist
         public UserBO Get(int Id)
         {
             using (var uow = facade.UnitOfWork)
@@ -46,6 +55,7 @@ namespace BLL.Services
             }
         }
 
+        //Goes through the facade  to get a list of users and return them converted
         public List<UserBO> GetAll()
         {
             using (var uow = facade.UnitOfWork)
