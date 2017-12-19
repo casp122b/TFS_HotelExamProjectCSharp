@@ -8,6 +8,8 @@ using System.Collections.Generic;
 
 namespace RestAPI.Controllers
 {
+    // Only administrators can use methods in this class.
+    [Authorize(Roles = "Administrator")]
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]
@@ -20,20 +22,18 @@ namespace RestAPI.Controllers
             this.facade = facade;
         }
 
-        // GET: api/values
-        //[Authorize(Roles = "Administrator")]
+        // GET: api/Admins
+        // GET all admins
         [HttpGet]
-        public IEnumerable<AdminBO> Get()
-        {
-            return facade.AdminService.GetAll();
-        }
+        public IEnumerable<AdminBO> Get() => facade.AdminService.GetAll();
 
-        // GET
+        // GET: api/Admins/id
+        // GET one admin by it's id
         [HttpGet("{id}")]
         public AdminBO Get(int id) => facade.AdminService.Get(id);
 
-        // POST
-        //[Authorize]
+        // POST: api/Admins
+        // POST (Create) one admin
         [HttpPost]
         public IActionResult Post([FromBody]AdminBO admin)
         {
@@ -45,7 +45,8 @@ namespace RestAPI.Controllers
             return Ok(facade.AdminService.Create(admin));
         }
 
-        // PUT
+        // PUT: api/Admins/id
+        // PUT (Update) one admin
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]AdminBO admin)
         {
@@ -65,7 +66,8 @@ namespace RestAPI.Controllers
             }
         }
 
-        // DELETE
+        // DELETE: api/Admins/id
+        // DELETE one admin by it's id
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

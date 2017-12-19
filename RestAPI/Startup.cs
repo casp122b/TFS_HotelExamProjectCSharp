@@ -117,8 +117,8 @@ namespace RestAPI
                         Price = 12.5,
                         Name = "rum 3",
                         Available = true,
-                        GuestId = guest1.Id
                     });
+                
 
                 var suite2 = facade.SuiteService.Create(
                     new SuiteBO()

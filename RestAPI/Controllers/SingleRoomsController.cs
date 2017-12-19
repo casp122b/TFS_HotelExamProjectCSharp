@@ -1,5 +1,6 @@
 ﻿using BLL;
 using BLL.BusinessObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,15 +21,19 @@ namespace RestAPI.Controllers
         }
 
         // GET: api/SingleRooms
+        // GET all singlerooms
         [HttpGet]
         public IEnumerable<SingleRoomBO> Get() => facade.SingleRoomService.GetAll();
 
-        // GET: api/SingleRooms/5
+        // GET: api/SingleRooms/id
+        // GET one singleroom by it's id
+        [Authorize(Roles = "Administrator")]
         [HttpGet("{id}")]
-        public SingleRoomBO Get(int id)
-=> facade.SingleRoomService.Get(id);
+        public SingleRoomBO Get(int id) => facade.SingleRoomService.Get(id);
 
         // POST: api/SingleRooms
+        // POST (Create) one singleroom
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public IActionResult Post([FromBody]SingleRoomBO singleRoomBO)
         {
@@ -40,7 +45,9 @@ namespace RestAPI.Controllers
             return Ok(facade.SingleRoomService.Create(singleRoomBO));
         }
 
-        // PUT: api/SingleRooms/5
+        // PUT: api/SingleRooms/id
+        // PUT (Update) one singleroom
+        [Authorize(Roles = "Administrator")]
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]SingleRoomBO singleRoomBO)
         {
@@ -60,7 +67,9 @@ namespace RestAPI.Controllers
             }
         }
 
-        // DELETE: api/SingleRooms/5
+        // DELETE: api/SingleRooms/id
+        // DELETE one singleRoom by it's id
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

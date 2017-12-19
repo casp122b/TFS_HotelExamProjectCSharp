@@ -12,11 +12,13 @@ namespace BLL.Services
         SuiteConverter suiteConv = new SuiteConverter();
         DALFacade facade;
 
+        // Makes the facade available in the class
         public SuiteService(DALFacade facade)
         {
             this.facade = facade;
         }
 
+        // Converts suite and goes through the facade to create and save it, then returns the suite converted back
         public SuiteBO Create(SuiteBO suiteBO)
         {
             using (var uow = facade.UnitOfWork)
@@ -27,6 +29,7 @@ namespace BLL.Services
             }
         }
 
+        // Goes through the facade to delete suite by it's id and save the change, then returns the suite converted back, the id must already exsist
         public SuiteBO Delete(int Id)
         {
             using (var uow = facade.UnitOfWork)
@@ -42,6 +45,7 @@ namespace BLL.Services
             }
         }
 
+        // Goes through the facade to get a suite by it's id, it returns a converted suite, the id must already exsist
         public SuiteBO Get(int Id)
         {
             using (var uow = facade.UnitOfWork)
@@ -51,12 +55,12 @@ namespace BLL.Services
                 {
                     throw new InvalidOperationException("Suite not found");
                 }
-                //var getGuest = uow.GuestRepository.Get(Id);
-                //getSuite.Guest = uow.GuestRepository.Get(getSuite.GuestId);
+
                 return suiteConv.Convert(getSuite);
             }
         }
 
+        // Goes through the facade  to get a list of suites and return them converted
         public List<SuiteBO> GetAll()
         {
             using (var uow = facade.UnitOfWork)
@@ -65,6 +69,7 @@ namespace BLL.Services
             }
         }
 
+        // Goes through the facade to get suite by it's id and changes it's values, it returns a converted suite, the id must already exsist
         public SuiteBO Update(SuiteBO suiteBO)
         {
             using (var uow = facade.UnitOfWork)
@@ -82,6 +87,7 @@ namespace BLL.Services
                 uow.Complete();
                 return suiteConv.Convert(updateSuite);
             }
+
 ;
         }
     }

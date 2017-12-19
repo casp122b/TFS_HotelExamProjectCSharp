@@ -1,5 +1,6 @@
 ﻿using BLL;
 using BLL.BusinessObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,17 +20,19 @@ namespace RestAPI.Controllers
             this.facade = facade;
         }
 
-        // GET: api/Orders
+        // GET: api/Users
+        // GET all users
+        [Authorize(Roles = "Administrator")]
         [HttpGet]
         public IEnumerable<UserBO> Get() => facade.UserService.GetAll();
 
-        // GET: api/orders/5
-        // [Authorize(Roles = "Administrator")]
+        // GET: api/Users/id
+        // GET one user by it's id
         [HttpGet("{id}")]
-        public UserBO Get(int id)
-=> facade.UserService.Get(id);
+        public UserBO Get(int id) => facade.UserService.Get(id);
 
-        // POST: api/orders
+        // POST: api/Users
+        // POST (Create) one user
         [HttpPost]
         public IActionResult Post([FromBody]UserBO user)
         {
@@ -41,14 +44,14 @@ namespace RestAPI.Controllers
             return Ok(facade.UserService.Create(user));
         }
 
-        //      api/ControllerName/id
-        // PUT: api/orders/5
+        // PUT: api/Users/id
+        // PUT (Update) one admin
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]UserBO user)
         {
             if (id != user.Id)
             {
-                return BadRequest("Path Id does not match Customer ID in json object");
+                return BadRequest("Path Id does not match User ID in json object");
             }
 
             try
@@ -62,7 +65,9 @@ namespace RestAPI.Controllers
             }
         }
 
-        // DELETE: api/orders/5
+        // DELETE: api/Users/id
+        // DELETE one user by it's id
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

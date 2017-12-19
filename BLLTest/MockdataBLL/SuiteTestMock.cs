@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using BLL.BusinessObjects;
+﻿using BLL.BusinessObjects;
 using BLLTest.Mockdata;
+using System.Collections.Generic;
 
 namespace BLLTest.MockdataBLL
 {
-    public class SuiteTestMock : ISuitTestService
+    public class SuiteTestMock: ISuitTestService
     {
         List<SuiteBO> suites = new List<SuiteBO>();
 
@@ -15,10 +15,7 @@ namespace BLLTest.MockdataBLL
             return s;
         }
 
-        public List<SuiteBO> GetAll()
-        {
-            return suites;
-        }
+        public List<SuiteBO> GetAll() => suites;
 
         public SuiteBO GetById(int Id)
         {
@@ -30,6 +27,7 @@ namespace BLLTest.MockdataBLL
                         return s;
                     }
                 }
+
                 return null;
             }
         }

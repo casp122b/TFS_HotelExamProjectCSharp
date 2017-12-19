@@ -4,14 +4,15 @@ namespace BLL.Services
 {
     public interface IService<IBusinessObject>
     {
-        //Create
+        //Create a BusinessObject
         IBusinessObject Create(IBusinessObject bo);
-        //Read
+        //Get all businessObjects
         List<IBusinessObject> GetAll();
+        //Get a businessObject by it's id
         IBusinessObject Get(int Id);
-        //Update
+        //Update businessObject
         IBusinessObject Update(IBusinessObject bo);
-        //Delete
+        //Delete a businessObject by it's id
         IBusinessObject Delete(int Id);
     }
 }

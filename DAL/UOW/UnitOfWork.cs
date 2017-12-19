@@ -43,29 +43,23 @@ namespace DAL.UOW
             DbContextOptions<HotelExamContext> options;
             Console.WriteLine(opt.Environment);
 
+            // Connects to our in memory database
             if (opt.Environment == "Development")
             {
-                //Console.WriteLine("Fuck alt!");
-                //options = new DbContextOptionsBuilder<HotelExamContext>()
-                //   .UseInMemoryDatabase("InternalDb")
-                //   .Options;
                 options = new DbContextOptionsBuilder<HotelExamContext>()
-                    .UseSqlServer("Server = tcp:hotelexam.database.windows.net,1433; Initial Catalog = hoteldb; Persist Security Info = False; User ID = hahahahahahahaha5000; Password = azurefordenledeklingeA1@; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;")
-                    .Options;
-               
+                   .UseInMemoryDatabase("InternalDb")
+                   .Options;
             }
+            // Connects to our actual database
             else
             {
-                Console.WriteLine("Hej");
                 options = new DbContextOptionsBuilder<HotelExamContext>()
                 .UseSqlServer(opt.ConnectionString)
                     .Options;
             }
 
+            // Ensures that the database exsists
             context = new HotelExamContext(options);
-
-            // context = new HotelExamContext();
-            Console.WriteLine("Flyv");
             context.Database.EnsureCreated();
             GuestRepository = new GuestRepository(context);
             AdminRepository = new AdminRepository(context);
@@ -76,8 +70,10 @@ namespace DAL.UOW
             SuiteRepository = new SuiteRepository(context);
         }
 
+        // Savechanges represents the number of of objects  written to the underlying database
         public int Complete() => context.SaveChanges();
 
+        // Dispose context when it is done
         public void Dispose() => context.Dispose();
     }
 }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using BLL.BusinessObjects;
+﻿using BLL.BusinessObjects;
 using BLLTest.TestInterfacesBLL;
+using System.Collections.Generic;
 
 namespace BLLTest.MockdataBLL
 {
-    public class UserTestMock : IUserTestService
+    public class UserTestMock: IUserTestService
     {
         List<UserBO> users = new List<UserBO>();
 
@@ -17,10 +15,7 @@ namespace BLLTest.MockdataBLL
             return u;
         }
 
-        public List<UserBO> GetAll()
-        {
-            return users;
-        }
+        public List<UserBO> GetAll() => users;
 
         public UserBO GetById(int Id)
         {
@@ -32,6 +27,7 @@ namespace BLLTest.MockdataBLL
                         return u;
                     }
                 }
+
                 return null;
             }
         }

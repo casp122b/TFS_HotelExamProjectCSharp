@@ -12,11 +12,13 @@ namespace BLL.Services
         BookingConverter bookConv = new BookingConverter();
         DALFacade facade;
 
+        // Makes the facade available in the class
         public BookingService(DALFacade facade)
         {
             this.facade = facade;
         }
 
+        // Converts booking and goes through the facade to create and save it, then returns the booking converted back
         public BookingBO Create(BookingBO book)
         {
             using (var uow = facade.UnitOfWork)
@@ -27,29 +29,33 @@ namespace BLL.Services
             }
         }
 
+        // Goes through the facade to delete booking by it's id and save the change, then returns the booking converted back, the id must already exsist
         public BookingBO Delete(int Id)
         {
             using (var uow = facade.UnitOfWork)
             {
                 var removeBook = uow.BookingRepository.Delete(Id);
+                if (removeBook == null)
+                {
+                    throw new InvalidOperationException("booking not found");
+                }
+
                 uow.Complete();
                 return bookConv.Convert(removeBook);
             }
         }
 
+        // Goes through the facade to get a booking by it's id, it returns a converted booking, the id must already exsist
         public BookingBO Get(int Id)
         {
             using (var uow = facade.UnitOfWork)
             {
                 var getBook = uow.BookingRepository.Get(Id);
-                //getBook.SingleRoom = uow.SingleRoomRepository.Get(getBook.SingleRoomId);
-                //getBook.DoubleRoom = uow.DoubleRoomRepository.Get(getBook.DoubleRoomId);
-                //getBook.Suite = uow.SuiteRepository.Get(getBook.SuiteId);
-                //getBook.Guest = uow.GuestRepository.Get(getBook.GuestId);
                 return bookConv.Convert(getBook);
             }
         }
 
+        // Goes through the facade  to get a list of bookings and return them converted
         public List<BookingBO> GetAll()
         {
             using (var uow = facade.UnitOfWork)
@@ -58,6 +64,7 @@ namespace BLL.Services
             }
         }
 
+        // Goes through the facade to get booking by it's id and changes it's values, it returns a converted booking, the id must already exsist
         public BookingBO Update(BookingBO book)
         {
             using (var uow = facade.UnitOfWork)
@@ -77,7 +84,6 @@ namespace BLL.Services
                 uow.Complete();
                 return bookConv.Convert(updateBook);
             }
-;
         }
     }
 }

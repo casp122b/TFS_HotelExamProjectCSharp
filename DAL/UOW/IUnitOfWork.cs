@@ -34,6 +34,8 @@ namespace DAL.UOW
         {
             get;
         }
+
+        //Saves all changes made when called or updates nothing if it fails
         int Complete();
     }
 }

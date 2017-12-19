@@ -12,11 +12,13 @@ namespace BLL.Services
         GuestConverter guestConv = new GuestConverter();
         DALFacade facade;
 
+        // Makes the facade available in the class
         public GuestService(DALFacade facade)
         {
             this.facade = facade;
         }
 
+        // Converts guest and goes through the facade to create and save it, then returns the guest converted back
         public GuestBO Create(GuestBO guest)
         {
             using (var uow = facade.UnitOfWork)
@@ -27,16 +29,23 @@ namespace BLL.Services
             }
         }
 
+        // Goes through the facade to delete guest by it's id and save the change, then returns the guest converted back, the id must already exsist
         public GuestBO Delete(int Id)
         {
             using (var uow = facade.UnitOfWork)
             {
                 var removeGuest = uow.GuestRepository.Delete(Id);
+                if (removeGuest == null)
+                {
+                    throw new InvalidOperationException("guest not found");
+                }
+
                 uow.Complete();
                 return guestConv.Convert(removeGuest);
             }
         }
 
+        // Goes through the facade to get an guest by it's id, and takes a user with it based on it's id, it returns a converted guest, the id must already exsist
         public GuestBO Get(int Id)
         {
             using (var uow = facade.UnitOfWork)
@@ -47,6 +56,7 @@ namespace BLL.Services
             }
         }
 
+        // Goes through the facade  to get a list of guests and return them converted
         public List<GuestBO> GetAll()
         {
             using (var uow = facade.UnitOfWork)
@@ -55,6 +65,7 @@ namespace BLL.Services
             }
         }
 
+        // Goes through the facade to get guest by it's id and changes it's values, it returns a converted guest, the id must already exsist
         public GuestBO Update(GuestBO guest)
         {
             using (var uow = facade.UnitOfWork)
@@ -72,6 +83,7 @@ namespace BLL.Services
                 uow.Complete();
                 return guestConv.Convert(updateGuest);
             }
+
 ;
         }
     }
