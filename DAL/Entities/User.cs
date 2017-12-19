@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Entities
 {
@@ -13,7 +14,16 @@ namespace DAL.Entities
         {
             get; set;
         }
+        [NotMapped]
         public string Password
+        {
+            get; set;
+        }
+        public byte[] PasswordHash
+        {
+            get; set;
+        }
+        public byte[] PasswordSalt
         {
             get; set;
         }

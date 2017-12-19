@@ -52,7 +52,7 @@ namespace RestAPI.Controllers
         {
             if (id != user.Id)
             {
-                return BadRequest("Path Id does not match Customer ID in json object");
+                return BadRequest("Path Id does not match User ID in json object");
             }
 
             try

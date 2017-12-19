@@ -18,6 +18,8 @@ namespace BLL.Converters
                 Id = userBO.Id,
                 Username = userBO.Username,
                 Password = userBO.Password,
+                PasswordHash = userBO.PasswordHash,
+                PasswordSalt = userBO.PasswordSalt,
                 Role = userBO.Role
             };
         }
@@ -35,6 +37,8 @@ namespace BLL.Converters
                 Id = user.Id,
                 Username = user.Username,
                 Password = user.Password,
+                PasswordHash = user.PasswordHash,
+                PasswordSalt = user.PasswordSalt,
                 Role = user.Role
             };
         }

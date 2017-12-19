@@ -38,6 +38,13 @@ namespace DAL.Repositories
         public Admin Get(int Id) => context.Admins.FirstOrDefault(a => a.Id == Id);
 
         //Get all admins from the context as a list
-        public IEnumerable<Admin> GetAll() => context.Admins.ToList();
+        public IEnumerable<Admin> GetAll()
+        {
+            if (context.Admins == null)
+            {
+                return null;
+            }
+            return context.Admins.ToList();
+        }
     }
 }

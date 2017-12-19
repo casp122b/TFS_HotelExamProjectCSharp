@@ -1,4 +1,5 @@
-﻿namespace BLL.BusinessObjects
+﻿
+namespace BLL.BusinessObjects
 {
     public class UserBO: IBusinessObject
     {
@@ -11,6 +12,14 @@
             get; set;
         }
         public string Password
+        {
+            get; set;
+        }
+        public byte[] PasswordHash
+        {
+            get; set;
+        }
+        public byte[] PasswordSalt
         {
             get; set;
         }
