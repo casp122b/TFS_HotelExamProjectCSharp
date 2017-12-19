@@ -32,7 +32,7 @@ namespace RestAPI.Controllers
             var username = login.Username;
             var password = login.Password;
             //checks if the username entered is valid
-            var user = IsValidUserAndPasswordCombination(username);
+            var user = IsValidUser(username);
             if (user == null)
             {
                 return BadRequest();
@@ -51,7 +51,7 @@ namespace RestAPI.Controllers
             });
         }
 
-        UserBO IsValidUserAndPasswordCombination(string username)
+        UserBO IsValidUser(string username)
         {
             //checks if username exists in the database. If it exists, the username is returned.
             List<UserBO> list = facade.UserService.GetAll();
