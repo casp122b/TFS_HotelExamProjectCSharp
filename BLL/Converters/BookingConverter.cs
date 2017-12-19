@@ -18,7 +18,7 @@ namespace BLL.Converters
             guestConv = new GuestConverter();
         }
 
-        //Converts bookingBO to booking
+        // Converts bookingBO to booking
         public Booking Convert(BookingBO book)
         {
             if (book == null)
@@ -38,7 +38,7 @@ namespace BLL.Converters
             };
         }
 
-        //Converts booking to bookingBO
+        // Converts booking to bookingBO
         public BookingBO Convert(Booking book)
         {
             if (book == null)

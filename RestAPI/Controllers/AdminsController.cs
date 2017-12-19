@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace RestAPI.Controllers
 {
-    //Only administrators can use methods in this class.
+    // Only administrators can use methods in this class.
     [Authorize(Roles = "Administrator")]
     [EnableCors("MyPolicy")]
     [Produces("application/json")]
@@ -25,10 +25,7 @@ namespace RestAPI.Controllers
         // GET: api/Admins
         // GET all admins
         [HttpGet]
-        public IEnumerable<AdminBO> Get()
-        {
-            return facade.AdminService.GetAll();
-        }
+        public IEnumerable<AdminBO> Get() => facade.AdminService.GetAll();
 
         // GET: api/Admins/id
         // GET one admin by it's id

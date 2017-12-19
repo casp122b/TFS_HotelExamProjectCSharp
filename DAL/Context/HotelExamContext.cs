@@ -9,7 +9,7 @@ namespace DAL.Context
         {
         }
 
-        //Defines relationships between entities
+        // Defines relationships between entities
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
             modelbuilder.Entity<SingleRoom>()

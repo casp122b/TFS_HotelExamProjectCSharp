@@ -14,7 +14,7 @@ namespace DAL.Entities
         {
             get; set;
         }
-        //the attribute is not created in the database
+        // the attribute is not created in the database
         [NotMapped]
         public string Password
         {

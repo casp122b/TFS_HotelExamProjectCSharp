@@ -1,14 +1,10 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using DAL;
+﻿using DAL;
 using DAL.Entities;
+using System;
 using Xunit;
-
-
 
 namespace DALTest
 {
-    
     public class UservalidationTest
     {
         [Fact]
@@ -26,9 +22,6 @@ namespace DALTest
             var exception = Assert.Throws<ArgumentException>(
                 () => new UserValidation(user));
             Assert.Equal("Username cannot be null", exception.Message);
-
-        }
-     
         }
     }
-
+}

@@ -12,13 +12,13 @@ namespace BLL.Services
         AdminConverter adminConv = new AdminConverter();
         DALFacade facade;
 
-        //Makes the facade available in the class
+        // Makes the facade available in the class
         public AdminService(DALFacade facade)
         {
             this.facade = facade;
         }
 
-        //Converts admin and goes through the facade to create and save it, then returns the admin converted back
+        // Converts admin and goes through the facade to create and save it, then returns the admin converted back
         public AdminBO Create(AdminBO admin)
         {
             using (var uow = facade.UnitOfWork)
@@ -29,7 +29,7 @@ namespace BLL.Services
             }
         }
 
-        //Goes through the facade to delete admin by it's id and save the change, then returns the admin converted back, the id must already exsist
+        // Goes through the facade to delete admin by it's id and save the change, then returns the admin converted back, the id must already exsist
         public AdminBO Delete(int Id)
         {
             using (var uow = facade.UnitOfWork)
@@ -45,7 +45,7 @@ namespace BLL.Services
             }
         }
 
-        //Goes through the facade to get an admin by it's id, and takes a user with it based on it's id, it returns a converted admin, the id must already exsist
+        // Goes through the facade to get an admin by it's id, and takes a user with it based on it's id, it returns a converted admin, the id must already exsist
         public AdminBO Get(int Id)
         {
             using (var uow = facade.UnitOfWork)
@@ -56,7 +56,7 @@ namespace BLL.Services
             }
         }
 
-        //Goes through the facade  to get a list of admins and return them converted
+        // Goes through the facade  to get a list of admins and return them converted
         public List<AdminBO> GetAll()
         {
             using (var uow = facade.UnitOfWork)
@@ -65,7 +65,7 @@ namespace BLL.Services
             }
         }
 
-        //Goes through the facade to get an admin by it's id and changes it's values, it returns a converted admin, the id must already exsist
+        // Goes through the facade to get an admin by it's id and changes it's values, it returns a converted admin, the id must already exsist
         public AdminBO Update(AdminBO admin)
         {
             using (var uow = facade.UnitOfWork)
@@ -83,6 +83,7 @@ namespace BLL.Services
                 uow.Complete();
                 return adminConv.Convert(updateAdmin);
             }
+
 ;
         }
     }

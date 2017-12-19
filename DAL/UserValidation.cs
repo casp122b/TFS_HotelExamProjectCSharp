@@ -3,11 +3,9 @@ using DAL.Entities;
 
 namespace DAL
 {
-   public class UserValidation
+    public class UserValidation
     {
-
         User _user;
-
         public UserValidation(User user)
         {
             if (user == null)
@@ -20,7 +18,5 @@ namespace DAL
             }
             _user = user;
         }
-
-
     }
 }

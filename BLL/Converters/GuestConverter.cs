@@ -5,7 +5,7 @@ namespace BLL.Converters
 {
     public class GuestConverter: IConverter<Guest, GuestBO>
     {
-        //Converts guestBO to guest
+        // Converts guestBO to guest
         public Guest Convert(GuestBO guestBO)
         {
             if (guestBO == null)
@@ -23,7 +23,7 @@ namespace BLL.Converters
             };
         }
 
-        //Converts guest to guestBO
+        // Converts guest to guestBO
         public GuestBO Convert(Guest guest)
         {
             if (guest == null)

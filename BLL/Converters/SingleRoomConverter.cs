@@ -5,8 +5,7 @@ namespace BLL.Converters
 {
     public class SingleRoomConverter: IConverter<SingleRoom, SingleRoomBO>
     {
-
-        //Converts singleroomBO to singleroom
+        // Converts singleroomBO to singleroom
         public SingleRoom Convert(SingleRoomBO singleRoomBO)
         {
             if (singleRoomBO == null)
@@ -24,7 +23,7 @@ namespace BLL.Converters
             };
         }
 
-        //Converts singleroom to singleroomBO
+        // Converts singleroom to singleroomBO
         public SingleRoomBO Convert(SingleRoom singleRoom)
         {
             if (singleRoom == null)

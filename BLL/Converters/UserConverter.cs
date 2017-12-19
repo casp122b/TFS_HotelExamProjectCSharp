@@ -5,7 +5,7 @@ namespace BLL.Converters
 {
     public class UserConverter: IConverter<User, UserBO>
     {
-        //Converts userBO to user
+        // Converts userBO to user
         public User Convert(UserBO userBO)
         {
             if (userBO == null)
@@ -24,7 +24,7 @@ namespace BLL.Converters
             };
         }
 
-        //Converts user to userBO
+        // Converts user to userBO
         public UserBO Convert(User user)
         {
             if (user == null)
