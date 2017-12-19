@@ -103,7 +103,7 @@ namespace RestAPI.Controllers
             var token = new JwtSecurityToken(
                 new JwtHeader(new SigningCredentials(
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes("BOErgeOsTSpiser AErter 123 STK I ALT!")),
-                                             SecurityAlgorithms.HmacSha256)),
+                                             SecurityAlgorithms.HmacSha512)),
                 new JwtPayload(null, // issuer - not needed (ValidateIssuer = false)
                                null, // audience - not needed (ValidateAudience = false)
                                claims.ToArray(),
