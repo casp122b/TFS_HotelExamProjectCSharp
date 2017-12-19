@@ -24,7 +24,6 @@ namespace RestAPI.Controllers
 
         // GET: api/Admins
         // GET all admins
-        //[Authorize(Roles = "Administrator")]
         [HttpGet]
         public IEnumerable<AdminBO> Get()
         {
@@ -38,7 +37,6 @@ namespace RestAPI.Controllers
 
         // POST: api/Admins
         // POST (Create) one admin
-        //[Authorize]
         [HttpPost]
         public IActionResult Post([FromBody]AdminBO admin)
         {

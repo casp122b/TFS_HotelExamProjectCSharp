@@ -110,7 +110,7 @@ namespace RestAPI
                         LastName = "Madsen",
                         Address = "Spangsbjergvej 13",
                     });
-*/
+
                 var doubleRoom1 = facade.DoubleRoomService.Create(
                     new DoubleRoomBO()
                     {
@@ -118,7 +118,7 @@ namespace RestAPI
                         Name = "rum 3",
                         Available = true,
                     });
-                /*
+                
 
                 var suite2 = facade.SuiteService.Create(
                     new SuiteBO()

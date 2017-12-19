@@ -28,6 +28,7 @@ namespace BLL.Services
             {
                 password = user.Password;
                 var newUser = uow.UserRepository.Create(userConv.Convert(user));
+                //creates hash and salt corresponding to the entered password for the user
                 CreatePasswordHash(password, out passwordHash, out passwordSalt);
                 newUser.PasswordHash = passwordHash;
                 newUser.PasswordSalt = passwordSalt;
@@ -96,13 +97,16 @@ namespace BLL.Services
 ;
         }
 
+        //takes in a password and outputs hash/salt
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
+            //checks if password is null
             if (password == null)
                 throw new ArgumentNullException("password");
             if (string.IsNullOrWhiteSpace(password))
                 throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
 
+            //creates a key (salt) and a hash value matching the password entered. The used algorithm is the 512 bit version of SHA
             using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
                 passwordSalt = hmac.Key;

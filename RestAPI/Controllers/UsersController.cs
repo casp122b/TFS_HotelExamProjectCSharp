@@ -28,7 +28,6 @@ namespace RestAPI.Controllers
 
         // GET: api/Users/id
         // GET one user by it's id
-        // [Authorize(Roles = "Administrator")]
         [HttpGet("{id}")]
         public UserBO Get(int id) => facade.UserService.Get(id);
 
