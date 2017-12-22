@@ -96,7 +96,7 @@ namespace RestAPI
                 //facade.UserService.Create(new UserBO() { Username = "fgjfj", Password = "fhjjghj" });
                 //facade.UserService.Create(new UserBO() { Username = "dinko", Password = "aha" });
 
-                //facade.UserService.Create(new UserBO() { Username = "wwww", Password = "aaa", Role = "Administrator" });
+                facade.UserService.Create(new UserBO() { Username = "www", Password = "aaa", Role = "Administrator" });
 
                 //facade.AdminService.Create(new AdminBO() { FirstName = "wtwy", LastName = "Is", Address = "dsdjjd" });
 

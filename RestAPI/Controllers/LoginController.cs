@@ -46,6 +46,7 @@ namespace RestAPI.Controllers
             // returns username, token and role
             return Ok(new
             {
+                id = user.Id,
                 username = user.Username,
                 token = GenerateToken(user),
                 role = user.Role
